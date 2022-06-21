@@ -1,11 +1,14 @@
 import React, { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
+import { useHistory } from "react-router-dom";
 
 function RegisterForm() {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
   const errors = useSelector((store) => store.errors);
   const dispatch = useDispatch();
+  const history = useHistory();
+
 
   const registerUser = (event) => {
     event.preventDefault();
@@ -16,7 +19,9 @@ function RegisterForm() {
         username: username,
         password: password,
       },
+    
     });
+      history.push("/RolesChoice")
   }; // end registerUser
 
   return (
@@ -51,9 +56,9 @@ function RegisterForm() {
           />
         </label>
       </div>
-      {/* <div>
-        <input className="btn" type="submit" name="submit" value="Register" />
-      </div> */}
+      <div>
+        <button className="btn" type="submit" name="submit" value="Register" > Submit </button>
+      </div>
     </form>
   );
 }

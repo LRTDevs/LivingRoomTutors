@@ -59,7 +59,12 @@ function App() {
           {/* Unprotected Routes */}
 
           <Route exact path="/home">
+            {/* <HomePage /> */}
+            <LoginPage />
+          </Route>
+          <Route exact path="/RolesChoice">
             <HomePage />
+       
           </Route>
 
           <Route exact path="/ProgressBar">
@@ -146,21 +151,21 @@ function App() {
           </ProtectedRoute>
 
           <Route exact path="/login">
-            {user.id ? (
+            {/* {user.id ? ( */}
               // If the user is already logged in,
               // redirect to the /user page
-              <Redirect to="/admin" />
-            ) : (
+              {/* <Redirect to="/admin" /> */}
+            {/* ) : ( */}
                 // Otherwise, show the login page
                 <LoginPage />
-              )}
+              {/* // )} */}
           </Route>
 
           <Route exact path="/registration">
             {user.id ? (
               // If the user is already logged in,
               // redirect them to the /user page
-              <Redirect to="/admin" />
+              <Redirect to="/home" />
             ) : (
                 // Otherwise, show the registration page
                 <RegisterPage /> //<----this might need to change back to <TuteesPage/> depending on the client needs and how we want to approach admin registration
