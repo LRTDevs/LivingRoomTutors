@@ -36,6 +36,7 @@ import MatchPage from "../MatchPage/MatchPage";
 import HomePage from "../HomePage/HomePage";
 
 import ProgressBar from "../ProgressBar/ProgressBar";
+import RegisterForm from "../RegisterForm/RegisterForm";
 
 function App() {
   const dispatch = useDispatch();
@@ -64,6 +65,8 @@ function App() {
           <Route exact path="/ProgressBar">
             <ProgressBar />
           </Route>
+
+      
 
           <Route exact path="/StudentAdditional">
             <StudentAdditional />
