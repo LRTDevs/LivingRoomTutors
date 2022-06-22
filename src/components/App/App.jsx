@@ -147,10 +147,10 @@ function App() {
 
           <Route exact path='/login'>
             {/* {user.id ? ( */}
-            // If the user is already logged in, // redirect to the /user page
+            {/* // If the user is already logged in, // redirect to the /user page */}
             {/* <Redirect to="/admin" /> */}
             {/* ) : ( */}
-            // Otherwise, show the login page
+            {/* // Otherwise, show the login page */}
             <LoginPage />
             {/* // )} */}
           </Route>
