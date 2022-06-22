@@ -148,7 +148,7 @@ function TutorInfo(props) {
       setPronouns("she/they");
       setNewTutorPhone("1234567890");
       setNewGrade("Junior");
-      setNewTutorSchool("Century High School");
+      setNewTutorSchoCFol("Century High School");
       setdefaultSchoolVal("Century High School");
     }
   };
