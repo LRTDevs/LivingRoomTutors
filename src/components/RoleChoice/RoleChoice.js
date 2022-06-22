@@ -1,13 +1,13 @@
 import React, { useState, useEffect } from "react";
 import { useHistory } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import "../HomePage/HomePage.css";
+import "./RoleChoice.css";
 import { Table, Card, Col, Row, Button, ButtonGroup } from "react-bootstrap";
 import logo from "../../images/logoCrop.png";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faArrowRight } from "@fortawesome/free-solid-svg-icons";
 
-function HomePage(props) {
+function RoleChoice(props) {
 
   useEffect(() => {
     dispatch({
@@ -99,4 +99,4 @@ function HomePage(props) {
   );
 }
 
-export default HomePage;
+export default RoleChoice;
