@@ -1,7 +1,7 @@
+import Header from '../Header/Header';
+
 function ProfileDashboard() {
-    return (
-        <h1>You did it! Yay!</h1>
-    )
+  return <Header />;
 }
 
 export default ProfileDashboard;

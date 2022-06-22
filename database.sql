@@ -25,6 +25,7 @@ CREATE TABLE "tutees" (
 	"submission_timestamp" TIMESTAMP NOT NULL,
     "active_tutee" BOOLEAN NOT NULL DEFAULT true,
 	"matched" BOOLEAN NOT NULL,
+	user_id INTEGER REFERENCES "user",
 	CONSTRAINT "tutees_pk" PRIMARY KEY ("id")
 ) WITH (
   OIDS=FALSE
@@ -48,6 +49,7 @@ CREATE TABLE "tutors" (
 	"submission_timestamp" TIMESTAMP NOT NULL,
     "active_tutor" BOOLEAN NOT NULL DEFAULT true,
 	"matched" BOOLEAN NOT NULL,
+	user_id INTEGER REFERENCES "user",
 	CONSTRAINT "tutors_pk" PRIMARY KEY ("id")
 ) WITH (
   OIDS=FALSE
@@ -249,7 +251,7 @@ INSERT INTO "mentoring_grade" ( "prek_kindergarten", "1st", "2nd", "3rd", "4th",
 VALUES ( true, true, true, true, true, true, true, false, false, false, false, false, false );
 
 INSERT INTO "tutors" ("tutor_first_name", "tutor_last_name", "pronouns", "phone", "email", "grade_level", "school", "mentoring_grade_id", "language_tutor_id", "subjects_id", "misc_info", "submission_timestamp", "active_tutor", "matched"  ) VALUES
-('Jinglin', 'Li', 'she/her', '5075174954', 'tutor.lrtmatching@gmail.com', 'In College', 'UMN Twin Cities', 
+('Jinglin', 'Li', 'she/her', '5075174954', 'tutor.lrtmatching@gmail.com', 'In College', 'UMN Twin Cities', 1, 1, 1,
 --MENTORING_GRADE.ID GOES HERE, 
 --LANGUAGE_TUTOR.ID GOES HERE, 
 --SUBJECTS.ID GOES HERE, 
@@ -267,7 +269,7 @@ INSERT INTO "mentoring_grade" ( "prek_kindergarten", "1st", "2nd", "3rd", "4th",
 VALUES ( true, true, true, true, true, true, true, true, true, true, true, false, false );
 
 INSERT INTO "tutors" ("tutor_first_name", "tutor_last_name", "pronouns", "phone", "email", "grade_level", "school", "mentoring_grade_id", "language_tutor_id", "subjects_id", "misc_info", "submission_timestamp", "active_tutor", "matched"  ) VALUES
-('Annie', 'Chen', 'she/her', '5075174954', 'tutor.lrtmatching@gmail.com', 'Senior', 'Mayo High School', 
+('Annie', 'Chen', 'she/her', '5075174954', 'tutor.lrtmatching@gmail.com', 'Senior', 'Mayo High School', 2, 2, 2,
 --MENTORING_GRADE.ID GOES HERE, 
 --LANGUAGE_TUTOR.ID GOES HERE, 
 --SUBJECTS.ID GOES HERE, 
@@ -285,7 +287,7 @@ INSERT INTO "mentoring_grade" ( "prek_kindergarten", "1st", "2nd", "3rd", "4th",
 VALUES ( true, true, true, true, true, true, true, false, false, false, false, false, false );
 
 INSERT INTO "tutors" ("tutor_first_name", "tutor_last_name", "pronouns", "phone", "email", "grade_level", "school", "mentoring_grade_id", "language_tutor_id", "subjects_id", "misc_info", "submission_timestamp", "active_tutor", "matched"  ) VALUES
-('Jordan', 'Garrison', 'they/them', '5075174954', 'tutor.lrtmatching@gmail.com', 'In College', 'Winona State University', 
+('Jordan', 'Garrison', 'they/them', '5075174954', 'tutor.lrtmatching@gmail.com', 'In College', 'Winona State University', 3, 3, 3,
 --MENTORING_GRADE.ID GOES HERE, 
 --LANGUAGE_TUTOR.ID GOES HERE, 
 --SUBJECTS.ID GOES HERE, 
@@ -303,7 +305,7 @@ INSERT INTO "mentoring_grade" ( "prek_kindergarten", "1st", "2nd", "3rd", "4th",
 VALUES ( true, true, true, true, true, true, true, true, true, true, true, true, true );
 
 INSERT INTO "tutors" ("tutor_first_name", "tutor_last_name", "pronouns", "phone", "email", "grade_level", "school", "mentoring_grade_id", "language_tutor_id", "subjects_id", "misc_info", "submission_timestamp", "active_tutor", "matched"  ) VALUES
-('Adeline', 'Chapman', 'she/they', '5075174954', 'tutor.lrtmatching@gmail.com', 'Junior', 'Century High School', 
+('Adeline', 'Chapman', 'she/they', '5075174954', 'tutor.lrtmatching@gmail.com', 'Junior', 'Century High School', 4, 4, 4,
 --MENTORING_GRADE.ID GOES HERE, 
 --LANGUAGE_TUTOR.ID GOES HERE, 
 --SUBJECTS.ID GOES HERE, 
@@ -321,7 +323,7 @@ INSERT INTO "mentoring_grade" ( "prek_kindergarten", "1st", "2nd", "3rd", "4th",
 VALUES ( true, true, true, true, false, false, false, false, false, false, false, false, false );
 
 INSERT INTO "tutors" ("tutor_first_name", "tutor_last_name", "pronouns", "phone", "email", "grade_level", "school", "mentoring_grade_id", "language_tutor_id", "subjects_id", "misc_info", "submission_timestamp", "active_tutor", "matched"  ) VALUES
-('Jude', 'Montgomery', 'he/him', '5075174954', 'tutor.lrtmatching@gmail.com', 'Junior', 'Plano East Senior High School', 
+('Jude', 'Montgomery', 'he/him', '5075174954', 'tutor.lrtmatching@gmail.com', 'Junior', 'Plano East Senior High School', 5, 5, 5,
 --MENTORING_GRADE.ID GOES HERE, 
 --LANGUAGE_TUTOR.ID GOES HERE, 
 --SUBJECTS.ID GOES HERE, 
@@ -339,7 +341,7 @@ INSERT INTO "mentoring_grade" ( "prek_kindergarten", "1st", "2nd", "3rd", "4th",
 VALUES ( false, false, true, true, true, true, true, true, true, true, false, false, false );
 
 INSERT INTO "tutors" ("tutor_first_name", "tutor_last_name", "pronouns", "phone", "email", "grade_level", "school", "mentoring_grade_id", "language_tutor_id", "subjects_id", "misc_info", "submission_timestamp", "active_tutor", "matched"  ) VALUES
-('Asa', 'Mejia', 'he/him', '5075174954', 'tutor.lrtmatching@gmail.com', 'Junior', 'Woodbury High School', 
+('Asa', 'Mejia', 'he/him', '5075174954', 'tutor.lrtmatching@gmail.com', 'Junior', 'Woodbury High School', 6, 6, 6,
 --MENTORING_GRADE.ID GOES HERE, 
 --LANGUAGE_TUTOR.ID GOES HERE, 
 --SUBJECTS.ID GOES HERE, 
@@ -357,7 +359,7 @@ INSERT INTO "mentoring_grade" ( "prek_kindergarten", "1st", "2nd", "3rd", "4th",
 VALUES ( true, true, true, true, true, true, false, false, false, false, false, false, false );
 
 INSERT INTO "tutors" ("tutor_first_name", "tutor_last_name", "pronouns", "phone", "email", "grade_level", "school", "mentoring_grade_id", "language_tutor_id", "subjects_id", "misc_info", "submission_timestamp", "active_tutor", "matched"  ) VALUES
-('Willow', 'Guerrero', 'she/her', '5075174954', 'tutor.lrtmatching@gmail.com', 'Post-Grad', 'Not currently in school', 
+('Willow', 'Guerrero', 'she/her', '5075174954', 'tutor.lrtmatching@gmail.com', 'Post-Grad', 'Not currently in school', 7, 7, 7,
 --MENTORING_GRADE.ID GOES HERE, 
 --LANGUAGE_TUTOR.ID GOES HERE, 
 --SUBJECTS.ID GOES HERE, 
@@ -375,7 +377,7 @@ INSERT INTO "mentoring_grade" ( "prek_kindergarten", "1st", "2nd", "3rd", "4th",
 VALUES ( true, true, true, true, true, true, true, true, true, false, false, false, false );
 
 INSERT INTO "tutors" ("tutor_first_name", "tutor_last_name", "pronouns", "phone", "email", "grade_level", "school", "mentoring_grade_id", "language_tutor_id", "subjects_id", "misc_info", "submission_timestamp", "active_tutor", "matched"  ) VALUES
-('Melvin', 'Gordon', 'he/they', '5075174954', 'tutor.lrtmatching@gmail.com', 'Junior', 'Woodbury High School', 
+('Melvin', 'Gordon', 'he/they', '5075174954', 'tutor.lrtmatching@gmail.com', 'Junior', 'Woodbury High School',  8, 8, 8,
 --MENTORING_GRADE.ID GOES HERE, 
 --LANGUAGE_TUTOR.ID GOES HERE, 
 --SUBJECTS.ID GOES HERE, 
@@ -393,7 +395,7 @@ INSERT INTO "mentoring_grade" ( "prek_kindergarten", "1st", "2nd", "3rd", "4th",
 VALUES ( true, true, true, true, true, true, false, false, false, false, false, false, false );
 
 INSERT INTO "tutors" ("tutor_first_name", "tutor_last_name", "pronouns", "phone", "email", "grade_level", "school", "mentoring_grade_id", "language_tutor_id", "subjects_id", "misc_info", "submission_timestamp", "active_tutor", "matched"  ) VALUES
-('Jack', 'George', 'he/him', '5075174954', 'tutor.lrtmatching@gmail.com', 'Junior', 'Century High School', 
+('Jack', 'George', 'he/him', '5075174954', 'tutor.lrtmatching@gmail.com', 'Junior', 'Century High School', 9, 9, 9,
 --MENTORING_GRADE.ID GOES HERE, 
 --LANGUAGE_TUTOR.ID GOES HERE, 
 --SUBJECTS.ID GOES HERE, 
@@ -411,13 +413,13 @@ INSERT INTO "mentoring_grade" ( "prek_kindergarten", "1st", "2nd", "3rd", "4th",
 VALUES ( true, true, true, true, true, true, true, false, false, false, false, false, false );
 
 INSERT INTO "tutors" ("tutor_first_name", "tutor_last_name", "pronouns", "phone", "email", "grade_level", "school", "mentoring_grade_id", "language_tutor_id", "subjects_id", "misc_info", "submission_timestamp", "active_tutor", "matched"  ) VALUES
-('Anahi', 'Glass', 'she/he/they', '5075174954', 'tutor.lrtmatching@gmail.com', 'Sophomore', 'John Marshall High School', 
+('Anahi', 'Glass', 'she/he/they', '5075174954', 'tutor.lrtmatching@gmail.com', 'Sophomore', 'John Marshall High School', 10, 10, 10,
 --MENTORING_GRADE.ID GOES HERE, 
 --LANGUAGE_TUTOR.ID GOES HERE, 
 --SUBJECTS.ID GOES HERE, 
 NULL, '9/19/2021 11:44:04', true, false );
 
---NEXT TUTOR
+--NEXT TUTOR MATT HERE
 
 INSERT INTO "language" ( "Spanish", "Somali", "Arabic", "Chinese", "Tagalog", "French", "Vietnamese", "Hmong" )
 VALUES ( false, false, false, false, false, false, false, false);
@@ -429,7 +431,7 @@ INSERT INTO "mentoring_grade" ( "prek_kindergarten", "1st", "2nd", "3rd", "4th",
 VALUES ( false, false, false, true, true, true, true, true, true, false, false, false, false );
 
 INSERT INTO "tutors" ("tutor_first_name", "tutor_last_name", "pronouns", "phone", "email", "grade_level", "school", "mentoring_grade_id", "language_tutor_id", "subjects_id", "misc_info", "submission_timestamp", "active_tutor", "matched"  ) VALUES
-('Jorge', 'Mayo', 'he/him', '5075174954', 'tutor.lrtmatching@gmail.com', 'In College', 'University of Minnesota', 
+('Jorge', 'Mayo', 'he/him', '5075174954', 'tutor.lrtmatching@gmail.com', 'In College', 'University of Minnesota', 11,11,11,
 --MENTORING_GRADE.ID GOES HERE, 
 --LANGUAGE_TUTOR.ID GOES HERE, 
 --SUBJECTS.ID GOES HERE, 
@@ -447,7 +449,7 @@ INSERT INTO "mentoring_grade" ( "prek_kindergarten", "1st", "2nd", "3rd", "4th",
 VALUES ( true, true, true, true, true, true, true, true, true, true, true, true, true );
 
 INSERT INTO "tutors" ("tutor_first_name", "tutor_last_name", "pronouns", "phone", "email", "grade_level", "school", "mentoring_grade_id", "language_tutor_id", "subjects_id", "misc_info", "submission_timestamp", "active_tutor", "matched"  ) VALUES
-('Danika', 'Chaney', 'she/her', '5075174954', 'tutor.lrtmatching@gmail.com', 'College Grad', 'St. Olaf College', 
+('Danika', 'Chaney', 'she/her', '5075174954', 'tutor.lrtmatching@gmail.com', 'College Grad', 'St. Olaf College', 12,12,12,
 --MENTORING_GRADE.ID GOES HERE, 
 --LANGUAGE_TUTOR.ID GOES HERE, 
 --SUBJECTS.ID GOES HERE, 
@@ -465,7 +467,7 @@ INSERT INTO "mentoring_grade" ( "prek_kindergarten", "1st", "2nd", "3rd", "4th",
 VALUES ( true, true, true, false, false, false, false, false, false, false, false, false, false );
 
 INSERT INTO "tutors" ("tutor_first_name", "tutor_last_name", "pronouns", "phone", "email", "grade_level", "school", "mentoring_grade_id", "language_tutor_id", "subjects_id", "misc_info", "submission_timestamp", "active_tutor", "matched"  ) VALUES
-('Destinee', 'Carson', 'she/her', '5075174954', 'tutor.lrtmatching@gmail.com', 'Senior', 'John Marshall High School', 
+('Destinee', 'Carson', 'she/her', '5075174954', 'tutor.lrtmatching@gmail.com', 'Senior', 'John Marshall High School', 13,13,13,
 --MENTORING_GRADE.ID GOES HERE, 
 --LANGUAGE_TUTOR.ID GOES HERE, 
 --SUBJECTS.ID GOES HERE, 
@@ -483,7 +485,7 @@ INSERT INTO "mentoring_grade" ( "prek_kindergarten", "1st", "2nd", "3rd", "4th",
 VALUES ( true, true, true, true, true, true, true, true, true, false, false, false, false );
 
 INSERT INTO "tutors" ("tutor_first_name", "tutor_last_name", "pronouns", "phone", "email", "grade_level", "school", "mentoring_grade_id", "language_tutor_id", "subjects_id", "misc_info", "submission_timestamp", "active_tutor", "matched"  ) VALUES
-('Mareli', 'Chang', 'she/they', '5075174954', 'tutor.lrtmatching@gmail.com', 'In College', 'Winona State University', 
+('Mareli', 'Chang', 'she/they', '5075174954', 'tutor.lrtmatching@gmail.com', 'In College', 'Winona State University', 14,14,14,
 --MENTORING_GRADE.ID GOES HERE, 
 --LANGUAGE_TUTOR.ID GOES HERE, 
 --SUBJECTS.ID GOES HERE, 
@@ -501,7 +503,7 @@ INSERT INTO "mentoring_grade" ( "prek_kindergarten", "1st", "2nd", "3rd", "4th",
 VALUES ( true, false, false, false, false, false, false, false, false, false, false, false, false );
 
 INSERT INTO "tutors" ("tutor_first_name", "tutor_last_name", "pronouns", "phone", "email", "grade_level", "school", "mentoring_grade_id", "language_tutor_id", "subjects_id", "misc_info", "submission_timestamp", "active_tutor", "matched"  ) VALUES
-('Kasey', 'Carpenter', 'she/her', '5075174954', 'tutor.lrtmatching@gmail.com', 'Senior', 'Glendale High School', 
+('Kasey', 'Carpenter', 'she/her', '5075174954', 'tutor.lrtmatching@gmail.com', 'Senior', 'Glendale High School', 15,15,15,
 --MENTORING_GRADE.ID GOES HERE, 
 --LANGUAGE_TUTOR.ID GOES HERE, 
 --SUBJECTS.ID GOES HERE, 
@@ -519,7 +521,7 @@ INSERT INTO "mentoring_grade" ( "prek_kindergarten", "1st", "2nd", "3rd", "4th",
 VALUES ( true, true, true, true, true, true, true, true, true, true, true, false, false );
 
 INSERT INTO "tutors" ("tutor_first_name", "tutor_last_name", "pronouns", "phone", "email", "grade_level", "school", "mentoring_grade_id", "language_tutor_id", "subjects_id", "misc_info", "submission_timestamp", "active_tutor", "matched"  ) VALUES
-('Manuel', 'Daniel', 'he/they', '5075174954', 'tutor.lrtmatching@gmail.com', 'Sophomore', 'Mayo High School', 
+('Manuel', 'Daniel', 'he/they', '5075174954', 'tutor.lrtmatching@gmail.com', 'Sophomore', 'Mayo High School', 16,16,16,
 --MENTORING_GRADE.ID GOES HERE, 
 --LANGUAGE_TUTOR.ID GOES HERE, 
 --SUBJECTS.ID GOES HERE, 
@@ -537,7 +539,7 @@ INSERT INTO "mentoring_grade" ( "prek_kindergarten", "1st", "2nd", "3rd", "4th",
 VALUES ( true, true, true, true, true, true, true, true, true, true, true, true, true );
 
 INSERT INTO "tutors" ("tutor_first_name", "tutor_last_name", "pronouns", "phone", "email", "grade_level", "school", "mentoring_grade_id", "language_tutor_id", "subjects_id", "misc_info", "submission_timestamp", "active_tutor", "matched"  ) VALUES
-('Desiree', 'Lawson', 'she/her', '5075174954', 'tutor.lrtmatching@gmail.com', 'Senior', 'Woodbury High School', 
+('Desiree', 'Lawson', 'she/her', '5075174954', 'tutor.lrtmatching@gmail.com', 'Senior', 'Woodbury High School', 17,17,17,
 --MENTORING_GRADE.ID GOES HERE, 
 --LANGUAGE_TUTOR.ID GOES HERE, 
 --SUBJECTS.ID GOES HERE, 
@@ -555,7 +557,7 @@ INSERT INTO "mentoring_grade" ( "prek_kindergarten", "1st", "2nd", "3rd", "4th",
 VALUES ( false, false, false, false, false, false, false, true, true, true, true, false, false );
 
 INSERT INTO "tutors" ("tutor_first_name", "tutor_last_name", "pronouns", "phone", "email", "grade_level", "school", "mentoring_grade_id", "language_tutor_id", "subjects_id", "misc_info", "submission_timestamp", "active_tutor", "matched"  ) VALUES
-('Seth', 'Delacruz', 'he/him', '5075174954', 'tutor.lrtmatching@gmail.com', 'Senior', 'DPS MIS', 
+('Seth', 'Delacruz', 'he/him', '5075174954', 'tutor.lrtmatching@gmail.com', 'Senior', 'DPS MIS', 18,18,18,
 --MENTORING_GRADE.ID GOES HERE, 
 --LANGUAGE_TUTOR.ID GOES HERE, 
 --SUBJECTS.ID GOES HERE, 
@@ -573,7 +575,7 @@ INSERT INTO "mentoring_grade" ( "prek_kindergarten", "1st", "2nd", "3rd", "4th",
 VALUES ( true, true, true, true, true, true, true, true, true, true, true, true, true );
 
 INSERT INTO "tutors" ("tutor_first_name", "tutor_last_name", "pronouns", "phone", "email", "grade_level", "school", "mentoring_grade_id", "language_tutor_id", "subjects_id", "misc_info", "submission_timestamp", "active_tutor", "matched"  ) VALUES
-('Dustin', 'Bryan', 'he/him', '5075174954', 'tutor.lrtmatching@gmail.com', 'In College', 'U of M Rochester', 
+('Dustin', 'Bryan', 'he/him', '5075174954', 'tutor.lrtmatching@gmail.com', 'In College', 'U of M Rochester', 19,19,19,
 --MENTORING_GRADE.ID GOES HERE, 
 --LANGUAGE_TUTOR.ID GOES HERE, 
 --SUBJECTS.ID GOES HERE, 
@@ -585,7 +587,7 @@ INSERT INTO "language" ( "Spanish", "Somali", "Arabic", "Chinese", "Tagalog", "F
 VALUES ( false, false, true, false, false, false, false, false);
 
 INSERT INTO "tutees" ("student_first_name", "student_last_name", "pronouns", "student_or_guardian", "email_guardian", "email_student", "phone", "grade_level", "school", "language_tutee_id", "subject_1", "subject_2", "subject_3", "subject_other", "subject_details", "misc_info", "submission_timestamp", "active_tutee", "matched"  ) VALUES
-('Emilis', 'Terrell', 'she/her', 'Student', '123@gmail',  'tutee.lrtmatching@gmail.com', '5075174954','prek_kindergarten', 'Central High School', 
+('Emilis', 'Terrell', 'she/her', 'Student', '123@gmail',  'tutee.lrtmatching@gmail.com', '5075174954','prek_kindergarten', 'Central High School', 20,
 --LANGUAGE TABLE ID GOES HERE,
 7, 9, 1, NULL, 'general help', NULL, 
 '1/9/2022 15:15:01', true, false );
@@ -596,7 +598,7 @@ INSERT INTO "language" ( "Spanish", "Somali", "Arabic", "Chinese", "Tagalog", "F
 VALUES ( false, false, false, true, false, false, false, false);
 
 INSERT INTO "tutees" ("student_first_name", "student_last_name", "pronouns", "student_or_guardian", "email_guardian", "email_student", "phone", "grade_level", "school", "language_tutee_id", "subject_1", "subject_2", "subject_3", "subject_other", "subject_details", "misc_info", "submission_timestamp", "active_tutee", "matched"  ) VALUES
-('Rita', 'Dai', 'she/her', 'Student', '123@gmail',  'tutee.lrtmatching@gmail.com', '5075174954','3rd', 'Hoover Elementary', 
+('Rita', 'Dai', 'she/her', 'Student', '123@gmail',  'tutee.lrtmatching@gmail.com', '5075174954','3rd', 'Hoover Elementary', 21,
 --LANGUAGE TABLE ID GOES HERE,
 1,2,3, NULL, 'They need help reviewing multiplication and division of large numbers, and if you could please find a tutor that can practice reading nonfiction and asking comprehension questions with my kid!', NULL, 
 '1/9/2022 15:15:01', true, false );
@@ -607,7 +609,7 @@ INSERT INTO "language" ( "Spanish", "Somali", "Arabic", "Chinese", "Tagalog", "F
 VALUES ( false, false, false, false, false, false, false, false);
 
 INSERT INTO "tutees" ("student_first_name", "student_last_name", "pronouns", "student_or_guardian", "email_guardian", "email_student", "phone", "grade_level", "school", "language_tutee_id", "subject_1", "subject_2", "subject_3", "subject_other", "subject_details", "misc_info", "submission_timestamp", "active_tutee", "matched"  ) VALUES
-('Jasmine', 'Cao', 'she/her', 'Student', '123@gmail',  'tutee.lrtmatching@gmail.com', '5075174954','4th', 'Bailey Elementary', 
+('Jasmine', 'Cao', 'she/her', 'Student', '123@gmail',  'tutee.lrtmatching@gmail.com', '5075174954','4th', 'Bailey Elementary', 22,
 --LANGUAGE TABLE ID GOES HERE,
 3,2,1, NULL, 'help', NULL, 
 '1/9/2022 15:07:59', true, false );
@@ -618,7 +620,7 @@ INSERT INTO "language" ( "Spanish", "Somali", "Arabic", "Chinese", "Tagalog", "F
 VALUES ( false, false, false, false, false, false, false, false);
 
 INSERT INTO "tutees" ("student_first_name", "student_last_name", "pronouns", "student_or_guardian", "email_guardian", "email_student", "phone", "grade_level", "school", "language_tutee_id", "subject_1", "subject_2", "subject_3", "subject_other", "subject_details", "misc_info", "submission_timestamp", "active_tutee", "matched"  ) VALUES
-('Demetrius', 'Lambert', 'he/him', 'parentOrGuardian', '123@gmail',  'tutee.lrtmatching@gmail.com', '5075174954','5th', 'Washington Elementary', 
+('Demetrius', 'Lambert', 'he/him', 'parentOrGuardian', '123@gmail',  'tutee.lrtmatching@gmail.com', '5075174954','5th', 'Washington Elementary', 23,
 --LANGUAGE TABLE ID GOES HERE,
 9,3,2, NULL, 'My son he low in math and reading and he need tutoring', NULL, 
 '12/13/2021 13:01:32', true, false );
@@ -629,7 +631,7 @@ INSERT INTO "language" ( "Spanish", "Somali", "Arabic", "Chinese", "Tagalog", "F
 VALUES ( false, false, false, false, false, false, false, false);
 
 INSERT INTO "tutees" ("student_first_name", "student_last_name", "pronouns", "student_or_guardian", "email_guardian", "email_student", "phone", "grade_level", "school", "language_tutee_id", "subject_1", "subject_2", "subject_3", "subject_other", "subject_details", "misc_info", "submission_timestamp", "active_tutee", "matched"  ) VALUES
-('Raina', 'Summers', 'she/her', 'parentOrGuardian', '123@gmail',  'tutee.lrtmatching@gmail.com', '5075174954','6th', 'Skyview Middle School', 
+('Raina', 'Summers', 'she/her', 'parentOrGuardian', '123@gmail',  'tutee.lrtmatching@gmail.com', '5075174954','6th', 'Skyview Middle School', 24,
 --LANGUAGE TABLE ID GOES HERE,
 6,9,7, NULL, 'We only need a tutor to help her with reading. If someone can correct her while she is reading once a week, that will be great.', NULL, 
 '12/16/2021 6:42:44', true, false );
@@ -640,7 +642,7 @@ INSERT INTO "language" ( "Spanish", "Somali", "Arabic", "Chinese", "Tagalog", "F
 VALUES ( false, false, true, false, false, false, false, false);
 
 INSERT INTO "tutees" ("student_first_name", "student_last_name", "pronouns", "student_or_guardian", "email_guardian", "email_student", "phone", "grade_level", "school", "language_tutee_id", "subject_1", "subject_2", "subject_3", "subject_other", "subject_details", "misc_info", "submission_timestamp", "active_tutee", "matched"  ) VALUES
-('Molly', 'Randall', 'she/her', 'parentOrGuardian', '123@gmail',  'tutee.lrtmatching@gmail.com', '5075174954','2nd', 'Franklin Elementary School', 
+('Molly', 'Randall', 'she/her', 'parentOrGuardian', '123@gmail',  'tutee.lrtmatching@gmail.com', '5075174954','2nd', 'Franklin Elementary School', 25,
 --LANGUAGE TABLE ID GOES HERE,
 2,1,3, NULL, 'General support with homework', NULL, 
 '12/16/2021 10:29:13', true, false );
@@ -651,7 +653,7 @@ INSERT INTO "language" ( "Spanish", "Somali", "Arabic", "Chinese", "Tagalog", "F
 VALUES ( false, false, false, false, false, false, false, false);
 
 INSERT INTO "tutees" ("student_first_name", "student_last_name", "pronouns", "student_or_guardian", "email_guardian", "email_student", "phone", "grade_level", "school", "language_tutee_id", "subject_1", "subject_2", "subject_3", "subject_other", "subject_details", "misc_info", "submission_timestamp", "active_tutee", "matched"  ) VALUES
-('Deanna', 'Collins', 'they/them', 'Student', '123@gmail',  'tutee.lrtmatching@gmail.com', '5075174954','7th', 'St.John Middle School', 
+('Deanna', 'Collins', 'they/them', 'Student', '123@gmail',  'tutee.lrtmatching@gmail.com', '5075174954','7th', 'St.John Middle School', 26,
 --LANGUAGE TABLE ID GOES HERE,
 6,8,14, NULL, 'general support with homework', NULL, 
 '10/22/2021 8:56:21', true, false );
@@ -662,7 +664,7 @@ INSERT INTO "language" ( "Spanish", "Somali", "Arabic", "Chinese", "Tagalog", "F
 VALUES ( false, false, false, false, false, false, false, false);
 
 INSERT INTO "tutees" ("student_first_name", "student_last_name", "pronouns", "student_or_guardian", "email_guardian", "email_student", "phone", "grade_level", "school", "language_tutee_id", "subject_1", "subject_2", "subject_3", "subject_other", "subject_details", "misc_info", "submission_timestamp", "active_tutee", "matched"  ) VALUES
-('Kyan', 'Patrick', 'he/him', 'Student', '123@gmail',  'tutee.lrtmatching@gmail.com', '5075174954','9th', 'Century High School', 
+('Kyan', 'Patrick', 'he/him', 'Student', '123@gmail',  'tutee.lrtmatching@gmail.com', '5075174954','9th', 'Century High School', 27,
 --LANGUAGE TABLE ID GOES HERE,
 20,14,15, NULL, 'I need help understanding Spanish sentences that are more complex than normal phrases', NULL, 
 '10/24/2021 17:19:14', true, false );
@@ -673,7 +675,7 @@ INSERT INTO "language" ( "Spanish", "Somali", "Arabic", "Chinese", "Tagalog", "F
 VALUES ( false, false, false, false, false, false, false, false);
 
 INSERT INTO "tutees" ("student_first_name", "student_last_name", "pronouns", "student_or_guardian", "email_guardian", "email_student", "phone", "grade_level", "school", "language_tutee_id", "subject_1", "subject_2", "subject_3", "subject_other", "subject_details", "misc_info", "submission_timestamp", "active_tutee", "matched"  ) VALUES
-('Reagan', 'Hampton', 'they/them', 'parentOrGuardian', '123@gmail',  'tutee.lrtmatching@gmail.com', '5075174954', '9th', 'Mayo High School', 
+('Reagan', 'Hampton', 'they/them', 'parentOrGuardian', '123@gmail',  'tutee.lrtmatching@gmail.com', '5075174954', '9th', 'Mayo High School', 28,
 --LANGUAGE TABLE ID GOES HERE,
 31,32,24, NULL, 'They dont know exactly what the teacher is asking for the homework,the theme right now is ANALYZE LITERARY TEXT', NULL, 
 '10/27/2021 13:21:19', true, false );
@@ -684,7 +686,26 @@ INSERT INTO "language" ( "Spanish", "Somali", "Arabic", "Chinese", "Tagalog", "F
 VALUES ( false, false, false, false, false, false, false, false);
 
 INSERT INTO "tutees" ("student_first_name", "student_last_name", "pronouns", "student_or_guardian", "email_guardian", "email_student", "phone", "grade_level", "school", "language_tutee_id", "subject_1", "subject_2", "subject_3", "subject_other", "subject_details", "misc_info", "submission_timestamp", "active_tutee", "matched"  ) VALUES
-('Isabelle', 'Pearson', 'she/her', 'parentOrGuardian', '123@gmail',  'tutee.lrtmatching@gmail.com', '5075174954', '9th', 'Byron High School', 
+('Isabelle', 'Pearson', 'she/her', 'parentOrGuardian', '123@gmail',  'tutee.lrtmatching@gmail.com', '5075174954', '9th', 'Byron High School', 29,
 --LANGUAGE TABLE ID GOES HERE,
 10,9,11, NULL, 'Algebra I, getting an F', NULL, 
 '10/27/2021 13:21:19', true, false );
+
+--DUMMY ADMIN
+INSERT INTO "admin"
+("first_name", "last_name", "email", "phone", "password")
+VALUES
+('rocket', 'nothing', 'nothing', 0, '$2a$10$SLRxXX0Y07/A688xvGRX3.oKm3fmlVn4QoPfnJ4Sr6DjsXJYpZZ8i'); --pwd is 1234
+
+CREATE TABLE "user" (
+	"id" serial PRIMARY KEY NOT NULL,
+	"username" varchar NOT NULL,
+	"password" varchar(255) NOT NULL,
+	"isAdmin" boolean DEFAULT FALSE
+);
+
+INSERT INTO "user"
+("username","first_name", "last_name", "email", "phone", "password", "isAdmin")
+VALUES
+('rocketuser', 'Jack', 'Lund','jacklund@gmail.com', 0, '$2a$10$SLRxXX0Y07/A688xvGRX3.oKm3fmlVn4QoPfnJ4Sr6DjsXJYpZZ8i', true) --pwd is 1234;
+;

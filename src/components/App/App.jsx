@@ -16,7 +16,7 @@ import StudentSubjects from '../StudentSubjects/StudentSubjects';
 import StudentTerms from '../StudentTerms/StudentTerms';
 import StudentModal from '../StudentModal/StudentModal';
 
-import TutorInfo from '../TutorInfo/TutorInfo';
+import TutorInfo from '../TutorForm/TutorInfo';
 import TutorSubjects from '../TutorSubjects/TutorSubjects';
 import TutorAdditional from '../TutorAdditional/TutorAdditional';
 import TutorTerms from '../TutorTerms/TutorTerms';
