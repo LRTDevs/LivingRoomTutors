@@ -1,42 +1,37 @@
-import React, { useEffect } from "react";
-import {
-  HashRouter as Router,
-  matchPath,
-  Redirect,
-  Route,
-  Switch,
-} from "react-router-dom";
+import React, { useEffect } from 'react';
+import { HashRouter as Router, matchPath, Redirect, Route, Switch } from 'react-router-dom';
 
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch, useSelector } from 'react-redux';
 
-import Nav from "../Nav/Nav";
-import Footer from "../Footer/Footer";
+import Nav from '../Nav/Nav';
+import Footer from '../Footer/Footer';
 
-import ProtectedRoute from "../ProtectedRoute/ProtectedRoute";
-import LoginPage from "../LoginPage/LoginPage";
-import RegisterPage from "../RegisterPage/RegisterPage";
+import ProtectedRoute from '../ProtectedRoute/ProtectedRoute';
+import LoginPage from '../LoginPage/LoginPage';
+import RegisterPage from '../RegisterPage/RegisterPage';
 
-import StudentAdditional from "../StudentAdditional/StudentAdditional";
-import StudentInfo from "../StudentInfo/StudentInfo";
-import StudentSubjects from "../StudentSubjects/StudentSubjects";
-import StudentTerms from "../StudentTerms/StudentTerms";
-import StudentModal from "../StudentModal/StudentModal";
+import StudentAdditional from '../StudentAdditional/StudentAdditional';
+import StudentInfo from '../StudentInfo/StudentInfo';
+import StudentSubjects from '../StudentSubjects/StudentSubjects';
+import StudentTerms from '../StudentTerms/StudentTerms';
+import StudentModal from '../StudentModal/StudentModal';
 
-import TutorInfo from "../TutorInfo/TutorInfo";
-import TutorSubjects from "../TutorSubjects/TutorSubjects";
-import TutorAdditional from "../TutorAdditional/TutorAdditional";
-import TutorTerms from "../TutorTerms/TutorTerms";
-import TutorModal from "../TutorModal/TutorModal";
+import TutorInfo from '../TutorInfo/TutorInfo';
+import TutorSubjects from '../TutorSubjects/TutorSubjects';
+import TutorAdditional from '../TutorAdditional/TutorAdditional';
+import TutorTerms from '../TutorTerms/TutorTerms';
+import TutorModal from '../TutorModal/TutorModal';
 
-import "./App.css";
-import TuteesPage from "../TuteesPage/TuteesPage";
-import TutorsPage from "../TutorsPage/TutorsPage";
-import RecordsPage from "../RecordsPage/RecordsPage";
-import MatchPage from "../MatchPage/MatchPage";
-import HomePage from "../HomePage/HomePage";
+import ProfileDashboard from '../ProfileDashboard/ProfileDashboard';
 
-import ProgressBar from "../ProgressBar/ProgressBar";
-import RegisterForm from "../RegisterForm/RegisterForm";
+import './App.css';
+import TuteesPage from '../TuteesPage/TuteesPage';
+import TutorsPage from '../TutorsPage/TutorsPage';
+import RecordsPage from '../RecordsPage/RecordsPage';
+import MatchPage from '../MatchPage/MatchPage';
+import RoleChoice from '../RoleChoice/RoleChoice';
+import ProgressBar from '../ProgressBar/ProgressBar';
+import RegisterForm from '../RegisterForm/RegisterForm';
 
 function App() {
   const dispatch = useDispatch();
@@ -44,7 +39,7 @@ function App() {
   const user = useSelector((store) => store.user);
 
   useEffect(() => {
-    dispatch({ type: "FETCH_USER" });
+    dispatch({ type: 'FETCH_USER' });
   }, [dispatch]);
 
   return (
@@ -54,62 +49,62 @@ function App() {
         {/* <Nav /> */}
         <Switch>
           {/* Visiting localhost:3000 will redirect to localhost:3000/home */}
-          <Redirect exact from="/" to="/home" />
+          <Redirect exact from='/' to='/home' />
 
           {/* Unprotected Routes */}
 
-          <Route exact path="/home">
-            {/* <HomePage /> */}
+          <Route exact path='/Home'>
             <LoginPage />
           </Route>
-          <Route exact path="/RolesChoice">
-            <HomePage />
-       
+          <Route exact path='/RolesChoice'>
+            <RoleChoice />
           </Route>
 
-          <Route exact path="/ProgressBar">
+          <Route exact path='/ProgressBar'>
             <ProgressBar />
           </Route>
 
-      
+          <Route exact path='/ProfileDashboard'>
+            <ProfileDashboard />
+          </Route>
 
-          <Route exact path="/StudentAdditional">
+          <Route exact path='/StudentAdditional'>
             <StudentAdditional />
           </Route>
 
-          <Route exact path="/StudentInfo">
+          <Route exact path='/StudentInfo'>
             <StudentInfo />
           </Route>
 
-          <Route exact path="/StudentModal">
+          <Route exact path='/StudentModal'>
             <StudentModal />
           </Route>
 
-          <Route exact path="/StudentSubjects">
+          <Route exact path='/StudentSubjects'>
             <StudentSubjects />
           </Route>
 
-          <Route exact path="/StudentTerms">
+          <Route exact path='/StudentTerms'>
             <StudentTerms />
           </Route>
 
-          <Route exact path="/TutorAdditional">
+          <Route exact path='/TutorAdditional'>
             <TutorAdditional />
           </Route>
 
-          <Route exact path="/TutorModal">
+          <Route exact path='/TutorModal'>
             <TutorModal />
           </Route>
 
-          <Route exact path="/TutorInfo">
+          <Route exact path='/TutorInfo'>
             <TutorInfo />
           </Route>
 
-          <Route exact path="/TutorSubjects">
+          <Route exact path='/TutorSubjects'>
             <TutorSubjects />
           </Route>
 
-          <Route exact path="/TutorTerms">
+          <Route exact path='/TutorTerms'>
             <TutorTerms />
           </Route>
 
@@ -121,7 +116,7 @@ function App() {
           <ProtectedRoute
             // logged in shows InfoPage else shows LoginPage
             exact
-            path="/admin"
+            path='/admin'
           >
             <TuteesPage />
           </ProtectedRoute>
@@ -129,7 +124,7 @@ function App() {
           <ProtectedRoute
             // logged in shows InfoPage else shows LoginPage
             exact
-            path="/tutors"
+            path='/tutors'
           >
             <TutorsPage />
           </ProtectedRoute>
@@ -137,7 +132,7 @@ function App() {
           <ProtectedRoute
             // logged in shows InfoPage else shows LoginPage
             exact
-            path="/records"
+            path='/records'
           >
             <RecordsPage />
           </ProtectedRoute>
@@ -145,31 +140,31 @@ function App() {
           <ProtectedRoute
             // logged in shows InfoPage else shows LoginPage
             exact
-            path="/match"
+            path='/match'
           >
             <MatchPage />
           </ProtectedRoute>
 
-          <Route exact path="/login">
+          <Route exact path='/login'>
             {/* {user.id ? ( */}
-              // If the user is already logged in,
-              // redirect to the /user page
-              {/* <Redirect to="/admin" /> */}
+            // If the user is already logged in, // redirect to the /user page
+            {/* <Redirect to="/admin" /> */}
             {/* ) : ( */}
-                // Otherwise, show the login page
-                <LoginPage />
-              {/* // )} */}
+            // Otherwise, show the login page
+            <LoginPage />
+            {/* // )} */}
           </Route>
 
-          <Route exact path="/registration">
-            {user.id ? (
+          <Route exact path='/registration'>
+            <RegisterPage />
+            {/* {user.id ? (
               // If the user is already logged in,
               // redirect them to the /user page
               <Redirect to="/home" />
             ) : (
                 // Otherwise, show the registration page
-                <RegisterPage /> //<----this might need to change back to <TuteesPage/> depending on the client needs and how we want to approach admin registration
-              )}
+                <RegisterPage /> 
+              )} */}
           </Route>
 
           {/* If none of the other routes matched, we will show a 404. */}
