@@ -32,6 +32,7 @@ import MatchPage from '../MatchPage/MatchPage';
 import RoleChoice from '../RoleChoice/RoleChoice';
 import ProgressBar from '../ProgressBar/ProgressBar';
 import RegisterForm from '../RegisterForm/RegisterForm';
+import ImageUpload from '../ImageUpload/ImageUpload';
 
 function App() {
   const dispatch = useDispatch();
@@ -52,6 +53,10 @@ function App() {
           <Redirect exact from='/' to='/home' />
 
           {/* Unprotected Routes */}
+
+          <Route exact path='/ImageUpload'>
+            <ImageUpload />
+          </Route>
 
           <Route exact path='/Home'>
             <LoginPage />
