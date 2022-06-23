@@ -23,7 +23,7 @@ import TutorTerms from '../TutorTerms/TutorTerms';
 import TutorModal from '../TutorModal/TutorModal';
 
 import ProfileDashboard from '../ProfileDashboard/ProfileDashboard';
-
+import TuteeProfileDisplay from '../TuteeProfileDisplay/TuteeProfileDisplay';
 import './App.css';
 import TuteesPage from '../TuteesPage/TuteesPage';
 import TutorsPage from '../TutorsPage/TutorsPage';
@@ -86,6 +86,10 @@ function App() {
 
           <Route exact path='/StudentTerms'>
             <StudentTerms />
+          </Route>
+
+          <Route exact path='/TuteeProfileDisplay'>
+            <TuteeProfileDisplay />
           </Route>
 
           <Route exact path='/TutorAdditional'>
