@@ -709,3 +709,6 @@ INSERT INTO "user"
 VALUES
 ('rocketuser', 'Jack', 'Lund','jacklund@gmail.com', 0, '$2a$10$SLRxXX0Y07/A688xvGRX3.oKm3fmlVn4QoPfnJ4Sr6DjsXJYpZZ8i', true) --pwd is 1234;
 ;
+
+ALTER TABLE "user"
+ADD "isTutor" Boolean DEFAULT FALSE;

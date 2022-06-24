@@ -20,7 +20,6 @@ console.log('action.payload------->', action.payload)
     // after the user has logged in
     // get the user information from the server
     yield put({ type: 'FETCH_USER' });
-    console.log('req.user------->', req.user)
   } catch (error) {
     console.log('Error with user login:', error);
     if (error.response.status === 401) {

@@ -91,7 +91,7 @@ function Nav() {
             <NavLink
               activeClassName='tutorNavbarLink--active navbarlink--active'
               className='AdminNavLink tutorNavLink'
-              to='/guidlines'
+              to='/guidelines'
             >
               <div className='topNavDiv'> </div>
               <div className='middleDivBackground'>
