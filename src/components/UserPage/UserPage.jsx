@@ -34,6 +34,9 @@ function UserPage() {
       <p>Your ID is: {user.id}</p>
 
       {/* CHANGES MADE BELOW BY CLT TO TEST THE REDUCERS */}
+      <p>tutors: {JSON.stringify(tutors)}</p>
+      <p>tutees: {JSON.stringify(tutees)}</p>
+
 
       <p>active tutors: {JSON.stringify(activeTutors)}</p>
       <p>deactive tutors: {JSON.stringify(deactiveTutors)}</p>

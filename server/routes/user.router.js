@@ -45,4 +45,34 @@ router.post('/logout', (req, res) => {
   res.sendStatus(200);
 });
 
+
+router.put("/isTutor/:id", (req, res) => {
+  console.log('req.params.id-------->',req.params.id)
+  const sqlQuery = `
+    UPDATE "user" 
+      SET 
+        isTutor = $1
+      WHERE id = $2;
+  `;
+  const sqlValues = [true,req.params.id];
+
+  pool
+    .query(sqlQuery, sqlValues)
+    .then((dbRes) => {
+      res.sendStatus(200);
+    })
+    .catch((dbErr) => {
+      console.log("UPDATE database error", dbErr);
+      res.sendStatus(500);
+    });
+});
+
+
+
+
+
+
+
+
+
 module.exports = router;
