@@ -5,6 +5,7 @@ import {useEffect} from "react";
 function Guidelines() {
   useEffect(() => {
     console.log("tutorsReducer---------->", tutors);
+    
   }, []);
 
   const tutors = useSelector((store) => store.tutors);
@@ -21,7 +22,7 @@ function Guidelines() {
         <h1>Guidelines Page</h1>
 
         {tutors.map((tutor) => {
-          return  tutor.id === user.id ? ( <h1> This worked!!!</h1>):( <h1>NOT WORKING!!!!</h1>) 
+          return  tutor.id ? ( <h1> This worked!!!</h1>):( <h1>NOT WORKING!!!!</h1>) 
           })}
 
   
