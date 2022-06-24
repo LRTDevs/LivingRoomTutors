@@ -24,8 +24,26 @@ function* fetchUser() {
   }
 }
 
+function* updateTutor(action) {
+
+  try {
+    const response = yield axios({
+      method: 'PUT',
+      url: `/isTutor/${action.payload}`,
+    })
+    yield put({
+      type: 'SET_USER'
+    })
+  } catch {
+    console.log('ERROR in UPDATE USER');
+  }
+}
+
+
+
 function* userSaga() {
   yield takeLatest("FETCH_USER", fetchUser);
+  yield takeLatest("SET_ISTUTOR", updateTutor);
 }
 
 export default userSaga;

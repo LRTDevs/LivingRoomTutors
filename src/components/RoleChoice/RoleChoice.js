@@ -11,7 +11,7 @@ function RoleChoice(props) {
 
   useEffect(() => {
     dispatch({
-      type: "UNSET_ADD_NEW_TUTOR_INFO",
+      type: "UNSET_ADD_NEW_TUTOR_INFO", 
     });
     dispatch({
       type: "UNSET_ADD_NEW_TUTOR_SUBJECTS",
@@ -40,9 +40,18 @@ function RoleChoice(props) {
   const dispatch = useDispatch();
 
   const store = useSelector((store) => store);
+  const user = useSelector((store) => store.user);
+
   const history = useHistory();
 
   const rightArrow = <FontAwesomeIcon icon={faArrowRight} />;
+
+  const HandleTutor =()=>{
+    dispatch({ type: "SET_ISTUTOR", payload: user.id});
+    console.log('isTutor Button Clicked!!!!!!!!!!!!')
+
+    history.push(`/TutorInfo`)
+  }
 
   return (
     <div className="homePage">
@@ -78,7 +87,7 @@ function RoleChoice(props) {
               </p>
               <ButtonGroup className="tutorTuteeButtonGroup" vertical>
                 <Button
-                  onClick={() => history.push(`/TutorInfo`)}
+                  onClick={HandleTutor}
                   className="tutorButton"
                 >
                   I want to become a volunteer tutor
