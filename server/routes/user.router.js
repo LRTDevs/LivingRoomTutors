@@ -51,10 +51,13 @@ router.put("/isTutor/:id", (req, res) => {
   const sqlQuery = `
     UPDATE "user" 
       SET 
-        isTutor = $1
-      WHERE id = $2;
+       "isTutor" = $1
+      WHERE "id" = $2;
   `;
-  const sqlValues = [true,req.params.id];
+  const sqlValues = [
+    true,
+    req.params.id
+  ];
 
   pool
     .query(sqlQuery, sqlValues)
