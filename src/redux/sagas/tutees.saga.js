@@ -6,6 +6,7 @@ function* fetchTutees() {
   console.log("in fetchTutees");
   try {
     const response = yield axios.get("/api/tutees");
+    console.log('response.data--------------------->',response.data)
     yield put({ type: "SET_TUTEES", payload: response.data });
   } catch (error) {
     alert("no in fetchTutees");
@@ -31,14 +32,14 @@ function* postNewStudent(action) {
     yield put({ type: "UNSET_ADD_NEW_STUDENT_SUBJECTS" });
     yield put({ type: "UNSET_ADD_NEW_STUDENT_ADDITIONAL" });
     yield put({ type: "ADD_STUDENT_TERMS", payload: false });
-    try {
-      const response2 = yield axios.post("/api/mail", {
-        email: emailToSend,
-      });
-    } catch (err) {
-      //alert("no in postNewStudent email");
-      console.log("error posting new student email:", err);
-    }
+    // try {
+    //   const response2 = yield axios.post("/api/mail", {
+    //     email: emailToSend,
+    //   });
+    // } catch (err) {
+    //   //alert("no in postNewStudent email");
+    //   console.log("error posting new student email:", err);
+    // }
   } catch (err) {
     alert("no postNewStudent");
     console.log("error posting new student:", err);

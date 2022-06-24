@@ -19,8 +19,9 @@ function TuteeProfileDisplay() {
       <Container className="formContainer">
       <img alt="logo" style={{ maxWidth: "65px" }} src={Logo} />
         <div className="formContent">
-          <h1>Tutee is a weird word</h1>
-          <FloatingLabel className="formInput">try saying it repeatedly for 3 weeks straight...</FloatingLabel>
+          <h2>Bio Title</h2>
+          {/* <FloatingLabel className="formInput"></FloatingLabel> */}
+          <h3>Ad Hipster ipum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</h3>
 
         </div>
 
