@@ -28,7 +28,7 @@ function Nav() {
       {user.id && (
         <div className='adminNavContents'>
           <div className='AdminNavLinks'>
-            <NavLink
+          <NavLink
               activeClassName='tuteeNavbarLink--active navbarlink--active'
               className='AdminNavLink tuteeNavLink'
               to='/matches'
@@ -37,6 +37,21 @@ function Nav() {
               <div className='middleDivBackground'>
                 <div className='middleNavDiv'>
                   <div className='tuteeIcon'></div>
+                  <span className='navTitleSpan'>Profile</span>
+                </div>
+              </div>
+              <div className='bottomNavDiv'></div>
+            </NavLink>
+
+            <NavLink
+              activeClassName='tuteeNavbarLink--active navbarlink--active'
+              className='AdminNavLink tuteeNavLink'
+              to='/matches'
+            >
+              <div className='topNavDiv'></div>
+              <div className='middleDivBackground'>
+                <div className='middleNavDiv'>
+                  <div className='recordsIcon'></div>
                   <span className='navTitleSpan'>Matches</span>
                 </div>
               </div>

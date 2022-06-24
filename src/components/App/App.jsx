@@ -22,6 +22,7 @@ import TutorAdditional from '../TutorAdditional/TutorAdditional';
 import TutorTerms from '../TutorTerms/TutorTerms';
 import TutorModal from '../TutorModal/TutorModal';
 
+import ProfileInfoForm from '../ProfileInfoForm/ProfileInfoForm';
 import ProfileDashboard from '../ProfileDashboard/ProfileDashboard';
 import Tools from '../Tools/Tools';
 
@@ -106,6 +107,14 @@ function App() {
 
           <Route exact path='/TutorTerms'>
             <TutorTerms />
+          </Route>
+
+          <Route exact path='/ProfileInfoForm'>
+            <ProfileInfoForm />
+          </Route>
+
+          <Route exact path='/Nav'>
+            <Nav />
           </Route>
 
           {/* For protected routes, the view could show one of several things on the same route.
