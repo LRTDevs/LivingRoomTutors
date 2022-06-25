@@ -31,7 +31,7 @@ function Nav() {
           <NavLink
               activeClassName='tuteeNavbarLink--active navbarlink--active'
               className='AdminNavLink tuteeNavLink'
-              to='/matches'
+              to='/ProfileDashboard'
             >
               <div className='topNavDiv'></div>
               <div className='middleDivBackground'>
