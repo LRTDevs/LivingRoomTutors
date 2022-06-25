@@ -1,13 +1,13 @@
-const express = require('express');
-const pool = require('../modules/pool');
+const express = require("express");
+const pool = require("../modules/pool");
 const router = express.Router();
 
 /**
  * GET route template
  */
 
-router.get('/', (req, res) => {
-  console.log('in tutors.router/get');
+router.get("/", (req, res) => {
+  console.log("in tutors.router/get");
   const query = `SELECT * FROM tutors`;
   pool
     .query(query)
@@ -15,13 +15,13 @@ router.get('/', (req, res) => {
       res.send(result.rows);
     })
     .catch((err) => {
-      console.log('ERROR: Get test', err);
+      console.log("ERROR: Get test", err);
       res.sendStatus(500);
     });
 });
 
-router.get('/active', (req, res) => {
-  console.log('in tutors/active get router');
+router.get("/active", (req, res) => {
+  console.log("in tutors/active get router");
   const query = `SELECT 
   tutors.id,
   tutor_first_name,
@@ -110,13 +110,13 @@ tutors.email AS tutor_email,
       res.send(result.rows);
     })
     .catch((err) => {
-      console.log('ERROR: Get test', err);
+      console.log("ERROR: Get test", err);
       res.sendStatus(500);
     });
 });
 
-router.get('/deactive', (req, res) => {
-  console.log('in tutors/deactive get router');
+router.get("/deactive", (req, res) => {
+  console.log("in tutors/deactive get router");
 
   const query = `SELECT 
   tutors.id,
@@ -206,27 +206,27 @@ tutors.email AS tutor_email,
       res.send(result.rows);
     })
     .catch((err) => {
-      console.log('ERROR: Get test', err);
+      console.log("ERROR: Get test", err);
       res.sendStatus(500);
     });
 });
 
-router.put('/changeStatus/', (req, res) => {
-  console.log('in /changeStatus', req.body.id);
+router.put("/changeStatus/", (req, res) => {
+  console.log("in /changeStatus", req.body.id);
   const queryString = `UPDATE "tutors" SET active_tutor = NOT active_tutor WHERE id=${req.body.id};`;
   pool
     .query(queryString)
     .then(() => res.sendStatus(200))
     .catch((err) => {
-      console.log('changeStatus failed: ', err);
+      console.log("changeStatus failed: ", err);
       res.sendStatus(500);
     });
 });
 /**
  * POST route template
  */
-router.post('/', (req, res) => {
-  console.log('newTutorObject:', req.body);
+router.post("/", (req, res) => {
+  console.log("newTutorObject:", req.body);
   const insertMentoringGradeQuery = `
 INSERT INTO "mentoring_grade" ( "prek_kindergarten", "1st", "2nd", "3rd", "4th", "5th", "6th", "7th", "8th", "9th", "10th", "11th", "12th" )
 VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12, $13)
@@ -249,7 +249,7 @@ RETURNING "id";`;
     ])
     .then((result) => {
       const mentoringGradeId = result.rows[0].id;
-      console.log('MentoringGradeID:', result.rows[0].id);
+      console.log("MentoringGradeID:", result.rows[0].id);
       //SECOND QUERY MAKES TUTOR SUBJECT INSERT
       const insertTutorSubjectsQuery = `INSERT INTO "subjects_tutors" ( "K5_Math", "K5_Reading", "K5_English_Writing", "K5_Science", "K5_social_studies", "6th_to_8th_language_arts", "6th_to_8th_science", "6th_to_8th_social_studies", "math_pre_algebra", "math_alg1_linear_alg", "math_alg2", "math_geom", "math_precalc_trig", "sci_bio_life", "sci_chem", "sci_physics", "sci_comp_sci", "lang_chinese", "lang_spanish", "lang_french", "lang_german", "hist_world", "hist_us", "ap_bio", "ap_chem", "ap_physics", "ap_calc_AB", "ap_calc_BC", "ap_stats", "ap_comp_sci", "ap_english_lit_comp", "ap_lang_comp", "ap_macro_econ", "ap_micro_econ", "ap_psyc", "ap_hist_us", "ap_gov_politics_us", "ap_human_geog", "sat_subject_tests", "sat_prep", "act_prep", "other")
         VALUES  ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12, $13, $14, $15, $16, $17, $18, $19, $20, $21, $22, $23, $24, $25, $26, $27, $28, $29, $30, $31, $32, $33, $34, $35, $36, $37, $38, $39, $40, $41, $42)
@@ -301,7 +301,7 @@ RETURNING "id";`;
         ])
         .then((result) => {
           const subjectTutorId = result.rows[0].id;
-          console.log('SubjectTutorID:', subjectTutorId);
+          console.log("SubjectTutorID:", subjectTutorId);
           const insertTutorLanguageQuery = `
             INSERT INTO "language" ( "Spanish", "Somali", "Arabic", "Chinese", "Tagalog", "French", "Vietnamese", "Hmong", "Other" )
             VALUES  ($1, $2, $3, $4, $5, $6, $7, $8, $9)
@@ -320,7 +320,7 @@ RETURNING "id";`;
             ])
             .then((result) => {
               const languageTutorId = result.rows[0].id;
-              console.log('LanguageTutorID:', languageTutorId);
+              console.log("LanguageTutorID:", languageTutorId);
               const submissionTimestamp = new Date(Date.now()).toISOString();
               const insertTutorQuery = `
                 INSERT INTO "tutors" ("tutor_first_name", "tutor_last_name", "pronouns", "phone", "email", "grade_level", "school", "mentoring_grade_id", "language_tutor_id", "subjects_id", "misc_info", "submission_timestamp", "active_tutor", "matched", "user_id")
@@ -348,27 +348,57 @@ RETURNING "id";`;
                 })
                 .catch((err) => {
                   //CATCH FOR FOURTH QUERY
-                  console.log('error posting to tutor table:', err);
+                  console.log("error posting to tutor table:", err);
                   res.sendStatus(500);
                 });
             })
             .catch((err) => {
               //CATCH FOR THIRD QUERY
-              console.log('error posting to language table', err);
+              console.log("error posting to language table", err);
               res.sendStatus(500);
             });
         })
         .catch((err) => {
           //CATCH FOR SECOND QUERY
-          console.log('error posting to subject_tutor', err);
+          console.log("error posting to subject_tutor", err);
           res.sendStatus(500);
         });
     })
     .catch((err) => {
       //CATCH FOR FIRST QUERY
-      console.log('error posting to mentoring_grade:', err);
+      console.log("error posting to mentoring_grade:", err);
       res.sendStatus(500);
     });
+});
+
+router.put("/:id", (req, res) => {
+  const submissionTimestamp = new Date(Date.now()).toISOString();
+  const sqlText = `
+                UPDATE "tutors" ("tutor_first_name", "tutor_last_name", "pronouns", "phone", "email", "grade_level", "school", "mentoring_grade_id", "language_tutor_id", "subjects_id", "misc_info", "submission_timestamp", "active_tutor", "matched", "user_id")
+                VALUES  ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12, $13, $14, $15);`;
+  pool.query(sqlText, [
+    req.body.firstName,
+    req.body.lastName,
+    req.body.pronouns,
+    req.body.phone,
+    req.body.email,
+    req.body.grade,
+    req.body.school,
+    mentoringGradeId,
+    languageTutorId,
+    subjectTutorId,
+    req.body.miscInfo,
+    submissionTimestamp,
+    true,
+    false,
+    req.user.id,
+  ]) .then((dbRes) => {
+    res.sendStatus(200);
+  })
+  .catch((dbErr) => {
+    console.log('UPDATE database error', dbErr);
+    res.sendStatus(500);
+  });
 });
 
 module.exports = router;

@@ -41,7 +41,7 @@ function* updateTutorInfo() {
     try {
       const response = yield axios({
         method: 'PUT',
-        url: '/api/tutors/update',
+        url: '/api/tutors/update'
       })
       console.log('response from DB',response)
       yield put({type:"ADD_NEW_TUTOR_INFO"})
