@@ -36,17 +36,17 @@ function* postNewTutor(action) {
   }
 }
 
-function* updateTutor(action) {
-  console.log('action!!!!!!!!!',action.payload)
+function* updateTutorInfo() {
+  // console.log('action.payload in updateTutor',action.payload)
     try {
       const response = yield axios({
         method: 'PUT',
-        url: `/api/user/isTutor/${action.payload}`,
+        url: '/api/tutors/update',
       })
-      console.log('response!!!!!!!!!',response)
-      yield put({type: 'SET_USER'})
+      console.log('response from DB',response)
+      yield put({type:"ADD_NEW_TUTOR_INFO"})
     } catch {
-      console.log('ERROR in UPDATE USER');
+      console.log('ERROR in UPDATE TUTOR INFO');
     }
   }
 
