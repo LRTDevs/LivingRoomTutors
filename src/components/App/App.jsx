@@ -36,7 +36,7 @@ import ProgressBar from '../ProgressBar/ProgressBar';
 import RegisterForm from '../RegisterForm/RegisterForm';
 import Guidelines from "../Guidelines/Guidelines";
 import UserPage from "../UserPage/UserPage";
-
+import TutorInfoEdit from '../TutorInfoEdit/TutorInfoEdit';
 function App() {
   const dispatch = useDispatch();
 
@@ -63,12 +63,7 @@ function App() {
           <Route exact path='/reducers'>
             <UserPage />
           </Route>
-
-
-
-
-
-
+          
           <Route exact path='/RolesChoice'>
             <RoleChoice />
           </Route>
@@ -111,6 +106,10 @@ function App() {
 
           <Route exact path='/TutorInfo'>
             <TutorInfo />
+          </Route>
+
+          <Route exact path='/TutorInfoEdit'>
+            <TutorInfoEdit />
           </Route>
 
           <Route exact path='/TutorSubjects'>

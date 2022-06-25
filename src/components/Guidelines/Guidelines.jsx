@@ -2,6 +2,9 @@ import Header from "../Header/Header";
 import { useSelector, useDispatch } from "react-redux";
 import { useEffect } from "react";
 import Nav from "../Nav/Nav";
+import { Button } from "react-bootstrap";
+import { useHistory } from "react-router-dom";
+
 import { Card, Col, Container } from "react-bootstrap";
 import "./Guidelines.css";
 
@@ -11,6 +14,7 @@ function Guidelines() {
   }, []);
 
   const dispatch = useDispatch();
+  const history = useHistory();
 
   const user = useSelector((store) => store.user);
   const tutors = useSelector((store) => store.tutorReducer);
@@ -20,9 +24,9 @@ function Guidelines() {
       {/* <Header /> */}
       <Nav />
       <div className="container">
-        <Col lg={{ span: 7, offset: 4 }}>
+        <Col lg={{ span: 8, offset: 3 }}>
           <Container>
-            <Card className="pageTitle">
+            <Card className="title">
               <Card.Body>
                 {user.isTutor === true ? (
                   <h1> Tutor Guidelines</h1>
@@ -37,7 +41,7 @@ function Guidelines() {
         <Container>
           <Col lg={{ span: 8, offset: 3 }}>
             {user.isTutor === true ? (
-              <Card className="Title">
+              <Card className="title">
                 <Card.Body>
                   LRT Tutor Guide------Once a match is made, you will be
                   notified by email.You can access your LRT account from the
@@ -82,7 +86,7 @@ function Guidelines() {
                 </Card.Body>
               </Card>
             ) : (
-              <Card>
+              <Card className="title">
                 <Card.Body>
                   LRT Tutee Guide ------Once a match is made, you will be
                   notified by email. You can access your LRT account from the
@@ -115,8 +119,21 @@ function Guidelines() {
                 </Card.Body>
               </Card>
             )}
-          </Col>
-        </Container>
+       
+      
+
+        <Button
+          className="primaryButton matchButton"
+          onClick={() => history.push('/TutorInfoEdit')}
+
+        >
+       Edit Registration Form
+        </Button>
+   </Col>
+  </Container>
+
+
+
       </div>
     </>
   );
