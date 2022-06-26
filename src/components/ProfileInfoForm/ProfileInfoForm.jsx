@@ -1,4 +1,6 @@
 import React, { useEffect, useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { useHistory } from 'react-router-dom';
 import Header from '../Header/Header';
 import Nav from '../Nav/Nav';
 import TutorProgressBar from '../TutorProgressBar/TutorProgressBar';
@@ -7,6 +9,9 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faArrowRight } from '@fortawesome/free-solid-svg-icons';
 
 function ProfileInfoForm() {
+  const dispatch = useDispatch();
+  const history = useHistory();
+
   useEffect(() => {
     scrollToTop();
     // checkReducer(newtutorInfo);
@@ -16,7 +21,27 @@ function ProfileInfoForm() {
     window.scrollTo(0, 0);
   };
 
+  const [favoriteSubject, setFavoriteSubject] = useState('');
+  const [specialTalents, setSpecialTalents] = useState('');
+  const [fiveYearGoal, setFiveYearGoal] = useState('');
+  const [fictionalUniverse, setFictionalUniverse] = useState('');
+  const [favoriteMusic, setFavoriteMusic] = useState('');
+
   const rightArrow = <FontAwesomeIcon icon={faArrowRight} />;
+
+  //package up new info in object
+  const profileInfo = {
+    favoriteSubject: favoriteSubject,
+    specialTalents: specialTalents,
+    fiveYearGoal: fiveYearGoal,
+    fictionalUniverse: fictionalUniverse,
+    favoriteMusic: favoriteMusic,
+  };
+
+  const addNewProfileInfo = () => {
+    dispatch({ type: 'ADD_PROFILE_INFO', payload: profileInfo });
+    history.push('/profile');
+  };
 
   return (
     <div className='formBackground'>
@@ -34,9 +59,9 @@ function ProfileInfoForm() {
               <Form.Control
                 type='Pronouns'
                 placeholder='Pronouns'
-                //   value={Pronouns}
-                //   onChange={(event) => changePronouns(event)}
-                //   defaultValue={Pronouns}
+                value={favoriteSubject}
+                onChange={(event) => setFavoriteSubject(event.target.value)}
+                defaultValue={favoriteSubject}
               />
             </FloatingLabel>
           </div>
@@ -47,9 +72,9 @@ function ProfileInfoForm() {
               <Form.Control
                 type='Pronouns'
                 placeholder='Pronouns'
-                //   value={Pronouns}
-                //   onChange={(event) => changePronouns(event)}
-                //   defaultValue={Pronouns}
+                value={specialTalents}
+                onChange={(event) => setSpecialTalents(event.target.value)}
+                defaultValue={specialTalents}
               />
             </FloatingLabel>
           </div>
@@ -60,9 +85,9 @@ function ProfileInfoForm() {
               <Form.Control
                 type='Pronouns'
                 placeholder='Pronouns'
-                //   value={Pronouns}
-                //   onChange={(event) => changePronouns(event)}
-                //   defaultValue={Pronouns}
+                value={fiveYearGoal}
+                onChange={(event) => setFiveYearGoal(event.target.value)}
+                defaultValue={fiveYearGoal}
               />
             </FloatingLabel>
           </div>
@@ -73,9 +98,9 @@ function ProfileInfoForm() {
               <Form.Control
                 type='Pronouns'
                 placeholder='Pronouns'
-                //   value={Pronouns}
-                //   onChange={(event) => changePronouns(event)}
-                //   defaultValue={Pronouns}
+                value={fictionalUniverse}
+                onChange={(event) => setFictionalUniverse(event.target.value)}
+                defaultValue={fictionalUniverse}
               />
             </FloatingLabel>
           </div>
@@ -86,17 +111,14 @@ function ProfileInfoForm() {
               <Form.Control
                 type='Pronouns'
                 placeholder='Pronouns'
-                //   value={Pronouns}
-                //   onChange={(event) => changePronouns(event)}
-                //   defaultValue={Pronouns}
+                value={favoriteMusic}
+                onChange={(event) => setFavoriteMusic(event.target.value)}
+                defaultValue={favoriteMusic}
               />
             </FloatingLabel>
           </div>
 
-          <Button
-            className='primaryButton saveAndContinueButton'
-            //   onClick={AddNewTutorInfo}
-          >
+          <Button className='primaryButton saveAndContinueButton' onClick={addNewProfileInfo}>
             Save and Continue <span className='rightarrow'>{rightArrow}</span>
           </Button>
           <Button
