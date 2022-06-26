@@ -22,6 +22,7 @@ import TutorAdditional from '../TutorAdditional/TutorAdditional';
 import TutorTerms from '../TutorTerms/TutorTerms';
 import TutorModal from '../TutorModal/TutorModal';
 
+import Profile from '../Profile/Profile';
 import ProfileInfoForm from '../ProfileInfoForm/ProfileInfoForm';
 import ProfileDashboard from '../ProfileDashboard/ProfileDashboard';
 import Tools from '../Tools/Tools';
@@ -128,6 +129,14 @@ function App() {
             path='/admin'
           >
             <TuteesPage />
+          </ProtectedRoute>
+
+          <ProtectedRoute
+            // logged in shows InfoPage else shows LoginPage
+            exact
+            path='/profile'
+          >
+            <Profile />
           </ProtectedRoute>
 
           <ProtectedRoute
