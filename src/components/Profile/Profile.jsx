@@ -20,6 +20,10 @@ function Profile() {
   const handleClick = () => {
     console.log('clicked', {file});
     // history.push(`/ImageUpload/${user.id}`)
+    dispatch({
+      type: 'UPLOAD_PROFILE_PIC',
+      payload: file
+  });
   }
   return (
     <div>
