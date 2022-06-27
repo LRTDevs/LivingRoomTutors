@@ -31,7 +31,10 @@ function Nav() {
             <NavLink
               activeClassName='tuteeNavbarLink--active navbarlink--active'
               className='AdminNavLink tuteeNavLink'
+
+     
               to='/profile'
+
 
 
             >
