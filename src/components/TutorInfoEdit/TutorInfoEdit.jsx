@@ -695,7 +695,7 @@ function TutorInfoEdit() {
         "At least one required field was empty. Please fill in the required fields before continuing."
       );
     } else {
-      dispatch({ type: "ADD_NEW_TUTOR_SUBJECTS", payload: newTutorSubjects });
+      dispatch({ type: "UPDATE_TUTOR_SUBJECTS", payload: newTutorSubjects });
       history.push("/TutorAdditional");
     }
   };

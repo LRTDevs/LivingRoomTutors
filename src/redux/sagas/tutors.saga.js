@@ -36,7 +36,7 @@ function* postNewTutor(action) {
   }
 }
 
-function* updateTutorInfo() {
+function* updateTutorSubjects() {
   // console.log('action.payload in updateTutor',action.payload)
     try {
       const response = yield axios({
@@ -59,7 +59,7 @@ function* updateTutorInfo() {
 function* tutorsSaga() {
   yield takeLatest("FETCH_TUTORS", fetchTutors);
   yield takeLatest("SEND_NEW_TUTOR", postNewTutor);
-  yield takeLatest( "UPDATE_TUTOR_INFO", updateTutorInfo);
+  yield takeLatest( "UPDATE_TUTOR_SUBJECTS", updateTutorSubjects);
  
 }
 
