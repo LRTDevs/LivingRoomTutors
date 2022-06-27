@@ -3,6 +3,13 @@
 --     "username" VARCHAR (80) UNIQUE NOT NULL,
 --     "password" VARCHAR (1000) NOT NULL
 -- );
+CREATE TABLE "user" (
+	"id" serial PRIMARY KEY NOT NULL,
+	"username" varchar NOT NULL,
+	"password" varchar(255) NOT NULL,
+	"isAdmin" boolean DEFAULT FALSE,
+	"isTutor" Boolean DEFAULT FALSE
+);
 
 CREATE TABLE "tutees" (
 	"id" serial NOT NULL,
@@ -697,13 +704,7 @@ INSERT INTO "tutees" ("student_first_name", "student_last_name", "pronouns", "st
 -- VALUES
 -- ('rocket', 'nothing', 'nothing', 0, '$2a$10$SLRxXX0Y07/A688xvGRX3.oKm3fmlVn4QoPfnJ4Sr6DjsXJYpZZ8i'); --pwd is 1234
 
-CREATE TABLE "user" (
-	"id" serial PRIMARY KEY NOT NULL,
-	"username" varchar NOT NULL,
-	"password" varchar(255) NOT NULL,
-	"isAdmin" boolean DEFAULT FALSE,
-	"isTutor" Boolean DEFAULT FALSE
-);
+
 
 
 
