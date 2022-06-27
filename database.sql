@@ -692,20 +692,20 @@ INSERT INTO "tutees" ("student_first_name", "student_last_name", "pronouns", "st
 '10/27/2021 13:21:19', true, false );
 
 --DUMMY ADMIN
-INSERT INTO "admin"
-("first_name", "last_name", "email", "phone", "password")
-VALUES
-('rocket', 'nothing', 'nothing', 0, '$2a$10$SLRxXX0Y07/A688xvGRX3.oKm3fmlVn4QoPfnJ4Sr6DjsXJYpZZ8i'); --pwd is 1234
+-- INSERT INTO "admin"
+-- ("first_name", "last_name", "email", "phone", "password")
+-- VALUES
+-- ('rocket', 'nothing', 'nothing', 0, '$2a$10$SLRxXX0Y07/A688xvGRX3.oKm3fmlVn4QoPfnJ4Sr6DjsXJYpZZ8i'); --pwd is 1234
 
 CREATE TABLE "user" (
 	"id" serial PRIMARY KEY NOT NULL,
 	"username" varchar NOT NULL,
 	"password" varchar(255) NOT NULL,
-	"isAdmin" boolean DEFAULT FALSE
+	"isAdmin" boolean DEFAULT FALSE,
+	"isTutor" Boolean DEFAULT FALSE
 );
 
-ALTER TABLE "user"
-ADD "isTutor" Boolean DEFAULT FALSE;
+
 
 CREATE TABLE "profile" (
 	"id" serial PRIMARY KEY NOT NULL,
@@ -718,11 +718,9 @@ CREATE TABLE "profile" (
 );
 
 INSERT INTO "user"
-("username","first_name", "last_name", "email", "phone", "password", "isAdmin")
+("username","password", "isAdmin", "isTutor")
 VALUES
-('rocketuser', 'Jack', 'Lund','jacklund@gmail.com', 0, '$2a$10$SLRxXX0Y07/A688xvGRX3.oKm3fmlVn4QoPfnJ4Sr6DjsXJYpZZ8i', true) --pwd is 1234;
+('rocketuser', '$2a$10$SLRxXX0Y07/A688xvGRX3.oKm3fmlVn4QoPfnJ4Sr6DjsXJYpZZ8i', true, false) --pwd is 1234;
 ;
 
-ALTER TABLE "user"
-ADD "isTutor" Boolean DEFAULT FALSE;
 
