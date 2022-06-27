@@ -1,4 +1,5 @@
 // import Header from '../Header/Header';
+import Logo from "../../images/logoCrop.png";
 
 import Nav from '../Nav/Nav'
 import { Card, Col, Container } from "react-bootstrap";
@@ -11,7 +12,6 @@ function ProfileDashboard() {
 
 const user = useSelector((store) => store.user);
 
-
   return (
 
     <div>
@@ -22,7 +22,10 @@ const user = useSelector((store) => store.user);
         <Container>
           <Card className="title">
             <Card.Body>
+            <img alt="logo" style={{ maxWidth: "65px", }} src={Logo} />
+
               <h1>Welcome To The Dashboard, {user.username}!</h1>
+
             </Card.Body>
           </Card>
         </Container>
