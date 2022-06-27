@@ -44,7 +44,7 @@ export default function* rootSaga() {
     matchSearchSaga(),
     confirmMatch(),
 
-    fetchProfilePicSaga()
+    fetchProfilePicSaga(),
 
     postProfileInfoSaga(),
 
