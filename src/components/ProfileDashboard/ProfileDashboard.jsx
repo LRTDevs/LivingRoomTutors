@@ -1,4 +1,4 @@
-import Header from '../Header/Header';
+// import Header from '../Header/Header';
 
 import Nav from '../Nav/Nav'
 import { Card, Col, Container } from "react-bootstrap";
@@ -15,7 +15,7 @@ const user = useSelector((store) => store.user);
   return (
 
     <div>
-      <Header />
+      {/* <Header /> */}
       <Nav />
 
       <Col lg={{ span: 8, offset: 3 }}>
