@@ -32,6 +32,8 @@ function Nav() {
               activeClassName='tuteeNavbarLink--active navbarlink--active'
               className='AdminNavLink tuteeNavLink'
               to='/profile'
+
+
             >
               <div className='topNavDiv'></div>
               <div className='middleDivBackground'>
@@ -91,7 +93,7 @@ function Nav() {
             <NavLink
               activeClassName='tutorNavbarLink--active navbarlink--active'
               className='AdminNavLink tutorNavLink'
-              to='/guidlines'
+              to='/guidelines'
             >
               <div className='topNavDiv'> </div>
               <div className='middleDivBackground'>

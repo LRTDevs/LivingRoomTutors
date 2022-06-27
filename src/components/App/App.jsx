@@ -35,7 +35,9 @@ import MatchPage from '../MatchPage/MatchPage';
 import RoleChoice from '../RoleChoice/RoleChoice';
 import ProgressBar from '../ProgressBar/ProgressBar';
 import RegisterForm from '../RegisterForm/RegisterForm';
-
+import Guidelines from "../Guidelines/Guidelines";
+import UserPage from "../UserPage/UserPage";
+import TutorInfoEdit from '../TutorInfoEdit/TutorInfoEdit';
 function App() {
   const dispatch = useDispatch();
 
@@ -58,6 +60,11 @@ function App() {
             <LoginPage />
           </Route>
 
+
+          <Route exact path='/reducers'>
+            <UserPage />
+          </Route>
+          
           <Route exact path='/RolesChoice'>
             <RoleChoice />
           </Route>
@@ -100,6 +107,10 @@ function App() {
 
           <Route exact path='/TutorInfo'>
             <TutorInfo />
+          </Route>
+
+          <Route exact path='/TutorInfoEdit'>
+            <TutorInfoEdit />
           </Route>
 
           <Route exact path='/TutorSubjects'>
@@ -191,6 +202,19 @@ function App() {
               <RegisterPage />
             )}
           </Route>
+
+          <ProtectedRoute
+            exact
+            path='/Guidelines'
+          >
+            <Guidelines />
+          </ProtectedRoute>
+
+
+
+
+
+
 
           {/* If none of the other routes matched, we will show a 404. */}
           <Route>
