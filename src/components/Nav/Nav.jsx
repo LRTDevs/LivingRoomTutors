@@ -28,10 +28,15 @@ function Nav() {
       {user.id && (
         <div className='adminNavContents'>
           <div className='AdminNavLinks'>
-          <NavLink
+            <NavLink
               activeClassName='tuteeNavbarLink--active navbarlink--active'
               className='AdminNavLink tuteeNavLink'
-              to='/ProfileInfoForm'
+
+     
+              to='/profile'
+
+
+
             >
               <div className='topNavDiv'></div>
               <div className='middleDivBackground'>

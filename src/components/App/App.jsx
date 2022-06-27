@@ -22,6 +22,7 @@ import TutorAdditional from '../TutorAdditional/TutorAdditional';
 import TutorTerms from '../TutorTerms/TutorTerms';
 import TutorModal from '../TutorModal/TutorModal';
 
+import Profile from '../Profile/Profile';
 import ProfileInfoForm from '../ProfileInfoForm/ProfileInfoForm';
 import ProfileDashboard from '../ProfileDashboard/ProfileDashboard';
 import Tools from '../Tools/Tools';
@@ -34,8 +35,11 @@ import MatchPage from '../MatchPage/MatchPage';
 import RoleChoice from '../RoleChoice/RoleChoice';
 import ProgressBar from '../ProgressBar/ProgressBar';
 import RegisterForm from '../RegisterForm/RegisterForm';
-import Guidelines from '../Guidelines/Guidelines';
-import UserPage from '../UserPage/UserPage';
+
+
+import Guidelines from "../Guidelines/Guidelines";
+import UserPage from "../UserPage/UserPage";
+import TutorInfoEdit from '../TutorInfoEdit/TutorInfoEdit';
 
 function App() {
   const dispatch = useDispatch();
@@ -107,6 +111,10 @@ function App() {
             <TutorInfo />
           </Route>
 
+          <Route exact path='/TutorInfoEdit'>
+            <TutorInfoEdit />
+          </Route>
+
           <Route exact path='/TutorSubjects'>
             <TutorSubjects />
           </Route>
@@ -134,6 +142,14 @@ function App() {
             path='/admin'
           >
             <TuteesPage />
+          </ProtectedRoute>
+
+          <ProtectedRoute
+            // logged in shows InfoPage else shows LoginPage
+            exact
+            path='/profile'
+          >
+            <Profile />
           </ProtectedRoute>
 
           <ProtectedRoute
