@@ -15,9 +15,14 @@ const tuteesRouter = require("./routes/tutees.router");
 const tutorsRouter = require("./routes/tutors.router");
 const matchesRouter = require("./routes/matches.router");
 const mailRouter = require("./routes/mail.router");
+
 //////////upload
 const uploadRouter = require("./routes/upload.router");
 /////////upload
+
+const profileRouter = require('./routes/profile.router');
+
+
 // Body parser middleware
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
@@ -39,9 +44,13 @@ app.use("/api/tutees", tuteesRouter);
 app.use("/api/tutors", tutorsRouter);
 app.use("/api/matches", matchesRouter);
 app.use("/api/mail", mailRouter);
+
 //////////image upload
 app.use("/api/upload", uploadRouter);
 /////////
+
+app.use('/api/profile', profileRouter);
+
 
 // Serve static files
 app.use(express.static("build"));

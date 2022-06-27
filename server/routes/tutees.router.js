@@ -138,7 +138,7 @@ router.put('/changeStatus/', (req, res) => {
  * POST route template
  */
 router.post('/', (req, res) => {
-  console.log('newTutorObject:', req.body);
+  console.log('newTuteeObject:', req.body);
   console.log('POST tutee route hit');
   const tuteeLanguageQuery = `
   INSERT INTO "language" ( "Spanish", "Somali", "Arabic", "Chinese", "Tagalog", "French", "Vietnamese", "Hmong", "Other" )

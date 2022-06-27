@@ -22,7 +22,10 @@ import TutorAdditional from '../TutorAdditional/TutorAdditional';
 import TutorTerms from '../TutorTerms/TutorTerms';
 import TutorModal from '../TutorModal/TutorModal';
 
+import Profile from '../Profile/Profile';
+import ProfileInfoForm from '../ProfileInfoForm/ProfileInfoForm';
 import ProfileDashboard from '../ProfileDashboard/ProfileDashboard';
+import Tools from '../Tools/Tools';
 
 import './App.css';
 import TuteesPage from '../TuteesPage/TuteesPage';
@@ -33,6 +36,11 @@ import RoleChoice from '../RoleChoice/RoleChoice';
 import ProgressBar from '../ProgressBar/ProgressBar';
 import RegisterForm from '../RegisterForm/RegisterForm';
 import ImageUpload from '../ImageUpload/ImageUpload';
+
+
+import Guidelines from "../Guidelines/Guidelines";
+import UserPage from "../UserPage/UserPage";
+import TutorInfoEdit from '../TutorInfoEdit/TutorInfoEdit';
 
 function App() {
   const dispatch = useDispatch();
@@ -46,8 +54,6 @@ function App() {
   return (
     <Router>
       <div>
-        {/* nav bar needs to be moved to the individual components that have to do with a normal (non-admin) user */}
-        {/* <Nav /> */}
         <Switch>
           {/* Visiting localhost:3000 will redirect to localhost:3000/home */}
           <Redirect exact from='/' to='/home' />
@@ -61,6 +67,11 @@ function App() {
           <Route exact path='/Home'>
             <LoginPage />
           </Route>
+
+          <Route exact path='/reducers'>
+            <UserPage />
+          </Route>
+
           <Route exact path='/RolesChoice'>
             <RoleChoice />
           </Route>
@@ -105,12 +116,24 @@ function App() {
             <TutorInfo />
           </Route>
 
+          <Route exact path='/TutorInfoEdit'>
+            <TutorInfoEdit />
+          </Route>
+
           <Route exact path='/TutorSubjects'>
             <TutorSubjects />
           </Route>
 
           <Route exact path='/TutorTerms'>
             <TutorTerms />
+          </Route>
+
+          <Route exact path='/ProfileInfoForm'>
+            <ProfileInfoForm />
+          </Route>
+
+          <Route exact path='/Nav'>
+            <Nav />
           </Route>
 
           {/* For protected routes, the view could show one of several things on the same route.
@@ -124,6 +147,14 @@ function App() {
             path='/admin'
           >
             <TuteesPage />
+          </ProtectedRoute>
+
+          <ProtectedRoute
+            // logged in shows InfoPage else shows LoginPage
+            exact
+            path='/profile'
+          >
+            <Profile />
           </ProtectedRoute>
 
           <ProtectedRoute
@@ -150,27 +181,38 @@ function App() {
             <MatchPage />
           </ProtectedRoute>
 
+          <ProtectedRoute
+            // logged in shows InfoPage else shows LoginPage
+            exact
+            path='/tools'
+          >
+            <Tools />
+          </ProtectedRoute>
+
           <Route exact path='/login'>
-            {/* {user.id ? ( */}
-            {/* // If the user is already logged in, // redirect to the /user page */}
-            {/* <Redirect to="/admin" /> */}
-            {/* ) : ( */}
-            {/* // Otherwise, show the login page */}
-            <LoginPage />
-            {/* // )} */}
+            {user.id ? (
+              // If the user is already logged in, // redirect to the /user page
+              <Redirect to='/admin' />
+            ) : (
+              // Otherwise, show the login page
+              <LoginPage />
+            )}
           </Route>
 
           <Route exact path='/registration'>
-            <RegisterPage />
-            {/* {user.id ? (
+            {user.id ? (
               // If the user is already logged in,
               // redirect them to the /user page
-              <Redirect to="/home" />
+              <Redirect to='/home' />
             ) : (
-                // Otherwise, show the registration page
-                <RegisterPage /> 
-              )} */}
+              // Otherwise, show the registration page
+              <RegisterPage />
+            )}
           </Route>
+
+          <ProtectedRoute exact path='/Guidelines'>
+            <Guidelines />
+          </ProtectedRoute>
 
           {/* If none of the other routes matched, we will show a 404. */}
           <Route>

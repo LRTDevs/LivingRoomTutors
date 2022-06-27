@@ -704,8 +704,25 @@ CREATE TABLE "user" (
 	"isAdmin" boolean DEFAULT FALSE
 );
 
+ALTER TABLE "user"
+ADD "isTutor" Boolean DEFAULT FALSE;
+
+CREATE TABLE "profile" (
+	"id" serial PRIMARY KEY NOT NULL,
+	"favorite_subject" varchar(255),
+	"hidden_talents" varchar(500),
+	"five_year_plan" varchar(500),
+	"fictional_universe" varchar(500),
+	"favorite_music" varchar(255),
+	user_id INTEGER REFERENCES "user"
+);
+
 INSERT INTO "user"
 ("username","first_name", "last_name", "email", "phone", "password", "isAdmin")
 VALUES
 ('rocketuser', 'Jack', 'Lund','jacklund@gmail.com', 0, '$2a$10$SLRxXX0Y07/A688xvGRX3.oKm3fmlVn4QoPfnJ4Sr6DjsXJYpZZ8i', true) --pwd is 1234;
 ;
+
+ALTER TABLE "user"
+ADD "isTutor" Boolean DEFAULT FALSE;
+
