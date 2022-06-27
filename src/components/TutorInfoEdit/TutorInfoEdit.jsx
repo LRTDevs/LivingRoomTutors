@@ -8,6 +8,8 @@ import TutorProgressBar from "../TutorProgressBar/TutorProgressBar";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faArrowRight } from "@fortawesome/free-solid-svg-icons";
 import { useHistory } from "react-router-dom";
+import Nav from "../Nav/Nav";
+
 
 // import Form from 'react-bootstrap/Form';
 
@@ -189,8 +191,9 @@ function TutorInfoEdit() {
   return (
     <div className="formBackground">
       <Header />
+      <Nav/>
       <Container className="formContainer">
-        <TutorProgressBar />
+        {/* <TutorProgressBar /> */}
         <h1>TUTOR EDIT FORM!!!!!!!!!!!</h1>
         <div className="formContent">
           <div className="formQandA">

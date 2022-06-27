@@ -374,8 +374,10 @@ RETURNING "id";`;
 router.put("/:id", (req, res) => {
   const submissionTimestamp = new Date(Date.now()).toISOString();
   const sqlText = `
-                UPDATE "tutors" ("tutor_first_name", "tutor_last_name", "pronouns", "phone", "email", "grade_level", "school", "mentoring_grade_id", "language_tutor_id", "subjects_id", "misc_info", "submission_timestamp", "active_tutor", "matched", "user_id")
-                VALUES  ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12, $13, $14, $15);`;
+                UPDATE "tutors" 
+                SET ("tutor_first_name", "tutor_last_name", "pronouns", "phone", "email", "grade_level", "school", "submission_timestamp", "active_tutor", "matched", "user_id")
+                WHERE user_id = $11
+                VALUES  ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10);`;
   pool.query(sqlText, [
     req.body.firstName,
     req.body.lastName,
