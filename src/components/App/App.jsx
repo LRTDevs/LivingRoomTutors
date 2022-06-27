@@ -35,6 +35,7 @@ import MatchPage from '../MatchPage/MatchPage';
 import RoleChoice from '../RoleChoice/RoleChoice';
 import ProgressBar from '../ProgressBar/ProgressBar';
 import RegisterForm from '../RegisterForm/RegisterForm';
+import ImageUpload from '../ImageUpload/ImageUpload';
 
 
 import Guidelines from "../Guidelines/Guidelines";
@@ -58,6 +59,10 @@ function App() {
           <Redirect exact from='/' to='/home' />
 
           {/* Unprotected Routes */}
+
+          <Route exact path='/ImageUpload/:id'>
+            <ImageUpload />
+          </Route>
 
           <Route exact path='/Home'>
             <LoginPage />
