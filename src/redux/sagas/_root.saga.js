@@ -14,6 +14,7 @@ import statusTuteesSaga from "./change_tutee_active_status.saga";
 import statusTutorsSaga from "./change_tutor_active_status.saga";
 import matchSearchSaga from "./matchSearch.saga";
 import confirmMatch from "./confirmMatch.saga";
+import fetchProfilePicSaga from "./profile_pic.saga";
 
 // rootSaga is the primary saga.
 // It bundles up all of the other sagas so our project can use them.
@@ -38,6 +39,7 @@ export default function* rootSaga() {
     statusTuteesSaga(),
     statusTutorsSaga(),
     matchSearchSaga(),
-    confirmMatch()
+    confirmMatch(),
+    fetchProfilePicSaga()
   ]);
 }

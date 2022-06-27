@@ -54,7 +54,7 @@ function App() {
 
           {/* Unprotected Routes */}
 
-          <Route exact path='/ImageUpload'>
+          <Route exact path='/ImageUpload/:id'>
             <ImageUpload />
           </Route>
 

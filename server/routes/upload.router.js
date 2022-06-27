@@ -45,9 +45,10 @@ router.post('/', upload.single('image'), (req, res) => {
  */
 
 router.get("/", (req, res) => {
-  const query = `SELECT * FROM test`;
+  const query = `SELECT * FROM "profile_pictures" 
+  WHERE "user_id" = $1`;
   pool
-    .query(query)
+    .query(query, [req.user.id] )
     .then((result) => {
       res.send(result.rows);
     })
