@@ -1,16 +1,22 @@
 import Header from '../Header/Header';
+import { useSelector } from 'react-redux';
 
 import Nav from '../Nav/Nav'
 import { Card, Col, Container } from "react-bootstrap";
+import UserPage from '../UserPage/UserPage';
+import AdminNavBar from '../AdminNavBar/AdminNavBar';
 
 function ProfileDashboard() {
+  const user = useSelector((store)=> store.userReducer)
+
   return (
   
   
 
   <div>
   <Header />
-  <Nav/>
+  {user.isAdmin === true ? <AdminNavBar/> : <Nav/>}
+  {/* <Nav/> */}
 
 
 <Col lg={{ span: 8, offset: 3 }}>

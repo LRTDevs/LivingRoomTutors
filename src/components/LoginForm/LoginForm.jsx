@@ -9,7 +9,7 @@ function LoginForm() {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
   const errors = useSelector((store) => store.errors);
-  const tutee = useSelector((store)=> store.tuteesReducer)
+  const user = useSelector((store)=> store.userReducer)
   const dispatch = useDispatch();
   const history = useHistory();
 
@@ -24,7 +24,7 @@ function LoginForm() {
           password: password,
         },
       });
-      // console.log('tutee.id--------------->',tutee)
+      // console.log('user.id--------------->',user.id)
       history.push('/ProfileDashboard');
     } else {
       dispatch({ type: 'LOGIN_INPUT_ERROR' });
