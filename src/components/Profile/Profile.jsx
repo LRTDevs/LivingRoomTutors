@@ -9,6 +9,11 @@ import "./Profile.css";
 import { Card, Col, Container } from "react-bootstrap";
 
 function Profile() {
+
+  const handleClick = () => {
+    console.log('clicked', user.id);
+    history.push(`/ImageUpload/${user.id}`)
+}
   return (
     <div>
       <Nav />
@@ -20,7 +25,7 @@ function Profile() {
                 <form>
                   <h1>React File Upload</h1>
                   <input type="file" />
-                  <button type="submit">Upload</button>
+                  <button  type="submit">Upload</button>
                 </form>
               </Card.Body>
             </Card>
