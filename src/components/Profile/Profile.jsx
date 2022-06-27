@@ -1,3 +1,4 @@
+import * as React from 'react';
 import Header from "../Header/Header";
 import { useSelector, useDispatch } from "react-redux";
 import { useEffect } from "react";
@@ -9,11 +10,17 @@ import "./Profile.css";
 import { Card, Col, Container } from "react-bootstrap";
 
 function Profile() {
+  const [file, setFile] = React.useState('');
+
+  const handleFileChange = (event) => {
+    event.preventDefault();
+    setFile(event.target.value);
+};
 
   const handleClick = () => {
-    console.log('clicked', user.id);
-    history.push(`/ImageUpload/${user.id}`)
-}
+    console.log('clicked', {file});
+    // history.push(`/ImageUpload/${user.id}`)
+  }
   return (
     <div>
       <Nav />
@@ -24,8 +31,12 @@ function Profile() {
               <Card.Body>
                 <form>
                   <h1>React File Upload</h1>
-                  <input type="file" />
-                  <button  type="submit">Upload</button>
+                  <input
+                    value={file}
+                    onChange={handleFileChange}
+                    type="file"
+                  />
+                  <button onClick={handleClick} type="submit">Upload</button>
                 </form>
               </Card.Body>
             </Card>
