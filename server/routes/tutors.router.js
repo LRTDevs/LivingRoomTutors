@@ -371,36 +371,65 @@ RETURNING "id";`;
     });
 });
 
-router.put("/:id", (req, res) => {
+router.put("/update", (req, res) => {
   const submissionTimestamp = new Date(Date.now()).toISOString();
-  const sqlText = `
-                UPDATE "tutors" 
-                SET ("tutor_first_name", "tutor_last_name", "pronouns", "phone", "email", "grade_level", "school", "submission_timestamp", "active_tutor", "matched", "user_id")
-                WHERE user_id = $11
-                VALUES  ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10);`;
-  pool.query(sqlText, [
-    req.body.firstName,
-    req.body.lastName,
-    req.body.pronouns,
-    req.body.phone,
-    req.body.email,
-    req.body.grade,
-    req.body.school,
-    mentoringGradeId,
-    languageTutorId,
-    subjectTutorId,
-    req.body.miscInfo,
-    submissionTimestamp,
-    true,
-    false,
-    req.user.id,
-  ]) .then((dbRes) => {
-    res.sendStatus(200);
-  })
-  .catch((dbErr) => {
-    console.log('UPDATE database error', dbErr);
-    res.sendStatus(500);
-  });
+  const sqlText = `UPDATE "subjects_tutors" ( "K5_Math", "K5_Reading", "K5_English_Writing", "K5_Science", "K5_social_studies", "6th_to_8th_language_arts", "6th_to_8th_science", "6th_to_8th_social_studies", "math_pre_algebra", "math_alg1_linear_alg", "math_alg2", "math_geom", "math_precalc_trig", "sci_bio_life", "sci_chem", "sci_physics", "sci_comp_sci", "lang_chinese", "lang_spanish", "lang_french", "lang_german", "hist_world", "hist_us", "ap_bio", "ap_chem", "ap_physics", "ap_calc_AB", "ap_calc_BC", "ap_stats", "ap_comp_sci", "ap_english_lit_comp", "ap_lang_comp", "ap_macro_econ", "ap_micro_econ", "ap_psyc", "ap_hist_us", "ap_gov_politics_us", "ap_human_geog", "sat_subject_tests", "sat_prep", "act_prep", "other")
+  VALUES  ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12, $13, $14, $15, $16, $17, $18, $19, $20, $21, $22, $23, $24, $25, $26, $27, $28, $29, $30, $31, $32, $33, $34, $35, $36, $37, $38, $39, $40, $41, $42)`;
+
+  const sqlValues = [
+    req.body.K5Math,
+          req.body.K5Reading,
+          req.body.K5EnglishWriting,
+          req.body.K5Science,
+          req.body.K5SocialStudies,
+          req.body.SixToEightLanguageArts,
+          req.body.SixToEightScience,
+          req.body.SixToEightSocialStudies,
+          req.body.MathPreAlgebra,
+          req.body.MathLinearAlgebra,
+          req.body.MathAlgebraII,
+          req.body.MathGeometry,
+          req.body.MathPrecalculusTrigonometry,
+          req.body.BiologyLifeSciences,
+          req.body.ScienceChemistry,
+          req.body.SciencePhysics,
+          req.body.ComputerScience,
+          req.body.LanguageChinese,
+          req.body.LanguageSpanish,
+          req.body.LanguageFrench,
+          req.body.LanguageGerman,
+          req.body.WorldHistory,
+          req.body.USHistory,
+          req.body.APHonorsBiology,
+          req.body.APHonorsChemistry,
+          req.body.APHonorsPhysics,
+          req.body.APHonorsCalculusAB,
+          req.body.APHonorsCalculusBC,
+          req.body.APHonorsStatistics,
+          req.body.APHonorsComputerScience,
+          req.body.APHonorsEnglishLiterature,
+          req.body.APHonorsEnglishLanguage,
+          req.body.APHonorsMacroeconomics,
+          req.body.APHonorsMicroeconomics,
+          req.body.APHonorsPsychology,
+          req.body.APHonorsUSHistory,
+          req.body.APHonorsGovernmentPolitics,
+          req.body.APHonorsHumanGeography,
+          req.body.SATSubjectTests,
+          req.body.SATPrep,
+          req.body.ACTPrep,
+          req.body.Other,
+  ];
+
+  pool
+    .query(sqlText, sqlValues)
+    .then((dbRes) => {
+      res.sendStatus(200);
+    })
+    .catch((dbErr) => {
+      console.log("UPDATE database error", dbErr);
+      res.sendStatus(500);
+    });
 });
 
 module.exports = router;
