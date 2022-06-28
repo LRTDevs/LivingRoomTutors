@@ -21,8 +21,9 @@ const storage = new CloudinaryStorage({
 
 const upload = multer({ storage: storage });
 
-router.post('/', upload.single('file'), (req, res) => {
+router.post('/:id', upload.single('file'), (req, res) => {
   {
+    console.log(req.params.id);
      const sqlQuery = `
      INSERT INTO "profile_pictures" ( "image_url")
      VALUES ($1);
