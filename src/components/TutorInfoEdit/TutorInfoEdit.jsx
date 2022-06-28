@@ -710,10 +710,14 @@ function TutorInfoEdit() {
      <Col lg={{ span: 8, offset: 3 }}>
           <Container>
             <Card className="title">
+
+          
               <Card.Body>
-               <h1>Tutor Edit Form</h1>
+               {/* <h1>Tutor Edit Form</h1> */}
                {/* <div className="formBackground"> */}
-      <Header />
+      <Header />        
+        <h3>Please update your registration form below. </h3>
+
       <Container className="formContainer">
         <div className="formContent">
           <div className="formQandA">
