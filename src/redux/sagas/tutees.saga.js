@@ -46,9 +46,31 @@ function* postNewStudent(action) {
   }
 }
 
+function* updateStudentSubjects(action) {
+  console.log('action.payload in updateTutees---------->',action.payload)
+    try {
+      const response = yield axios({
+        method: 'PUT',
+        url: `/api/tutees/update/${action.payload.user_id}`,
+        data: action.payload
+      })
+      // yield put({type:"ADD_NEW_TUTOR_SUBJECTS"})
+    } catch {
+      console.log('ERROR in UPDATE TUTEES SUBJECTS');
+    }
+  }
+
+
+
+
+
+
+
 function* tuteesSaga() {
   yield takeLatest("FETCH_TUTEES", fetchTutees);
   yield takeLatest("ADD_NEW_STUDENT", postNewStudent);
+  yield takeLatest("UPDATE_STUDENT_SUBJECTS", updateStudentSubjects);
+
 }
 
 export default tuteesSaga;

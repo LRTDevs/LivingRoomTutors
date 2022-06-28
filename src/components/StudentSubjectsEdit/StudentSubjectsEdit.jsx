@@ -22,6 +22,7 @@ function StudentSubjectsEdit(props) {
     scrollToTop();
     checkReducer(newStudentSubjects);
   }, []);
+  const user = useSelector((store) => store.user);
 
   const store = useSelector((store) => store);
   const newStudentSubjects = useSelector(
@@ -136,10 +137,11 @@ function StudentSubjectsEdit(props) {
       );
     } else {
       dispatch({
-        type: "ADD_NEW_STUDENT_SUBJECTS",
-        payload: newStudentSubjects,
+        type: "UPDATE_STUDENT_SUBJECTS",
+        payload:{ ...newStudentSubjects, user_id: user.id},
       });
       history.push("/ProfileDashboard");
+      //////Add sweetalert for updated information!!!!!!!
     }
   };
 
