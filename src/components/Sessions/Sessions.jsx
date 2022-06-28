@@ -12,7 +12,7 @@ function Sessions () {
       <Container>
         <Card className="title">
           <Card.Body>
-         <h1>Scheduling Sessions Page</h1>
+         <h1>Schedule Sessions </h1>
           </Card.Body>
         </Card>
       </Container>

@@ -29,16 +29,7 @@ function ProfileDashboard() {
               <img alt="logo" style={{ maxWidth: "65px" }} src={Logo} />
 
               <h1>Welcome To The Dashboard, {user.username}!</h1>
-              {user.isTutor === true ? (
-                <Button
-                  className="primaryButton matchButton"
-                  onClick={() => history.push("/TutorInfoEdit")}
-                >
-                  Edit Registration Form
-                </Button>
-              ) : (
-                <h1>Tutee edit button</h1>
-              )}
+          
             </Card.Body>
           </Card>
         </Container>

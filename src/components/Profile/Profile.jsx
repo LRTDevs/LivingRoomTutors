@@ -14,6 +14,8 @@ import { Card, Col, Container } from "react-bootstrap";
 function Profile() {
   const [file, setFile] = React.useState('');
   const dispatch = useDispatch();
+  const user = useSelector((store) => store.userReducer);
+  const history = useHistory();
 
   const handleFileChange = (event) => {
     event.preventDefault();
@@ -44,6 +46,20 @@ function Profile() {
                   <input type="file" onChange={(e) => setFile(e.target.files[0])}></input>
                   <button onClick={handleClick}>Upload</button>
                 </form>
+
+
+
+
+                {user.isTutor === true ? (
+                <Button
+                  className="primaryButton matchButton"
+                  onClick={() => history.push("/TutorInfoEdit")}
+                >
+                  Edit Registration Form
+                </Button>
+              ) : (
+                <h1>Tutee edit button</h1>
+              )}
               </Card.Body>
             </Card>
           </Container>
