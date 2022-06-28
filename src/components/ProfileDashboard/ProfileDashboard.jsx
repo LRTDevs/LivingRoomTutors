@@ -1,6 +1,5 @@
 
 import Header from '../Header/Header';
-import { useSelector } from 'react-redux';
 
 import Logo from "../../images/logoCrop.png";
 
@@ -17,21 +16,15 @@ import {useSelector} from 'react-redux';
 function ProfileDashboard() {
   const user = useSelector((store)=> store.userReducer)
 
-  return (
   
-  
-
-  <div>
-  <Header />
-  {user.isAdmin === true ? <AdminNavBar/> : <Nav/>}
-  {/* <Nav/> */}
 
 
   return (
 
     <div>
-      {/* <Header /> */}
-      <Nav />
+      
+      <Header />
+  {user.isAdmin === true ? <AdminNavBar/> : <Nav/>}
 
       <Col lg={{ span: 8, offset: 3 }}>
         <Container>
