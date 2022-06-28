@@ -122,13 +122,7 @@ function Guidelines() {
        
       
 
-        <Button
-          className="primaryButton matchButton"
-          onClick={() => history.push('/TutorInfoEdit')}
-
-        >
-       Edit Registration Form
-        </Button>
+      
    </Col>
   </Container>
 

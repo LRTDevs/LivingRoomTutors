@@ -46,6 +46,8 @@ import Guidelines from "../Guidelines/Guidelines";
 import UserPage from "../UserPage/UserPage";
 import TutorInfoEdit from "../TutorInfoEdit/TutorInfoEdit";
 import AdminNavBar from "../AdminNavBar/AdminNavBar";
+import MatchProfile from "../MatchProfile/MatchProfile";
+import Sessions from "../Sessions/Sessions"
 
 function App() {
   const dispatch = useDispatch();
@@ -166,6 +168,25 @@ function App() {
           >
             <Profile />
           </ProtectedRoute>
+
+          <ProtectedRoute
+            // logged in shows InfoPage else shows LoginPage
+            exact
+            path="/MatchProfile"
+          >
+            <MatchProfile />
+          </ProtectedRoute>
+          <ProtectedRoute
+            // logged in shows InfoPage else shows LoginPage
+            exact
+            path="/Sessions"
+          >
+            <Sessions />
+          </ProtectedRoute>
+
+
+
+
 
           <ProtectedRoute
             // logged in shows InfoPage else shows LoginPage
