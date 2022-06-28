@@ -528,7 +528,8 @@ console.log('sqlValues in PUT api/tutors/update/:id', sqlValues);
                    "Other"=$9 
             FROM "tutors"
                JOIN "user" ON "user".id = tutors.user_id
-               WHERE "user".id = $10;
+               WHERE language.id = "tutors".language_tutor_id 
+               AND "user".id = $10;
           `;
           pool
             .query(insertTutorLanguageQuery, [
