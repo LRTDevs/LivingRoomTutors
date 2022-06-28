@@ -25,10 +25,10 @@ router.post('/:id', upload.single('file'), (req, res) => {
   {
     console.log(req.params.id);
      const sqlQuery = `
-     INSERT INTO "profile_pictures" ( "image_url")
-     VALUES ($1);
+     INSERT INTO "profile_pictures" ( "image_url", user_id)
+     VALUES ($1, $2);
      `;
-     const sqlValues = [req.file.path];
+     const sqlValues = [req.file.path, req.params.id];
      pool
        .query(sqlQuery, sqlValues)
        .then((dbRes) => {
