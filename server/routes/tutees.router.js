@@ -201,4 +201,30 @@ router.post('/', (req, res) => {
     });
 });
 
+router.put("/update/:id",  (req, res) => {
+    console.log('update TUTEE ----->',req.body)
+    const sqlQuery = `
+  
+
+    `;
+    const sqlValues = [];
+  
+    pool
+      .query(sqlQuery, sqlValues)
+      .then((dbRes) => {
+        res.sendStatus(200);
+      })
+      .catch((dbErr) => {
+        console.log("UPDATE database error", dbErr);
+        res.sendStatus(500);
+      });
+  });
+
+
+
+
+
+
+
+
 module.exports = router;
