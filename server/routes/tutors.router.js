@@ -371,36 +371,200 @@ RETURNING "id";`;
     });
 });
 
-router.put("/:id", (req, res) => {
-  const submissionTimestamp = new Date(Date.now()).toISOString();
-  const sqlText = `
-                UPDATE "tutors" 
-                SET ("tutor_first_name", "tutor_last_name", "pronouns", "phone", "email", "grade_level", "school", "submission_timestamp", "active_tutor", "matched", "user_id")
-                WHERE user_id = $11
-                VALUES  ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10);`;
-  pool.query(sqlText, [
-    req.body.firstName,
-    req.body.lastName,
-    req.body.pronouns,
-    req.body.phone,
-    req.body.email,
-    req.body.grade,
-    req.body.school,
-    mentoringGradeId,
-    languageTutorId,
-    subjectTutorId,
-    req.body.miscInfo,
-    submissionTimestamp,
-    true,
-    false,
-    req.user.id,
-  ]) .then((dbRes) => {
-    res.sendStatus(200);
-  })
-  .catch((dbErr) => {
-    console.log('UPDATE database error', dbErr);
-    res.sendStatus(500);
-  });
+
+
+router.put("/update/:id", (req, res) => {
+  console.log("Update ROUTE newTutorObject:---------->", req.body);
+  const insertMentoringGradeQuery = `
+  UPDATE "mentoring_grade" 
+  SET
+    "prek_kindergarten"= $1, 
+    "1st" = $2,
+    "2nd" = $3, 
+    "3rd" = $4,
+    "4th"= $5,
+    "5th" =$6, 
+    "6th" =$7,
+    "7th" =$8,
+    "8th" = $9, 
+    "9th" =$10,
+   "10th" =$11,
+    "11th" =$12,
+    "12th"  = $13
+    FROM "tutors"
+    JOIN "user" ON "user".id = "tutors".user_id
+    WHERE "mentoring_grade".id = "tutors".mentoring_grade_id
+    AND "tutors".user_id = $14;
+;`;
+const sqlValues =[ req.body.PreK,
+  req.body.FirstGrade,
+  req.body.SecondGrade,
+  req.body.ThirdGrade,
+  req.body.FourthGrade,
+  req.body.FifthGrade,
+  req.body.SixthGrade,
+  req.body.SeventhGrade,
+  req.body.EighthGrade,
+  req.body.NinthGrade,
+  req.body.TenthGrade,
+  req.body.EleventhGrade,
+  req.body.TwelfthGrade,
+  req.params.id,]
+console.log('sqlValues in PUT api/tutors/update/:id', sqlValues);
+  pool
+    .query(insertMentoringGradeQuery, sqlValues)
+    .then((result) => {
+      //SECOND QUERY MAKES TUTOR SUBJECT INSERT
+      const insertTutorSubjectsQuery = `
+      UPDATE "subjects_tutors"
+        SET
+          "K5_Math" =$1, 
+          "K5_Reading" =$2, 
+          "K5_English_Writing"=$3,
+          "K5_Science" =$4, 
+          "K5_social_studies" = $5,
+          "6th_to_8th_language_arts"=$6,
+          "6th_to_8th_science" =$7,
+          "6th_to_8th_social_studies" =$8,
+          "math_pre_algebra"=$9,
+          "math_alg1_linear_alg" =$10,
+          "math_alg2" =$11,
+          "math_geom"=$12, 
+          "math_precalc_trig"=$13, 
+          "sci_bio_life"=$14, 
+          "sci_chem"=$15, 
+          "sci_physics"=$16, 
+          "sci_comp_sci"=$17,
+          "lang_chinese"=$18, 
+          "lang_spanish"=$19, 
+          "lang_french"=$20, 
+          "lang_german"=$21,
+          "hist_world"=$22, 
+          "hist_us"=$23,
+          "ap_bio"=$24, 
+          "ap_chem"=$25,
+          "ap_physics"=$26,
+          "ap_calc_AB"=$27,
+          "ap_calc_BC"=$28,
+          "ap_stats"=$29,
+          "ap_comp_sci"=$30,
+          "ap_english_lit_comp"=$31,
+          "ap_lang_comp"=$32,
+          "ap_macro_econ"=$33, 
+          "ap_micro_econ"=$34, 
+          "ap_psyc"=$35, 
+          "ap_hist_us"=$36,
+          "ap_gov_politics_us"=$37,
+          "ap_human_geog"=$38,
+          "sat_subject_tests"=$39, 
+          "sat_prep"=$40,
+          "act_prep"=$41,
+          "other"=$42  
+       FROM "tutors"
+      JOIN "user" ON "user".id = tutors.user_id
+      WHERE subjects_tutors.id = "tutors".subjects_id
+      AND "user".id = $43;
+     ;`;
+      pool
+        .query(insertTutorSubjectsQuery, [
+          req.body.K5Math,
+          req.body.K5Reading,
+          req.body.K5EnglishWriting,
+          req.body.K5Science,
+          req.body.K5SocialStudies,
+          req.body.SixToEightLanguageArts,
+          req.body.SixToEightScience,
+          req.body.SixToEightSocialStudies,
+          req.body.MathPreAlgebra,
+          req.body.MathLinearAlgebra,
+          req.body.MathAlgebraII,
+          req.body.MathGeometry,
+          req.body.MathPrecalculusTrigonometry,
+          req.body.BiologyLifeSciences,
+          req.body.ScienceChemistry,
+          req.body.SciencePhysics,
+          req.body.ComputerScience,
+          req.body.LanguageChinese,
+          req.body.LanguageSpanish,
+          req.body.LanguageFrench,
+          req.body.LanguageGerman,
+          req.body.WorldHistory,
+          req.body.USHistory,
+          req.body.APHonorsBiology,
+          req.body.APHonorsChemistry,
+          req.body.APHonorsPhysics,
+          req.body.APHonorsCalculusAB,
+          req.body.APHonorsCalculusBC,
+          req.body.APHonorsStatistics,
+          req.body.APHonorsComputerScience,
+          req.body.APHonorsEnglishLiterature,
+          req.body.APHonorsEnglishLanguage,
+          req.body.APHonorsMacroeconomics,
+          req.body.APHonorsMicroeconomics,
+          req.body.APHonorsPsychology,
+          req.body.APHonorsUSHistory,
+          req.body.APHonorsGovernmentPolitics,
+          req.body.APHonorsHumanGeography,
+          req.body.SATSubjectTests,
+          req.body.SATPrep,
+          req.body.ACTPrep,
+          req.body.Other,
+          req.params.id,
+        ])
+        .then((result) => {
+          // const subjectTutorId = result.rows[0].id;
+          // console.log("SubjectTutorID:", subjectTutorId);
+          const insertTutorLanguageQuery = `
+            UPDATE "language" 
+            SET
+             "Spanish" =$1 ,
+              "Somali"=$2,
+               "Arabic"=$3, 
+               "Chinese"=$4,
+                "Tagalog"=$5,
+                 "French"=$6,
+                  "Vietnamese"=$7,
+                   "Hmong"=$8, 
+                   "Other"=$9 
+            FROM "tutors"
+               JOIN "user" ON "user".id = tutors.user_id
+               WHERE language.id = "tutors".language_tutor_id 
+               AND "user".id = $10;
+          `;
+          pool
+            .query(insertTutorLanguageQuery, [
+              req.body.Spanish,
+              req.body.Somali,
+              req.body.Arabic,
+              req.body.Chinese,
+              req.body.Tagalog,
+              req.body.French,
+              req.body.Vietnamese,
+              req.body.Hmong,
+              req.body.otherLanguage,
+              req.params.id,
+            ]) 
+            .then((result) => {
+              res.sendStatus(200);
+            })
+
+            .catch((err) => {
+              //CATCH FOR THIRD QUERY
+              console.log("error posting to language table", err);
+              res.sendStatus(500);
+            });
+        })
+        .catch((err) => {
+          //CATCH FOR SECOND QUERY
+          console.log("error posting to subject_tutor", err);
+          res.sendStatus(500);
+        });
+    })
+    .catch((err) => {
+      //CATCH FOR FIRST QUERY
+      console.log("error posting to mentoring_grade:", err);
+      res.sendStatus(500);
+    });
 });
 
 module.exports = router;

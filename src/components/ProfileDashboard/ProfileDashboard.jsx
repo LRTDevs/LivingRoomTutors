@@ -1,16 +1,31 @@
-// import Header from '../Header/Header';
+
+import Header from '../Header/Header';
+import { useSelector } from 'react-redux';
+
 import Logo from "../../images/logoCrop.png";
+
 
 import Nav from '../Nav/Nav'
 import { Card, Col, Container } from "react-bootstrap";
+import UserPage from '../UserPage/UserPage';
+import AdminNavBar from '../AdminNavBar/AdminNavBar';
 
 import React from 'react';
 import {useSelector} from 'react-redux';
 
 
 function ProfileDashboard() {
+  const user = useSelector((store)=> store.userReducer)
 
-const user = useSelector((store) => store.user);
+  return (
+  
+  
+
+  <div>
+  <Header />
+  {user.isAdmin === true ? <AdminNavBar/> : <Nav/>}
+  {/* <Nav/> */}
+
 
   return (
 
