@@ -371,13 +371,149 @@ RETURNING "id";`;
     });
 });
 
-router.put("/update", (req, res) => {
-  const submissionTimestamp = new Date(Date.now()).toISOString();
-  const sqlText = `UPDATE "subjects_tutors" ( "K5_Math", "K5_Reading", "K5_English_Writing", "K5_Science", "K5_social_studies", "6th_to_8th_language_arts", "6th_to_8th_science", "6th_to_8th_social_studies", "math_pre_algebra", "math_alg1_linear_alg", "math_alg2", "math_geom", "math_precalc_trig", "sci_bio_life", "sci_chem", "sci_physics", "sci_comp_sci", "lang_chinese", "lang_spanish", "lang_french", "lang_german", "hist_world", "hist_us", "ap_bio", "ap_chem", "ap_physics", "ap_calc_AB", "ap_calc_BC", "ap_stats", "ap_comp_sci", "ap_english_lit_comp", "ap_lang_comp", "ap_macro_econ", "ap_micro_econ", "ap_psyc", "ap_hist_us", "ap_gov_politics_us", "ap_human_geog", "sat_subject_tests", "sat_prep", "act_prep", "other")
-  VALUES  ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12, $13, $14, $15, $16, $17, $18, $19, $20, $21, $22, $23, $24, $25, $26, $27, $28, $29, $30, $31, $32, $33, $34, $35, $36, $37, $38, $39, $40, $41, $42)`;
+// router.put("/update", (req, res) => {
+//   const submissionTimestamp = new Date(Date.now()).toISOString();
+//   const sqlText = `UPDATE "subjects_tutors" ( "K5_Math", "K5_Reading", "K5_English_Writing", "K5_Science", "K5_social_studies", "6th_to_8th_language_arts", "6th_to_8th_science", "6th_to_8th_social_studies", "math_pre_algebra", "math_alg1_linear_alg", "math_alg2", "math_geom", "math_precalc_trig", "sci_bio_life", "sci_chem", "sci_physics", "sci_comp_sci", "lang_chinese", "lang_spanish", "lang_french", "lang_german", "hist_world", "hist_us", "ap_bio", "ap_chem", "ap_physics", "ap_calc_AB", "ap_calc_BC", "ap_stats", "ap_comp_sci", "ap_english_lit_comp", "ap_lang_comp", "ap_macro_econ", "ap_micro_econ", "ap_psyc", "ap_hist_us", "ap_gov_politics_us", "ap_human_geog", "sat_subject_tests", "sat_prep", "act_prep", "other")
+//   VALUES  ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12, $13, $14, $15, $16, $17, $18, $19, $20, $21, $22, $23, $24, $25, $26, $27, $28, $29, $30, $31, $32, $33, $34, $35, $36, $37, $38, $39, $40, $41, $42)`;
 
-  const sqlValues = [
-    req.body.K5Math,
+//   const sqlValues = [
+//     req.body.K5Math,
+//           req.body.K5Reading,
+//           req.body.K5EnglishWriting,
+//           req.body.K5Science,
+//           req.body.K5SocialStudies,
+//           req.body.SixToEightLanguageArts,
+//           req.body.SixToEightScience,
+//           req.body.SixToEightSocialStudies,
+//           req.body.MathPreAlgebra,
+//           req.body.MathLinearAlgebra,
+//           req.body.MathAlgebraII,
+//           req.body.MathGeometry,
+//           req.body.MathPrecalculusTrigonometry,
+//           req.body.BiologyLifeSciences,
+//           req.body.ScienceChemistry,
+//           req.body.SciencePhysics,
+//           req.body.ComputerScience,
+//           req.body.LanguageChinese,
+//           req.body.LanguageSpanish,
+//           req.body.LanguageFrench,
+//           req.body.LanguageGerman,
+//           req.body.WorldHistory,
+//           req.body.USHistory,
+//           req.body.APHonorsBiology,
+//           req.body.APHonorsChemistry,
+//           req.body.APHonorsPhysics,
+//           req.body.APHonorsCalculusAB,
+//           req.body.APHonorsCalculusBC,
+//           req.body.APHonorsStatistics,
+//           req.body.APHonorsComputerScience,
+//           req.body.APHonorsEnglishLiterature,
+//           req.body.APHonorsEnglishLanguage,
+//           req.body.APHonorsMacroeconomics,
+//           req.body.APHonorsMicroeconomics,
+//           req.body.APHonorsPsychology,
+//           req.body.APHonorsUSHistory,
+//           req.body.APHonorsGovernmentPolitics,
+//           req.body.APHonorsHumanGeography,
+//           req.body.SATSubjectTests,
+//           req.body.SATPrep,
+//           req.body.ACTPrep,
+//           req.body.Other,
+//   ];
+
+//   pool
+//     .query(sqlText, sqlValues)
+//     .then((dbRes) => {
+//       res.sendStatus(200);
+//     })
+//     .catch((dbErr) => {
+//       console.log("UPDATE database error", dbErr);
+//       res.sendStatus(500);
+//     });
+// });
+
+router.put("/update", (req, res) => {
+  console.log("Update ROUTE newTutorObject:---------->", req.body);
+  const insertMentoringGradeQuery = `
+  UPDATE "mentoring_grade" 
+  SET
+  "prek_kindergarten"= $1, 
+  "1st" = $2,
+   "2nd" = $3, 
+   "3rd" = $4,
+    "4th"= $5,
+   "5th" =$6, 
+   "6th" =$7,
+    "7th" =$8,
+     "8th" = $9, 
+     "9th" =$10,
+      "10th" =$11,
+       "11th" =$12,
+        "12th"  = $13
+  FROM "tutors"
+  JOIN "user" ON "user".id = tutors.user_id
+  WHERE "user".id = $14;
+;`;
+
+  pool
+    .query(insertMentoringGradeQuery, [
+      req.body.PreK,
+      req.body.FirstGrade,
+      req.body.SecondGrade,
+      req.body.ThirdGrade,
+      req.body.FourthGrade,
+      req.body.FifthGrade,
+      req.body.SixthGrade,
+      req.body.SeventhGrade,
+      req.body.EighthGrade,
+      req.body.NinthGrade,
+      req.body.TenthGrade,
+      req.body.EleventhGrade,
+      req.body.TwelfthGrade,
+      req.params.id,
+    ])
+    .then((result) => {
+      // const mentoringGradeId = result.rows[0].id;
+      // console.log("MentoringGradeID:", result.rows[0].id);
+      //SECOND QUERY MAKES TUTOR SUBJECT INSERT
+      const insertTutorSubjectsQuery = `
+      UPDATE "subjects_tutors"
+      SET
+      ( "K5_Math", 
+      "K5_Reading", 
+      "K5_English_Writing",
+       "K5_Science", 
+        "K5_social_studies",
+         "6th_to_8th_language_arts",
+          "6th_to_8th_science",
+           "6th_to_8th_social_studies",
+            "math_pre_algebra",
+             "math_alg1_linear_alg",
+              "math_alg2",
+               "math_geom", 
+              "math_precalc_trig", 
+              "sci_bio_life", 
+              "sci_chem", 
+              "sci_physics", 
+              "sci_comp_sci",
+               "lang_chinese", 
+               "lang_spanish", 
+               "lang_french", 
+               "lang_german",
+                "hist_world", 
+                "hist_us",
+                 "ap_bio", 
+                 "ap_chem",
+                  "ap_physics",
+                   "ap_calc_AB", "ap_calc_BC", "ap_stats", "ap_comp_sci", "ap_english_lit_comp", "ap_lang_comp", "ap_macro_econ", "ap_micro_econ", "ap_psyc", "ap_hist_us", "ap_gov_politics_us", "ap_human_geog", "sat_subject_tests", "sat_prep", "act_prep", "other")   
+      FROM "tutors"
+      JOIN "user" ON "user".id = tutors.user_id
+      WHERE "user".id = $42;
+      VALUES  ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12, $13, $14, $15, $16, $17, $18, $19, $20, $21, $22, $23, $24, $25, $26, $27, $28, $29, $30, $31, $32, $33, $34, $35, $36, $37, $38, $39, $40, $41, $42)
+     ;`;
+      pool
+        .query(insertTutorSubjectsQuery, [
+          req.body.K5Math,
           req.body.K5Reading,
           req.body.K5EnglishWriting,
           req.body.K5Science,
@@ -419,15 +555,49 @@ router.put("/update", (req, res) => {
           req.body.SATPrep,
           req.body.ACTPrep,
           req.body.Other,
-  ];
+          req.params.id,
+        ])
+        .then((result) => {
+          // const subjectTutorId = result.rows[0].id;
+          // console.log("SubjectTutorID:", subjectTutorId);
+          const insertTutorLanguageQuery = `
+            UPDATE "language" 
+            SET
+            ( "Spanish", "Somali", "Arabic", "Chinese", "Tagalog", "French", "Vietnamese", "Hmong", "Other" )
+            FROM "tutors"
+               JOIN "user" ON "user".id = tutors.user_id
+               WHERE "user".id = $10;
+            VALUES  ($1, $2, $3, $4, $5, $6, $7, $8, $9)
+            RETURNING "id";`;
+          pool
+            .query(insertTutorLanguageQuery, [
+              req.body.Spanish,
+              req.body.Somali,
+              req.body.Arabic,
+              req.body.Chinese,
+              req.body.Tagalog,
+              req.body.French,
+              req.body.Vietnamese,
+              req.body.Hmong,
+              req.body.otherLanguage,
+              req.params.id,
+            ])
 
-  pool
-    .query(sqlText, sqlValues)
-    .then((dbRes) => {
-      res.sendStatus(200);
+            .catch((err) => {
+              //CATCH FOR THIRD QUERY
+              console.log("error posting to language table", err);
+              res.sendStatus(500);
+            });
+        })
+        .catch((err) => {
+          //CATCH FOR SECOND QUERY
+          console.log("error posting to subject_tutor", err);
+          res.sendStatus(500);
+        });
     })
-    .catch((dbErr) => {
-      console.log("UPDATE database error", dbErr);
+    .catch((err) => {
+      //CATCH FOR FIRST QUERY
+      console.log("error posting to mentoring_grade:", err);
       res.sendStatus(500);
     });
 });
