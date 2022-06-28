@@ -18,6 +18,7 @@ import { Card, Col, Container } from "react-bootstrap";
 function TutorInfoEdit() {
   const dispatch = useDispatch();
   const store = useSelector((store) => store);
+  const user = useSelector((store) => store.user);
 
   const presenting = false;
 
@@ -695,7 +696,10 @@ function TutorInfoEdit() {
         "At least one required field was empty. Please fill in the required fields before continuing."
       );
     } else {
-      dispatch({ type: "UPDATE_TUTOR_SUBJECTS", payload: newTutorSubjects });
+      dispatch({ 
+        type: "UPDATE_TUTOR_SUBJECTS",
+        payload: {...newTutorSubjects, user_id: user.id} 
+      });
       history.push("/TutorAdditional");
     }
   };

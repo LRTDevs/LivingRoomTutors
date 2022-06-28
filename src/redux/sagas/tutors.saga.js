@@ -41,10 +41,10 @@ function* updateTutorSubjects(action) {
     try {
       const response = yield axios({
         method: 'PUT',
-        url: '/api/tutors/update',
+        url: `/api/tutors/update/${action.payload.user_id}`,
         data: action.payload
       })
-      yield put({type:"ADD_NEW_TUTOR_SUBJECTS"})
+      // yield put({type:"ADD_NEW_TUTOR_SUBJECTS"})
     } catch {
       console.log('ERROR in UPDATE TUTOR INFO');
     }

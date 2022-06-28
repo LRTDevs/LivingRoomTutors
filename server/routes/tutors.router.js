@@ -373,7 +373,7 @@ RETURNING "id";`;
 
 
 
-router.put("/update", (req, res) => {
+router.put("/update/:id", (req, res) => {
   console.log("Update ROUTE newTutorObject:---------->", req.body);
   const insertMentoringGradeQuery = `
   UPDATE "mentoring_grade" 
@@ -396,24 +396,23 @@ router.put("/update", (req, res) => {
     WHERE "mentoring_grade".id = "tutors".mentoring_grade_id
     AND "tutors".user_id = $14;
 ;`;
-
+const sqlValues =[ req.body.PreK,
+  req.body.FirstGrade,
+  req.body.SecondGrade,
+  req.body.ThirdGrade,
+  req.body.FourthGrade,
+  req.body.FifthGrade,
+  req.body.SixthGrade,
+  req.body.SeventhGrade,
+  req.body.EighthGrade,
+  req.body.NinthGrade,
+  req.body.TenthGrade,
+  req.body.EleventhGrade,
+  req.body.TwelfthGrade,
+  req.params.id,]
+console.log('sqlValues in PUT api/tutors/update/:id', sqlValues);
   pool
-    .query(insertMentoringGradeQuery, [
-      req.body.PreK,
-      req.body.FirstGrade,
-      req.body.SecondGrade,
-      req.body.ThirdGrade,
-      req.body.FourthGrade,
-      req.body.FifthGrade,
-      req.body.SixthGrade,
-      req.body.SeventhGrade,
-      req.body.EighthGrade,
-      req.body.NinthGrade,
-      req.body.TenthGrade,
-      req.body.EleventhGrade,
-      req.body.TwelfthGrade,
-      req.params.id,
-    ])
+    .query(insertMentoringGradeQuery, sqlValues)
     .then((result) => {
       //SECOND QUERY MAKES TUTOR SUBJECT INSERT
       const insertTutorSubjectsQuery = `
@@ -463,7 +462,8 @@ router.put("/update", (req, res) => {
           "other"=$42  
        FROM "tutors"
       JOIN "user" ON "user".id = tutors.user_id
-      WHERE "user".id = $43;
+      WHERE subjects_tutors.id = "tutors".subjects_id
+      AND "user".id = $43;
      ;`;
       pool
         .query(insertTutorSubjectsQuery, [
