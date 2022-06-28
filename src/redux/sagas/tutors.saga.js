@@ -37,14 +37,14 @@ function* postNewTutor(action) {
 }
 
 function* updateTutorSubjects(action) {
-  console.log('action.payload in updateTutor',action.payload)
+  console.log('action.payload in updateTutor--------->',action.payload)
     try {
       const response = yield axios({
         method: 'PUT',
         url: '/api/tutors/update',
         data: action.payload
       })
-      console.log('response from DB',response)
+  
       yield put({type:"ADD_NEW_TUTOR_INFO"})
     } catch {
       console.log('ERROR in UPDATE TUTOR INFO');

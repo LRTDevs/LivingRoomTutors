@@ -371,85 +371,26 @@ RETURNING "id";`;
     });
 });
 
-// router.put("/update", (req, res) => {
-//   const submissionTimestamp = new Date(Date.now()).toISOString();
-//   const sqlText = `UPDATE "subjects_tutors" ( "K5_Math", "K5_Reading", "K5_English_Writing", "K5_Science", "K5_social_studies", "6th_to_8th_language_arts", "6th_to_8th_science", "6th_to_8th_social_studies", "math_pre_algebra", "math_alg1_linear_alg", "math_alg2", "math_geom", "math_precalc_trig", "sci_bio_life", "sci_chem", "sci_physics", "sci_comp_sci", "lang_chinese", "lang_spanish", "lang_french", "lang_german", "hist_world", "hist_us", "ap_bio", "ap_chem", "ap_physics", "ap_calc_AB", "ap_calc_BC", "ap_stats", "ap_comp_sci", "ap_english_lit_comp", "ap_lang_comp", "ap_macro_econ", "ap_micro_econ", "ap_psyc", "ap_hist_us", "ap_gov_politics_us", "ap_human_geog", "sat_subject_tests", "sat_prep", "act_prep", "other")
-//   VALUES  ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12, $13, $14, $15, $16, $17, $18, $19, $20, $21, $22, $23, $24, $25, $26, $27, $28, $29, $30, $31, $32, $33, $34, $35, $36, $37, $38, $39, $40, $41, $42)`;
 
-//   const sqlValues = [
-//     req.body.K5Math,
-//           req.body.K5Reading,
-//           req.body.K5EnglishWriting,
-//           req.body.K5Science,
-//           req.body.K5SocialStudies,
-//           req.body.SixToEightLanguageArts,
-//           req.body.SixToEightScience,
-//           req.body.SixToEightSocialStudies,
-//           req.body.MathPreAlgebra,
-//           req.body.MathLinearAlgebra,
-//           req.body.MathAlgebraII,
-//           req.body.MathGeometry,
-//           req.body.MathPrecalculusTrigonometry,
-//           req.body.BiologyLifeSciences,
-//           req.body.ScienceChemistry,
-//           req.body.SciencePhysics,
-//           req.body.ComputerScience,
-//           req.body.LanguageChinese,
-//           req.body.LanguageSpanish,
-//           req.body.LanguageFrench,
-//           req.body.LanguageGerman,
-//           req.body.WorldHistory,
-//           req.body.USHistory,
-//           req.body.APHonorsBiology,
-//           req.body.APHonorsChemistry,
-//           req.body.APHonorsPhysics,
-//           req.body.APHonorsCalculusAB,
-//           req.body.APHonorsCalculusBC,
-//           req.body.APHonorsStatistics,
-//           req.body.APHonorsComputerScience,
-//           req.body.APHonorsEnglishLiterature,
-//           req.body.APHonorsEnglishLanguage,
-//           req.body.APHonorsMacroeconomics,
-//           req.body.APHonorsMicroeconomics,
-//           req.body.APHonorsPsychology,
-//           req.body.APHonorsUSHistory,
-//           req.body.APHonorsGovernmentPolitics,
-//           req.body.APHonorsHumanGeography,
-//           req.body.SATSubjectTests,
-//           req.body.SATPrep,
-//           req.body.ACTPrep,
-//           req.body.Other,
-//   ];
-
-//   pool
-//     .query(sqlText, sqlValues)
-//     .then((dbRes) => {
-//       res.sendStatus(200);
-//     })
-//     .catch((dbErr) => {
-//       console.log("UPDATE database error", dbErr);
-//       res.sendStatus(500);
-//     });
-// });
 
 router.put("/update", (req, res) => {
   console.log("Update ROUTE newTutorObject:---------->", req.body);
   const insertMentoringGradeQuery = `
   UPDATE "mentoring_grade" 
   SET
-  "prek_kindergarten"= $1, 
-  "1st" = $2,
-   "2nd" = $3, 
-   "3rd" = $4,
+    "prek_kindergarten"= $1, 
+    "1st" = $2,
+    "2nd" = $3, 
+    "3rd" = $4,
     "4th"= $5,
-   "5th" =$6, 
-   "6th" =$7,
+    "5th" =$6, 
+    "6th" =$7,
     "7th" =$8,
-     "8th" = $9, 
-     "9th" =$10,
-      "10th" =$11,
-       "11th" =$12,
-        "12th"  = $13
+    "8th" = $9, 
+    "9th" =$10,
+   "10th" =$11,
+    "11th" =$12,
+    "12th"  = $13
   FROM "tutors"
   JOIN "user" ON "user".id = tutors.user_id
   WHERE "user".id = $14;
@@ -473,43 +414,55 @@ router.put("/update", (req, res) => {
       req.params.id,
     ])
     .then((result) => {
-      // const mentoringGradeId = result.rows[0].id;
-      // console.log("MentoringGradeID:", result.rows[0].id);
       //SECOND QUERY MAKES TUTOR SUBJECT INSERT
       const insertTutorSubjectsQuery = `
       UPDATE "subjects_tutors"
       SET
-      ( "K5_Math", 
-      "K5_Reading", 
-      "K5_English_Writing",
-       "K5_Science", 
-        "K5_social_studies",
-         "6th_to_8th_language_arts",
-          "6th_to_8th_science",
-           "6th_to_8th_social_studies",
-            "math_pre_algebra",
-             "math_alg1_linear_alg",
-              "math_alg2",
-               "math_geom", 
-              "math_precalc_trig", 
-              "sci_bio_life", 
-              "sci_chem", 
-              "sci_physics", 
-              "sci_comp_sci",
-               "lang_chinese", 
-               "lang_spanish", 
-               "lang_french", 
-               "lang_german",
-                "hist_world", 
-                "hist_us",
-                 "ap_bio", 
-                 "ap_chem",
-                  "ap_physics",
-                   "ap_calc_AB", "ap_calc_BC", "ap_stats", "ap_comp_sci", "ap_english_lit_comp", "ap_lang_comp", "ap_macro_econ", "ap_micro_econ", "ap_psyc", "ap_hist_us", "ap_gov_politics_us", "ap_human_geog", "sat_subject_tests", "sat_prep", "act_prep", "other")   
+       "K5_Math" =$1, 
+      "K5_Reading" =$2, 
+      "K5_English_Writing"=$3,
+       "K5_Science" =$4, 
+        "K5_social_studies" = $5,
+         "6th_to_8th_language_arts"=$6,
+          "6th_to_8th_science" =$7,
+           "6th_to_8th_social_studies" =$8,
+            "math_pre_algebra"=$9,
+             "math_alg1_linear_alg" =$10,
+              "math_alg2" =$11,
+               "math_geom"=$12, 
+              "math_precalc_trig"=$13, 
+              "sci_bio_life"=$14, 
+              "sci_chem"=$15, 
+              "sci_physics"=$16, 
+              "sci_comp_sci"=$17,
+               "lang_chinese"=$18, 
+               "lang_spanish"=$19, 
+               "lang_french"=$20, 
+               "lang_german"=$21,
+                "hist_world"=$22, 
+                "hist_us"=$23,
+                 "ap_bio"=$24, 
+                 "ap_chem"=$25,
+                  "ap_physics"=$26,
+                   "ap_calc_AB"=$27,
+                    "ap_calc_BC"=$28,
+                     "ap_stats"=$29,
+                      "ap_comp_sci"=$30,
+                       "ap_english_lit_comp"=$31,
+                        "ap_lang_comp"=$32,
+                         "ap_macro_econ"=$33, 
+                         "ap_micro_econ"=$34, 
+                         "ap_psyc"=$35, 
+                         "ap_hist_us"=$36,
+                          "ap_gov_politics_us"=$37,
+                           "ap_human_geog"=$38,
+                            "sat_subject_tests"=$39, 
+                            "sat_prep"=$40,
+                             "act_prep"=$41,
+                              "other"=$42  
       FROM "tutors"
       JOIN "user" ON "user".id = tutors.user_id
-      WHERE "user".id = $42;
-      VALUES  ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12, $13, $14, $15, $16, $17, $18, $19, $20, $21, $22, $23, $24, $25, $26, $27, $28, $29, $30, $31, $32, $33, $34, $35, $36, $37, $38, $39, $40, $41, $42)
+      WHERE "user".id = $43;
      ;`;
       pool
         .query(insertTutorSubjectsQuery, [
@@ -563,12 +516,19 @@ router.put("/update", (req, res) => {
           const insertTutorLanguageQuery = `
             UPDATE "language" 
             SET
-            ( "Spanish", "Somali", "Arabic", "Chinese", "Tagalog", "French", "Vietnamese", "Hmong", "Other" )
+             "Spanish" =$1 ,
+              "Somali"=$2,
+               "Arabic"=$3, 
+               "Chinese"=$4,
+                "Tagalog"=$5,
+                 "French"=$6,
+                  "Vietnamese"=$7,
+                   "Hmong"=$8, 
+                   "Other"=$9 
             FROM "tutors"
                JOIN "user" ON "user".id = tutors.user_id
                WHERE "user".id = $10;
-            VALUES  ($1, $2, $3, $4, $5, $6, $7, $8, $9)
-            RETURNING "id";`;
+          `;
           pool
             .query(insertTutorLanguageQuery, [
               req.body.Spanish,
