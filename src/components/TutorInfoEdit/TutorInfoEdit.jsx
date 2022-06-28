@@ -700,7 +700,7 @@ function TutorInfoEdit() {
         type: "UPDATE_TUTOR_SUBJECTS",
         payload: {...newTutorSubjects, user_id: user.id} 
       });
-      history.push("/TutorAdditional");
+      history.push("/ProfileDashboard");
     }
   };
   return(
