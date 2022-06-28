@@ -58,7 +58,12 @@ function Profile() {
                   Edit Registration Form
                 </Button>
               ) : (
-                <h1>Tutee edit button</h1>
+                <Button
+                className="primaryButton matchButton"
+                onClick={() => history.push("/StudentSubjectsEdit")}
+              >
+                Edit Tutee Form
+              </Button>
               )}
               </Card.Body>
             </Card>
