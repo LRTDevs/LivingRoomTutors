@@ -723,5 +723,10 @@ INSERT INTO "user"
 VALUES
 ('rocketuser', '$2a$10$SLRxXX0Y07/A688xvGRX3.oKm3fmlVn4QoPfnJ4Sr6DjsXJYpZZ8i', true, false) --pwd is 1234;
 ;
+CREATE TABLE "profile_pictures" (
+"id" serial PRIMARY KEY NOT NULL,
+"image_url" varchar(500)
+);
+
 
 
