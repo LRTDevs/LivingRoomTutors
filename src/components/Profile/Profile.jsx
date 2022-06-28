@@ -12,7 +12,6 @@ import FormData from "form-data";
 import { Card, Col, Container } from "react-bootstrap";
 
 function Profile() {
-  const user = useSelector((store)=> store.userReducer)
   const [file, setFile] = React.useState('');
   const dispatch = useDispatch();
   const user = useSelector((store) => store.userReducer);
