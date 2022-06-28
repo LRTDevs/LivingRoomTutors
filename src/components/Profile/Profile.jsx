@@ -12,6 +12,7 @@ import FormData from "form-data";
 import { Card, Col, Container } from "react-bootstrap";
 
 function Profile() {
+  const user = useSelector((store)=> store.userReducer)
   const [file, setFile] = React.useState('');
   const dispatch = useDispatch();
 
@@ -21,10 +22,10 @@ function Profile() {
   };
 
   const handleClick = () => {
+    console.log(user.id);
     const data = new FormData()
     data.append('file', file)
-
-    let url = "http://localhost:5000/api/upload";
+    let url = `http://localhost:5000/api/upload/${user.id}`;
     axios.post(url, data, {
       headers: {
         'Content-Type': 'multipart/form-data'
