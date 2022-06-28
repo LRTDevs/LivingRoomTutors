@@ -24,8 +24,6 @@ function LoginForm() {
           password: password,
         },
       });
-      // console.log('user.id--------------->',user.id)
-      history.push('/ProfileDashboard');
     } else {
       dispatch({ type: 'LOGIN_INPUT_ERROR' });
     }

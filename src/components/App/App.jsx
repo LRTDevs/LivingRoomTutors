@@ -70,7 +70,11 @@ function App() {
           </Route>
 
           <Route exact path="/Home">
-            <LoginPage />
+           { user.id ?
+              <Redirect to ="/ProfileDashboard" />
+              :
+              <LoginPage />
+           }
           </Route>
 
           <Route exact path="/reducers">
