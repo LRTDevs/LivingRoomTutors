@@ -26,12 +26,13 @@ function* fetchProfilePic(action) {
   })
 };
 function* uploadProfilePic(action) {
-  console.log("uploadProfilePic saga========>",action.payload);
+  console.log("uploadProfilePic saga========>",action.payload.image);
+  let newProfilePic = {image: action.payload}
   // POST newDiscITem to our server and put it in db:
   const response = yield axios({
     method: 'POST',
     url: '/api/upload',
-    data: action.payload
+    data: newProfilePic
   })
 }
 

@@ -6,24 +6,30 @@ import Nav from "../Nav/Nav";
 import { Button } from "react-bootstrap";
 import { useHistory } from "react-router-dom";
 import "./Profile.css";
+import axios from "axios";
+import FormData from "form-data";
 
 import { Card, Col, Container } from "react-bootstrap";
 
 function Profile() {
   const [file, setFile] = React.useState('');
+  const dispatch = useDispatch();
 
   const handleFileChange = (event) => {
     event.preventDefault();
-    setFile(event.target.value);
-};
+    setFile(event.target.files[0]);
+  };
 
   const handleClick = () => {
-    console.log('clicked', {file});
-    // history.push(`/ImageUpload/${user.id}`)
-    dispatch({
-      type: 'UPLOAD_PROFILE_PIC',
-      payload: file
-  });
+    const data = new FormData()
+    data.append('file', file)
+
+    let url = "http://localhost:5000/api/upload";
+    axios.post(url, data, {
+      headers: {
+        'Content-Type': 'multipart/form-data'
+      }
+    })
   }
   return (
     <div>
@@ -34,13 +40,9 @@ function Profile() {
             <Card className="title">
               <Card.Body>
                 <form>
-                  <h1>React File Upload</h1>
-                  <input
-                    value={file}
-                    onChange={handleFileChange}
-                    type="file"
-                  />
-                  <button onClick={handleClick} type="submit">Upload</button>
+                  <h1>Profile Pic Upload</h1>
+                  <input type="file" onChange={(e) => setFile(e.target.files[0])}></input>
+                  <button onClick={handleClick}>Upload</button>
                 </form>
               </Card.Body>
             </Card>
