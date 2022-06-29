@@ -12,18 +12,18 @@ import ProfilePicItem from './ProfilePicItem';
 
 import { Card, Col, Container } from "react-bootstrap";
 
-function Profile() {
+function ProfilePicUpload() {
 
-  useEffect(() => {
-    dispatch({
-        type: 'FETCH_PROFILE_PIC',
-        payload: user.id
-    })
-}, [])
+//   useEffect(() => {
+//     dispatch({
+//         type: 'FETCH_PROFILE_PIC',
+//         payload: user.id
+//     })
+// }, [])
   const history = useHistory();
   const [file, setFile] = React.useState('');
   const user = useSelector((store)=> store.userReducer);
-  // const profilePic = useSelector((store)=> store.profilePicReducer);
+  const profilePic = useSelector((store)=> store.profilePicReducer);
   const dispatch = useDispatch();
 
   function fetchProfilePicture(id) {
@@ -32,9 +32,7 @@ function Profile() {
         payload: id
     });
 }
-  const handleProfilePicChange = () => {
-    history.push(`/profilePicUpload`);
-  }
+
   const handleClick = () => {
     const data = new FormData()
     data.append('file', file)
@@ -44,10 +42,8 @@ function Profile() {
         'Content-Type': 'multipart/form-data'
       }
     })
-    console.log('click');
-    setTimeout(() => {
-      fetchProfilePicture(user.id);
-  }, 1000)
+    console.log('click',user.id);
+    history.push(`/profileDashboard`);
     
   }
   return (
@@ -59,11 +55,10 @@ function Profile() {
             <Card className="title">
               <Card.Body>
                 <form>
-                  <ProfilePicItem />
-                  {/* <h1>Profile Pic Upload</h1>
+                  {/* <ProfilePicItem /> */}
+                  <h1>Profile Pic Upload</h1>
                   <input type="file" onChange={(e) => setFile(e.target.files[0])}></input>
-                  <button onClick={handleClick}>Upload</button> */}
-                  <button onClick={handleProfilePicChange}>Change Profile Picture</button>
+                  <button onClick={handleClick}>Upload</button>
                 </form>
                 
               </Card.Body>
@@ -76,4 +71,4 @@ function Profile() {
   );
 }
 
-export default Profile;
+export default ProfilePicUpload;
