@@ -12,25 +12,28 @@ import FormData from "form-data";
 import { Card, Col, Container } from "react-bootstrap";
 
 function Profile() {
-  const user = useSelector((store)=> store.userReducer)
-  const [file, setFile] = React.useState('');
+  const user = useSelector((store)=> store.userReducer);
+  const profilePic = useSelector((store)=> store.profilePicReducer);
   const dispatch = useDispatch();
 
-  const handleFileChange = (event) => {
-    event.preventDefault();
-    setFile(event.target.files[0]);
-  };
+  function fetchProfilePicture(id) {
+    dispatch({
+        type: 'FETCH_PROFILE_PIC',
+        payload: id
+    });
+}
 
   const handleClick = () => {
-    console.log(user.id);
-    const data = new FormData()
-    data.append('file', file)
-    let url = `http://localhost:5000/api/upload/${user.id}`;
-    axios.post(url, data, {
-      headers: {
-        'Content-Type': 'multipart/form-data'
-      }
-    })
+    // const data = new FormData()
+    // data.append('file', file)
+    // let url = `http://localhost:5000/api/upload/${user.id}`;
+    // axios.post(url, data, {
+    //   headers: {
+    //     'Content-Type': 'multipart/form-data'
+    //   }
+    // })
+    console.log('click');
+    fetchProfilePicture(user.id);
   }
   return (
     <div>
@@ -41,10 +44,12 @@ function Profile() {
             <Card className="title">
               <Card.Body>
                 <form>
+                  <img src={profilePic.image_url} width='100' />
                   <h1>Profile Pic Upload</h1>
                   <input type="file" onChange={(e) => setFile(e.target.files[0])}></input>
                   <button onClick={handleClick}>Upload</button>
                 </form>
+                
               </Card.Body>
             </Card>
           </Container>

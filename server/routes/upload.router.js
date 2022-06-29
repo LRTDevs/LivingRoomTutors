@@ -45,11 +45,13 @@ router.post('/:id', upload.single('file'), (req, res) => {
  * GET route template
  */
 
-router.get("/", (req, res) => {
+router.get("/:id", (req, res) => {
   const query = `SELECT * FROM "profile_pictures" 
-  WHERE "user_id" = $1`;
+  WHERE "user_id" = $1
+  ORDER BY "inserted_at" DESC
+  LIMIT 1`;
   pool
-    .query(query, [req.user.id] )
+    .query(query, [req.params.id] )
     .then((result) => {
       res.send(result.rows);
     })
@@ -59,11 +61,5 @@ router.get("/", (req, res) => {
     });
 });
 
-/**
- * POST route template
- */
-router.post("/", (req, res) => {
-  // POST route code here
-});
 
 module.exports = router;
