@@ -9,6 +9,7 @@ import "./Profile.css";
 import axios from "axios";
 import FormData from "form-data";
 
+
 import { Card, Col, Container } from "react-bootstrap";
 
 function Profile() {
@@ -36,6 +37,7 @@ function Profile() {
   return (
     <div>
       <Nav />
+      <Header/>
       <div className="container">
         <Col lg={{ span: 8, offset: 3 }}>
           <Container>
@@ -55,10 +57,15 @@ function Profile() {
                   className="primaryButton matchButton"
                   onClick={() => history.push("/TutorInfoEdit")}
                 >
-                  Edit Registration Form
+                  Update Tutoring Subjects
                 </Button>
               ) : (
-                <h1>Tutee edit button</h1>
+                <Button
+                className="primaryButton matchButton"
+                onClick={() => history.push("/StudentSubjectsEdit")}
+              >
+               Update Tutoring Subjects
+              </Button>
               )}
               </Card.Body>
             </Card>
