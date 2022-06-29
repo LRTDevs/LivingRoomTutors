@@ -42,7 +42,10 @@ function Profile() {
       }
     })
     console.log('click');
-    fetchProfilePicture(user.id);
+    setTimeout(() => {
+      fetchProfilePicture(user.id);
+  }, 100)
+    
   }
   return (
     <div>
