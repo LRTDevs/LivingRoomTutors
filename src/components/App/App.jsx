@@ -49,7 +49,7 @@ import AdminNavBar from "../AdminNavBar/AdminNavBar";
 import MatchProfile from "../MatchProfile/MatchProfile";
 import Sessions from "../Sessions/Sessions";
 import StudentSubjectsEdit from "../StudentSubjectsEdit/StudentSubjectsEdit"
-
+import UpdateModal from "../UpdateModal/UpdateModal"
 function App() {
   const dispatch = useDispatch();
 
@@ -123,6 +123,16 @@ function App() {
           <Route exact path="/TutorModal">
             <TutorModal />
           </Route>
+
+          <Route exact path="/UpdateModal">
+            <UpdateModal />
+          </Route>
+
+
+
+
+
+
 
           <Route exact path="/TutorInfo">
             <TutorInfo />

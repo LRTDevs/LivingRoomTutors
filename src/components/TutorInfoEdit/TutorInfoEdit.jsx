@@ -1769,6 +1769,7 @@ function TutorInfoEdit() {
           <Button
             className="primaryButton saveAndContinueButton"
             onClick={AddNewTutorSubjects}
+            
           >
             Save and Continue <span className="rightarrow">{rightArrow}</span>
           </Button>
