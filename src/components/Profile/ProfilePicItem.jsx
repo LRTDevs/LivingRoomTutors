@@ -3,10 +3,12 @@ import { useSelector } from "react-redux";
 ;
 
 function ProfilePicItem() {
-    const profilePic = useSelector((store) => store.profilePicReducer[0].image_url);
-
+    const profilePic = useSelector((store) => store.profilePicReducer);
     return (
-        <img src={profilePic} width='100' />
+        (profilePic.length === 0 ?
+            <img src='https://res.cloudinary.com/living-room-tutors/image/upload/v1656532496/DEV/zgvnpxvejdm39mibvhfj.jpg' width='100' />
+            : <img src={profilePic[0].image_url} width='100' />)
+
     );
 }
 
