@@ -21,7 +21,7 @@ const AddSessions =()=>{
 
 
 
-  
+
 
 }
 
@@ -36,6 +36,7 @@ const AddSessions =()=>{
         <Card className="title">
           <Card.Body>
          <h1>Schedule Sessions </h1>
+         <h4> Please select three dates and times for possible sessions. Will be send to tutee for confirmation.</h4>
 
 
          <Form.Group className='mb-3'>
@@ -52,7 +53,7 @@ const AddSessions =()=>{
 
 
               <Form.Group className='mb-3'>
-                <Form.Label style={{ fontSize: '1.25rem' }}> Select 2nd Choice Date And Time </Form.Label>
+                <Form.Label style={{ fontSize: '1.25rem', marginBottom: '20px'  }}> Select 2nd Choice Date And Time </Form.Label>
                 <Form.Control
                   type='datetime-local'
                   required
@@ -65,7 +66,7 @@ const AddSessions =()=>{
 
 
               <Form.Group className='mb-3'>
-                <Form.Label style={{ fontSize: '1.25rem' }}> Select Third Choice Date And Time</Form.Label>
+                <Form.Label style={{ fontSize: '1.25rem', marginBottom: '18px'  }}> Select Third Choice Date And Time</Form.Label>
                 <Form.Control
                   type='datetime-local'
                   required
