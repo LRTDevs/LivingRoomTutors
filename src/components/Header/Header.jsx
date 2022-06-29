@@ -10,6 +10,7 @@ function Header(props) {
   // Using hooks we're creating local state for a "heading" variable with
   // a default value of 'Functional Component'
   const store = useSelector((store) => store);
+  const user = useSelector((store) => store.userReducer);
 
   return (
     <div className="headerDiv">
@@ -21,6 +22,18 @@ function Header(props) {
         <div className="LTRRegFormHeader">
           <h2>Living Room Tutors K-12 Registration Form</h2>
         </div>
+
+
+        {user.id && 
+          <div className="brandNameHeader">
+          <img alt="logo" style={{ maxWidth: "65px" }} src={Logo} />
+          {/* <h1 className="headingLRT">LIVING ROOM TUTORS</h1> */}
+        </div>
+     
+        
+        
+        
+        }
       </Container>
     </div>
   );

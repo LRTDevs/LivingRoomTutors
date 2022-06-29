@@ -21,7 +21,7 @@ function Guidelines() {
 
   return (
     <>
-      {/* <Header /> */}
+      <Header />
       <Nav />
       <div className="container">
         <Col lg={{ span: 8, offset: 3 }}>

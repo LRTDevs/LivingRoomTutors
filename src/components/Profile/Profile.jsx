@@ -9,6 +9,7 @@ import "./Profile.css";
 import axios from "axios";
 import FormData from "form-data";
 
+
 import { Card, Col, Container } from "react-bootstrap";
 
 function Profile() {
@@ -36,6 +37,7 @@ function Profile() {
   return (
     <div>
       <Nav />
+      <Header/>
       <div className="container">
         <Col lg={{ span: 8, offset: 3 }}>
           <Container>
