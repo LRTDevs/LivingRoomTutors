@@ -1,37 +1,20 @@
 import * as React from 'react';
-import Header from "../Header/Header";
 import { useSelector, useDispatch } from "react-redux";
-import { useEffect } from "react";
 import Nav from "../Nav/Nav";
-import { Button } from "react-bootstrap";
 import { useHistory } from "react-router-dom";
 import "./Profile.css";
 import axios from "axios";
 import FormData from "form-data";
-import ProfilePicItem from './ProfilePicItem';
 
 import { Card, Col, Container } from "react-bootstrap";
 
 function ProfilePicUpload() {
 
-//   useEffect(() => {
-//     dispatch({
-//         type: 'FETCH_PROFILE_PIC',
-//         payload: user.id
-//     })
-// }, [])
   const history = useHistory();
   const [file, setFile] = React.useState('');
   const user = useSelector((store)=> store.userReducer);
-  const profilePic = useSelector((store)=> store.profilePicReducer);
   const dispatch = useDispatch();
 
-  function fetchProfilePicture(id) {
-    dispatch({
-        type: 'FETCH_PROFILE_PIC',
-        payload: id
-    });
-}
 
   const handleClick = () => {
     const data = new FormData()
