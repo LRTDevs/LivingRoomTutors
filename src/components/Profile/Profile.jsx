@@ -1,7 +1,8 @@
-import * as React from 'react';
+// import * as React from 'react';
+import React, { useEffect } from 'react';
 import Header from "../Header/Header";
 import { useSelector, useDispatch } from "react-redux";
-import { useEffect } from "react";
+// import { useEffect } from "react";
 import Nav from "../Nav/Nav";
 import { Button } from "react-bootstrap";
 import { useHistory } from "react-router-dom";
@@ -16,6 +17,7 @@ function Profile() {
   const [file, setFile] = React.useState('');
   const dispatch = useDispatch();
   const user = useSelector((store) => store.userReducer);
+  const profileInfo = useSelector((store) => store.profileReducer);
   const history = useHistory();
 
   const handleFileChange = (event) => {
@@ -34,44 +36,66 @@ function Profile() {
       }
     })
   }
+  console.log(profileInfo);
+
+  useEffect(() => {
+    dispatch({
+      type: 'FETCH_PROFILE_INFO',
+    });
+  }, []);
+
   return (
     <div>
-      <Nav />
-      <Header/>
-      <div className="container">
         <Col lg={{ span: 8, offset: 3 }}>
+
+      <Nav />
+      <Header />
+      <div className="container">
+        {/* <Col lg={{ span: 8, offset: 3 }}> */}
           <Container>
             <Card className="title">
               <Card.Body>
                 <form>
-                  <h1>Profile Pic Upload</h1>
+                  <h3>Profile Pic Upload</h3>
                   <input type="file" onChange={(e) => setFile(e.target.files[0])}></input>
                   <button onClick={handleClick}>Upload</button>
                 </form>
+
+                {profileInfo.id &&
+                  <ul>
+                    <li>{profileInfo.favorite_music}</li>
+                    <li>{profileInfo.favorite_subject}</li>
+                    <li>{profileInfo.fictional_universe}</li>
+                    <li>{profileInfo.five_year_plan}</li>
+                    <li>{profileInfo.hidden_talents}</li>
+                  </ul>
+                }
+
 
 
 
 
                 {user.isTutor === true ? (
-                <Button
-                  className="primaryButton matchButton"
-                  onClick={() => history.push("/TutorInfoEdit")}
-                >
-                  Update Tutoring Subjects
-                </Button>
-              ) : (
-                <Button
-                className="primaryButton matchButton"
-                onClick={() => history.push("/StudentSubjectsEdit")}
-              >
-               Update Tutoring Subjects
-              </Button>
-              )}
+                  <Button
+                    className="primaryButton matchButton"
+                    onClick={() => history.push("/TutorInfoEdit")}
+                  >
+                    Update Tutoring Subjects
+                  </Button>
+                ) : (
+                  <Button
+                    className="primaryButton matchButton"
+                    onClick={() => history.push("/StudentSubjectsEdit")}
+                  >
+                    Update Tutoring Subjects
+                  </Button>
+                )}
               </Card.Body>
             </Card>
           </Container>
-        </Col>
+        {/* </Col> */}
       </div>
+      </Col>
     </div>
 
   );

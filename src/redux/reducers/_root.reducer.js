@@ -21,6 +21,7 @@ import languageFilter from "./language_filter.reducer";
 import currentlangs from "./currenttuteelang.reducer";
 import profilePicReducer from "./profilePic.reducer";
 import userReducer from "./user.reducer";
+import profileReducer from "./profile.reducer";
 
 // rootReducer is the primary reducer for our entire project
 // It bundles up all of the other reducers so our project can use them.
@@ -50,7 +51,9 @@ const rootReducer = combineReducers({
   languageFilter,
   currentlangs,
   profilePicReducer,
-  userReducer
+  userReducer,
+  profileReducer,
+  
 });
 
 export default rootReducer;
