@@ -29,7 +29,7 @@ router.post('/', (req, res) => {
 
   router.get("/", (req, res) => {
     const query = `SELECT * FROM "schedule"
-    ORDER BY submission_timestamp ASC;
+
     `;
     pool
       .query(query)

@@ -38,22 +38,6 @@ function Sessions() {
       payload: { ...newSessions, user_id: user.id },
     });
 
-    // if (
-    //   primaryDate.primaryDate == null ||
-    //   secondaryDate.secondaryDate == null ||
-    //   tertiaryDate.tertiaryDate == null
-    // ) {
-    //   return alert(
-    //     "At least one required field was empty. Please fill in the required fields before continuing."
-    //   );
-    // } else {
-    //   dispatch({
-    //     type: "ADD_TUTOR_SESSIONS",
-    //     payload:{ ...newSessions, user_id: user.id},
-    //   });
-    //   history.push("/ProfileDashboard");
-    //   //////Add sweetalert for updated information!!!!!!!
-    // }
   };
 
   return (
