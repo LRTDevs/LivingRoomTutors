@@ -19,7 +19,7 @@ function ProfileDashboard() {
 
   return (
     <div>
-      <Header />
+     
       {user.isAdmin === true ? <AdminNavBar /> : <Nav />}
 
       <Col lg={{ span: 8, offset: 3 }}>

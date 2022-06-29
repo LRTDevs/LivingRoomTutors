@@ -8,7 +8,7 @@ function MatchProfile () {
  
 <div>
     <Nav/>
-    <Header/>
+   
     <div className="container">
     <Col lg={{ span: 8, offset: 3 }}>
       <Container>
