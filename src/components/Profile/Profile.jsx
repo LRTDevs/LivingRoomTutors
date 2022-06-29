@@ -46,12 +46,10 @@ function Profile() {
 
   return (
     <div>
-        <Col lg={{ span: 8, offset: 3 }}>
-
-      <Nav />
-      <Header />
-      <div className="container">
-        {/* <Col lg={{ span: 8, offset: 3 }}> */}
+      <Col lg={{ span: 8, offset: 3 }}>
+        <Nav />
+        <Header />
+        <div className="container">
           <Container>
             <Card className="title">
               <Card.Body>
@@ -71,10 +69,6 @@ function Profile() {
                   </ul>
                 }
 
-
-
-
-
                 {user.isTutor === true ? (
                   <Button
                     className="primaryButton matchButton"
@@ -93,11 +87,9 @@ function Profile() {
               </Card.Body>
             </Card>
           </Container>
-        {/* </Col> */}
-      </div>
+        </div>
       </Col>
     </div>
-
   );
 }
 
