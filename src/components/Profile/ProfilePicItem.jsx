@@ -1,12 +1,12 @@
 import * as React from 'react';
-import { useSelector, useDispatch } from "react-redux";
+import { useSelector } from "react-redux";
 ;
 
 function ProfilePicItem() {
-    const profilePic = useSelector((store) => store.profilePicReducer[0]);
+    const profilePic = useSelector((store) => store.profilePicReducer[0].image_url);
 
     return (
-        <img src={profilePic.image_url} width='100' />
+        <img src={profilePic} width='100' />
     );
 }
 

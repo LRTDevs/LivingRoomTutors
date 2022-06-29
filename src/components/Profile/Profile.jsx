@@ -23,7 +23,7 @@ function Profile() {
 
   const [file, setFile] = React.useState('');
   const user = useSelector((store)=> store.userReducer);
-  const profilePic = useSelector((store)=> store.profilePicReducer);
+  // const profilePic = useSelector((store)=> store.profilePicReducer);
   const dispatch = useDispatch();
 
   function fetchProfilePicture(id) {
@@ -45,7 +45,7 @@ function Profile() {
     console.log('click');
     setTimeout(() => {
       fetchProfilePicture(user.id);
-  }, 100)
+  }, 1000)
     
   }
   return (
@@ -58,7 +58,6 @@ function Profile() {
               <Card.Body>
                 <form>
                   <ProfilePicItem />
-                  {/* <img src={profilePic[0].image_url} width='100' /> */}
                   <h1>Profile Pic Upload</h1>
                   <input type="file" onChange={(e) => setFile(e.target.files[0])}></input>
                   <button onClick={handleClick}>Upload</button>
