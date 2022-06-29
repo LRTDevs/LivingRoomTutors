@@ -8,6 +8,8 @@ import { useDispatch, useSelector } from "react-redux";
 
 
 function Sessions () {
+  const dispatch = useDispatch();
+
 
   const user = useSelector((store) => store.user);
 
@@ -25,6 +27,15 @@ const AddSessions =()=>{
   };
   
   console.log('newSessions------------>', newSessions)
+
+  dispatch({
+    type: "ADD_TUTOR_SESSIONS",
+    payload:{ ...newSessions, user_id: user.id},
+  });
+
+
+
+
   // if (
   //   primaryDate.primaryDate == null ||
   //   secondaryDate.secondaryDate == null ||
@@ -38,12 +49,9 @@ const AddSessions =()=>{
   //     type: "ADD_TUTOR_SESSIONS",
   //     payload:{ ...newSessions, user_id: user.id},
   //   });
-  //   // history.push("/ProfileDashboard");
+  //   history.push("/ProfileDashboard");
   //   //////Add sweetalert for updated information!!!!!!!
   // }
-
-
-
 
 }
 

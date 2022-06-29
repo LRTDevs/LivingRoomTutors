@@ -50,7 +50,19 @@ function* updateTutorSubjects(action) {
     }
   }
 
-
+  function* createTutorSessions(action) {
+    console.log('TUTOR SESSION DATES---------->',action.payload)
+      try {
+        const response = yield axios({
+          method: 'POST',
+          url: '/api/sessions',
+          data: action.payload
+        })
+        // yield put({type:"ADD_NEW_TUTOR_SUBJECTS"})
+      } catch {
+        console.log('ERROR in POST/TUTOR SESSIONS');
+      }
+    }
 
 
 
@@ -60,6 +72,7 @@ function* tutorsSaga() {
   yield takeLatest("FETCH_TUTORS", fetchTutors);
   yield takeLatest("SEND_NEW_TUTOR", postNewTutor);
   yield takeLatest( "UPDATE_TUTOR_SUBJECTS", updateTutorSubjects);
+  yield takeLatest( "ADD_TUTOR_SESSIONS", createTutorSessions)
  
 }
 
