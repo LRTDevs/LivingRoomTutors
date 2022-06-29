@@ -165,7 +165,7 @@ function StudentSubjectsEdit(props) {
       <Header />
       <Container className="formContainer">
         <div className="maincard">
-       <h3>Student Subject Edit Form!!!!</h3>
+     
           <div className="formContent">
             <div className="formQandA">
               <p onClick={setDefaults}>

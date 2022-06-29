@@ -209,11 +209,8 @@ router.put("/update/:id", (req, res) => {
              "subject_1" = $1  ,
               "subject_2"= $2 ,
                "subject_3"= $3, 
-               "subject_details"= $4 
-                 
+               "subject_details"= $4        
           WHERE tutees.user_id = $5;
-  
-
     `;
   const sqlValues = [
     req.body.newPrimarySubject,

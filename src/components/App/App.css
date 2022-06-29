@@ -835,3 +835,17 @@ label {
   background-color: #45c6a2;
   border-color: #45c6a2;
 }
+
+li{
+  /* text-align: center; */
+  font-size: 25px;
+  list-style: circle;
+  padding-bottom: 1ch;
+  padding-right: 8px;
+}
+
+.guideline{
+  width: 1000px;
+  
+
+}
