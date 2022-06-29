@@ -21,7 +21,7 @@ function UpdateModal(props) {
 
   const handleShow = () => {
     console.log("closing modal");
-    // dispatch({ type: "", payload: props.newStudentObject });
+    // dispatch({ type: "ADD_NEW_STUDENT", payload: props.newStudentObject });
     setShow(true);
   };
 
@@ -36,7 +36,7 @@ function UpdateModal(props) {
           {" "}
           Submit{" "}
         </Button> */}
-        <Modal className="submissionModal">
+        <Modal className="submissionModal" show={show} onHide={handleClose}>
           <Modal.Header
             className="submissionModalHeader"
             closeButton
