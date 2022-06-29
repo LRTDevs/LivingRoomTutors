@@ -8,6 +8,7 @@ import { useHistory } from "react-router-dom";
 import "./Profile.css";
 import axios from "axios";
 import FormData from "form-data";
+import ProfilePicItem from './ProfilePicItem';
 
 import { Card, Col, Container } from "react-bootstrap";
 
@@ -56,7 +57,8 @@ function Profile() {
             <Card className="title">
               <Card.Body>
                 <form>
-                  <img src={profilePic[0].image_url} width='100' />
+                  <ProfilePicItem />
+                  {/* <img src={profilePic[0].image_url} width='100' /> */}
                   <h1>Profile Pic Upload</h1>
                   <input type="file" onChange={(e) => setFile(e.target.files[0])}></input>
                   <button onClick={handleClick}>Upload</button>
