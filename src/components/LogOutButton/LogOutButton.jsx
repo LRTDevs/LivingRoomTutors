@@ -13,7 +13,7 @@ function LogOutButton(props) {
   const user = useSelector((store) => store.user);
   const handleLogOut=()=>{
     dispatch({ type: "LOGOUT" });
-    history.push("/")
+   
   }
 
   const signOutIcon = <FontAwesomeIcon icon={faSignOutAlt} />;

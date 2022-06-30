@@ -35,9 +35,13 @@ function Sessions() {
 
     dispatch({
       type: "ADD_TUTOR_SESSIONS",
-      payload: { ...newSessions, user_id: user.id },
+      payload: { ...newSessions, tutee_id: 1 },
     });
-
+      //hardcoded for now
+      // BALLOON! added a hardcoded tutee_id value to test this out
+      // remember that it was super important to have dummy data that made
+      // sense in order to test all this out.
+      //dropdown that maps tutees.id's of tutor. 
   };
 
   return (
