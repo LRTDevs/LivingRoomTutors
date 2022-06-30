@@ -220,10 +220,8 @@ function Guidelines() {
               </Card.Body>
             </Card>
           )}
-          {/* </Col> */}
         </Container>
       </div>
-      </Col>
     </>
   );
 }

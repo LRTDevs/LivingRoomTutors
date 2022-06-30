@@ -13,7 +13,7 @@ function Profile() {
 
   const [file, setFile] = React.useState('');
   const dispatch = useDispatch();
-  const user = useSelector((store) => store.userReducer);
+  const user = useSelector((store) => store.user);
   const history = useHistory();
 
   useEffect(() => {
@@ -22,9 +22,7 @@ function Profile() {
       payload: user.id
     })
   }, [])
-  const history = useHistory();
-  const user = useSelector((store) => store.userReducer);
-  const dispatch = useDispatch();
+
 
 
   const handleProfilePicChange = () => {
