@@ -61,11 +61,11 @@ function Profile() {
 
                 {profileInfo.id &&
                   <ul>
-                    <li>{profileInfo.favorite_music}</li>
-                    <li>{profileInfo.favorite_subject}</li>
-                    <li>{profileInfo.fictional_universe}</li>
-                    <li>{profileInfo.five_year_plan}</li>
-                    <li>{profileInfo.hidden_talents}</li>
+                    <li>Favorite Music: {profileInfo.favorite_music}</li>
+                    <li>Favorite Subject: {profileInfo.favorite_subject}</li>
+                    <li>Favorite Fictional Universe: {profileInfo.fictional_universe}</li>
+                    <li>Where I see myself in 5 years: {profileInfo.five_year_plan}</li>
+                    <li>Hidden Talents: {profileInfo.hidden_talents}</li>
                   </ul>
                 }
 
