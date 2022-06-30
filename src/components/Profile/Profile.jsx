@@ -5,9 +5,10 @@ import Nav from "../Nav/Nav";
 import { useHistory } from "react-router-dom";
 import "./Profile.css";
 import ProfilePicItem from './ProfilePicItem';
+import Header from '../Header/Header';
 
 
-import { Card, Col, Container } from "react-bootstrap";
+import { Card, Col, Container, Button } from "react-bootstrap";
 
 function Profile() {
 
@@ -41,11 +42,11 @@ function Profile() {
             <Card.Body>
               <form>
                 <h1>Profile Pic Upload</h1>
-                <input type="file" onChange={(e) => setFile(e.target.files[0])}></input>
-                <button onClick={handleClick}>Upload</button>
+                {/* <input type="file" onChange={(e) => setFile(e.target.files[0])}></input> */}
+                {/* <button onClick={handleClick}>Upload</button> */}
 
                 <ProfilePicItem />
-                <button onClick={handleProfilePicChange}>Change Profile Picture</button>
+                <Button onClick={handleProfilePicChange}>Change Profile Picture</Button>
               </form>
 
               {user.isTutor === true ? (
