@@ -1,47 +1,42 @@
-import React, { useEffect } from "react";
-import {
-  HashRouter as Router,
-  matchPath,
-  Redirect,
-  Route,
-  Switch,
-} from "react-router-dom";
 
-import { useDispatch, useSelector } from "react-redux";
+import React, { useEffect } from 'react';
+import { HashRouter as Router, matchPath, Redirect, Route, Switch } from 'react-router-dom';
 
-import Nav from "../Nav/Nav";
-import Footer from "../Footer/Footer";
+import { useDispatch, useSelector } from 'react-redux';
 
-import ProtectedRoute from "../ProtectedRoute/ProtectedRoute";
-import LoginPage from "../LoginPage/LoginPage";
-import RegisterPage from "../RegisterPage/RegisterPage";
+import Nav from '../Nav/Nav';
+import Footer from '../Footer/Footer';
 
-import StudentAdditional from "../StudentAdditional/StudentAdditional";
-import StudentInfo from "../StudentInfo/StudentInfo";
-import StudentSubjects from "../StudentSubjects/StudentSubjects";
-import StudentTerms from "../StudentTerms/StudentTerms";
-import StudentModal from "../StudentModal/StudentModal";
+import ProtectedRoute from '../ProtectedRoute/ProtectedRoute';
+import LoginPage from '../LoginPage/LoginPage';
+import RegisterPage from '../RegisterPage/RegisterPage';
 
-import TutorInfo from "../TutorForm/TutorInfo";
-import TutorSubjects from "../TutorSubjects/TutorSubjects";
-import TutorAdditional from "../TutorAdditional/TutorAdditional";
-import TutorTerms from "../TutorTerms/TutorTerms";
-import TutorModal from "../TutorModal/TutorModal";
+import StudentAdditional from '../StudentAdditional/StudentAdditional';
+import StudentInfo from '../StudentInfo/StudentInfo';
+import StudentSubjects from '../StudentSubjects/StudentSubjects';
+import StudentTerms from '../StudentTerms/StudentTerms';
+import StudentModal from '../StudentModal/StudentModal';
 
-import Profile from "../Profile/Profile";
-import ProfileInfoForm from "../ProfileInfoForm/ProfileInfoForm";
-import ProfileDashboard from "../ProfileDashboard/ProfileDashboard";
-import Tools from "../Tools/Tools";
+import TutorInfo from '../TutorForm/TutorInfo';
+import TutorSubjects from '../TutorSubjects/TutorSubjects';
+import TutorAdditional from '../TutorAdditional/TutorAdditional';
+import TutorTerms from '../TutorTerms/TutorTerms';
+import TutorModal from '../TutorModal/TutorModal';
 
-import "./App.css";
-import TuteesPage from "../TuteesPage/TuteesPage";
-import TutorsPage from "../TutorsPage/TutorsPage";
-import RecordsPage from "../RecordsPage/RecordsPage";
-import MatchPage from "../MatchPage/MatchPage";
-import RoleChoice from "../RoleChoice/RoleChoice";
-import ProgressBar from "../ProgressBar/ProgressBar";
-import RegisterForm from "../RegisterForm/RegisterForm";
-import ImageUpload from "../ImageUpload/ImageUpload";
+import ProfileInfoForm from '../ProfileInfoForm/ProfileInfoForm';
+import ProfileDashboard from '../ProfileDashboard/ProfileDashboard';
+import TuteeProfileDisplay from '../TuteeProfileDisplay/TuteeProfileDisplay';
+import Tools from '../Tools/Tools';
+
+import './App.css';
+import TuteesPage from '../TuteesPage/TuteesPage';
+import TutorsPage from '../TutorsPage/TutorsPage';
+import RecordsPage from '../RecordsPage/RecordsPage';
+import MatchPage from '../MatchPage/MatchPage';
+import RoleChoice from '../RoleChoice/RoleChoice';
+import ProgressBar from '../ProgressBar/ProgressBar';
+import RegisterForm from '../RegisterForm/RegisterForm';
+
 import Guidelines from "../Guidelines/Guidelines";
 import UserPage from "../UserPage/UserPage";
 import TutorInfoEdit from "../TutorInfoEdit/TutorInfoEdit";
@@ -116,7 +111,13 @@ function App() {
             <StudentTerms />
           </Route>
 
-          <Route exact path="/TutorAdditional">
+
+          <Route exact path='/TuteeProfileDisplay'>
+            <TuteeProfileDisplay />
+          </Route>
+
+          <Route exact path='/TutorAdditional'>
+
             <TutorAdditional />
           </Route>
 
