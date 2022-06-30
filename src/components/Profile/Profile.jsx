@@ -6,9 +6,15 @@ import { useHistory } from "react-router-dom";
 import "./Profile.css";
 import ProfilePicItem from './ProfilePicItem';
 
+
 import { Card, Col, Container } from "react-bootstrap";
 
 function Profile() {
+
+  const [file, setFile] = React.useState('');
+  const dispatch = useDispatch();
+  const user = useSelector((store) => store.userReducer);
+  const history = useHistory();
 
   useEffect(() => {
     dispatch({
@@ -26,25 +32,43 @@ function Profile() {
   }
 
   return (
-    <div>
-      <Nav />
-      <div className="container">
-        <Col lg={{ span: 8, offset: 3 }}>
-          <Container>
-            <Card className="title">
-              <Card.Body>
-                <form>
-                  <ProfilePicItem />
-                  <button onClick={handleProfilePicChange}>Change Profile Picture</button>
-                </form>
 
-              </Card.Body>
-            </Card>
-          </Container>
-        </Col>
-      </div>
+    <div className="container">
+      <Col lg={{ span: 8, offset: 3 }}>
+        <Nav />
+        <Header />
+        <Container>
+          <Card className="title">
+            <Card.Body>
+              <form>
+                <h1>Profile Pic Upload</h1>
+                <input type="file" onChange={(e) => setFile(e.target.files[0])}></input>
+                <button onClick={handleClick}>Upload</button>
+
+                <ProfilePicItem />
+                <button onClick={handleProfilePicChange}>Change Profile Picture</button>
+              </form>
+
+              {user.isTutor === true ? (
+                <Button
+                  className="primaryButton matchButton"
+                  onClick={() => history.push("/TutorInfoEdit")}
+                >
+                  Update Tutoring Subjects
+                </Button>
+              ) : (
+                <Button
+                  className="primaryButton matchButton"
+                  onClick={() => history.push("/StudentSubjectsEdit")}
+                >
+                  Update Tutoring Subjects
+                </Button>
+              )}
+            </Card.Body>
+          </Card>
+        </Container>
+      </Col>
     </div>
-
   );
 }
 

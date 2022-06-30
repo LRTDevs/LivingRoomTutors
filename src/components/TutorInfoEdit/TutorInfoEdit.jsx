@@ -700,7 +700,7 @@ function TutorInfoEdit() {
         type: "UPDATE_TUTOR_SUBJECTS",
         payload: {...newTutorSubjects, user_id: user.id} 
       });
-      history.push("/TutorAdditional");
+      history.push("/ProfileDashboard");
     }
   };
   return(
@@ -1769,6 +1769,7 @@ function TutorInfoEdit() {
           <Button
             className="primaryButton saveAndContinueButton"
             onClick={AddNewTutorSubjects}
+            
           >
             Save and Continue <span className="rightarrow">{rightArrow}</span>
           </Button>
