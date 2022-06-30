@@ -7,10 +7,10 @@ function MatchProfile () {
     return(
  
 <div>
-    <Nav/>
-   
-    <div className="container">
+   <div className="container">
     <Col lg={{ span: 8, offset: 3 }}>
+    <Nav/>
+
       <Container>
         <Card className="title">
           <Card.Body>
@@ -22,7 +22,6 @@ function MatchProfile () {
         </Card>
       </Container>
     </Col>
- 
    </div>
    </div>
     

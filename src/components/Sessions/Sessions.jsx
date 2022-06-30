@@ -8,6 +8,7 @@ import { useEffect } from "react";
 
 
 function Sessions() {
+
   useEffect(() => {
     if (user.isTutor === false) {
       dispatch({
@@ -50,6 +51,7 @@ function Sessions() {
 
       <div className="container">
         <Col lg={{ span: 8, offset: 3 }}>
+
           <Container>
             <Card className="title">
               <Card.Body>
@@ -129,3 +131,5 @@ function Sessions() {
 }
 
 export default Sessions;
+
+

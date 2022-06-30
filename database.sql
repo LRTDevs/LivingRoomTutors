@@ -726,7 +726,8 @@ VALUES
 CREATE TABLE "profile_pictures" (
 "id" serial PRIMARY KEY NOT NULL,
 "image_url" varchar(500),
-user_id INTEGER REFERENCES "user"
+user_id INTEGER REFERENCES "user",
+"inserted_at" TIMESTAMPTZ NOT NULL DEFAULT now()
 );
 
 

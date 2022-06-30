@@ -1,58 +1,56 @@
 import * as React from 'react';
-import Header from "../Header/Header";
 import { useSelector, useDispatch } from "react-redux";
 import { useEffect } from "react";
 import Nav from "../Nav/Nav";
-import { Button } from "react-bootstrap";
 import { useHistory } from "react-router-dom";
 import "./Profile.css";
-import axios from "axios";
-import FormData from "form-data";
+import ProfilePicItem from './ProfilePicItem';
 
 
 import { Card, Col, Container } from "react-bootstrap";
 
 function Profile() {
+
   const [file, setFile] = React.useState('');
   const dispatch = useDispatch();
   const user = useSelector((store) => store.userReducer);
   const history = useHistory();
 
-  const handleFileChange = (event) => {
-    event.preventDefault();
-    setFile(event.target.files[0]);
-  };
-
-  const handleClick = () => {
-    console.log(user.id);
-    const data = new FormData()
-    data.append('file', file)
-    let url = `http://localhost:5000/api/upload/${user.id}`;
-    axios.post(url, data, {
-      headers: {
-        'Content-Type': 'multipart/form-data'
-      }
+  useEffect(() => {
+    dispatch({
+      type: 'FETCH_PROFILE_PIC',
+      payload: user.id
     })
+  }, [])
+  const history = useHistory();
+  const user = useSelector((store) => store.userReducer);
+  const dispatch = useDispatch();
+
+
+  const handleProfilePicChange = () => {
+    history.push(`/profilePicUpload`);
   }
+
+
   return (
-    <div>
-      <Nav />
-  
-      <div className="container">
-        <Col lg={{ span: 8, offset: 3 }}>
-          <Container>
-            <Card className="title">
-              <Card.Body>
-                <form>
-                  <h1>Profile Pic Upload</h1>
-                  <input type="file" onChange={(e) => setFile(e.target.files[0])}></input>
-                  <button onClick={handleClick}>Upload</button>
-                </form>
 
+    <div className="container">
+      <Col lg={{ span: 8, offset: 3 }}>
+        <Nav />
+        <Header />
+        <Container>
+          <Card className="title">
+            <Card.Body>
+              <form>
+                <h1>Profile Pic Upload</h1>
+                <input type="file" onChange={(e) => setFile(e.target.files[0])}></input>
+                <button onClick={handleClick}>Upload</button>
 
+                <ProfilePicItem />
+                <button onClick={handleProfilePicChange}>Change Profile Picture</button>
+              </form>
 
-
-                {user.isTutor === true ? (
+              {user.isTutor === true ? (
                 <Button
                   className="primaryButton matchButton"
                   onClick={() => history.push("/TutorInfoEdit")}
@@ -61,19 +59,17 @@ function Profile() {
                 </Button>
               ) : (
                 <Button
-                className="primaryButton matchButton"
-                onClick={() => history.push("/StudentSubjectsEdit")}
-              >
-               Update Tutoring Subjects
-              </Button>
+                  className="primaryButton matchButton"
+                  onClick={() => history.push("/StudentSubjectsEdit")}
+                >
+                  Update Tutoring Subjects
+                </Button>
               )}
-              </Card.Body>
-            </Card>
-          </Container>
-        </Col>
-      </div>
+            </Card.Body>
+          </Card>
+        </Container>
+      </Col>
     </div>
-
   );
 }
 

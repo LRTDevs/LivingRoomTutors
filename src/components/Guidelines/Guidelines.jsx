@@ -22,9 +22,10 @@ function Guidelines() {
 
   return (
     <>
+
       <Nav />
       <div className="container">
-        <Col lg={{ span: 8, offset: 3 }}>
+        
           <Container>
             <Card className="title">
               <Card.Body>
@@ -36,7 +37,6 @@ function Guidelines() {
               </Card.Body>
             </Card>
           </Container>
-        </Col>
 
         <Container className="guideline">
           {/* <Col lg={{ span: 8, offset: 3 }}> */}
@@ -223,6 +223,7 @@ function Guidelines() {
           {/* </Col> */}
         </Container>
       </div>
+      </Col>
     </>
   );
 }
