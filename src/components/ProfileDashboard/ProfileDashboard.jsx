@@ -7,15 +7,31 @@ import { useHistory } from "react-router-dom";
 
 import Nav from "../Nav/Nav";
 import { Card, Col, Container } from "react-bootstrap";
-import UserPage from "../UserPage/UserPage";
-import AdminNavBar from "../AdminNavBar/AdminNavBar";
+import UserPage from '../UserPage/UserPage';
+import AdminNavBar from '../AdminNavBar/AdminNavBar';
+import { useEffect } from "react";
+import { useSelector, useDispatch } from "react-redux";
+import React from 'react';
+
 
 import React from "react";
 import { useSelector } from "react-redux";
 
 function ProfileDashboard() {
-  const user = useSelector((store) => store.userReducer);
-  const history = useHistory();
+
+  useEffect(() => {
+    dispatch({
+        type: 'FETCH_PROFILE_PIC',
+        payload: user.id
+    })
+}, [])
+
+  const user = useSelector((store)=> store.userReducer)
+  const dispatch = useDispatch();
+
+  
+
+
 
   return (
     <div>

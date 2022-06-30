@@ -41,10 +41,15 @@ import Guidelines from "../Guidelines/Guidelines";
 import UserPage from "../UserPage/UserPage";
 import TutorInfoEdit from "../TutorInfoEdit/TutorInfoEdit";
 import AdminNavBar from "../AdminNavBar/AdminNavBar";
+
+import ProfilePicUpload from "../Profile/ProfilePicUpload";
+
+
 import MatchProfile from "../MatchProfile/MatchProfile";
 import Sessions from "../Sessions/Sessions";
 import StudentSubjectsEdit from "../StudentSubjectsEdit/StudentSubjectsEdit"
 import UpdateModal from "../UpdateModal/UpdateModal"
+
 function App() {
   const dispatch = useDispatch();
 
@@ -171,6 +176,14 @@ function App() {
             path="/admin"
           >
             <TuteesPage />
+          </ProtectedRoute>
+
+          <ProtectedRoute
+            // logged in shows InfoPage else shows LoginPage
+            exact
+            path="/profilePicUpload"
+          >
+            <ProfilePicUpload />
           </ProtectedRoute>
 
           <ProtectedRoute
