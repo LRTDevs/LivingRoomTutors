@@ -16,7 +16,7 @@ import statusTutorsSaga from "./change_tutor_active_status.saga";
 import matchSearchSaga from "./matchSearch.saga";
 import confirmMatch from "./confirmMatch.saga";
 import fetchProfilePicSaga from "./profile_pic.saga";
-import postProfileInfoSaga from './profile_info.saga';
+import profileInfoSaga from './profile_info.saga';
 
 
 // rootSaga is the primary saga.
@@ -46,7 +46,7 @@ export default function* rootSaga() {
 
     fetchProfilePicSaga(),
 
-    postProfileInfoSaga(),
+    profileInfoSaga(),
 
   ]);
 }
