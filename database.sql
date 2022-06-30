@@ -726,9 +726,20 @@ VALUES
 CREATE TABLE "profile_pictures" (
 "id" serial PRIMARY KEY NOT NULL,
 "image_url" varchar(500),
-user_id INTEGER REFERENCES "user"
+user_id INTEGER REFERENCES "user",
+"inserted_at" TIMESTAMPTZ NOT NULL DEFAULT now()
 );
 
 
+CREATE TABLE "schedule"(
+	"id" serial PRIMARY KEY NOT NULL,
+	"primary_date" VARCHAR(200),
+	"secondary_date" VARCHAR(200),
+	"tertiary_date" VARCHAR(200),
+	"isBooked" BOOLEAN DEFAULT FALSE,
+	"isRejected" BOOLEAN DEFAULT FALSE,
+	user_id INTEGER REFERENCES "user"
+
+);
 
 

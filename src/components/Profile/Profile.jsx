@@ -1,40 +1,36 @@
-// import * as React from 'react';
 import React, { useEffect } from 'react';
 import Header from "../Header/Header";
 import { useSelector, useDispatch } from "react-redux";
 // import { useEffect } from "react";
 import Nav from "../Nav/Nav";
-import { Button } from "react-bootstrap";
 import { useHistory } from "react-router-dom";
 import "./Profile.css";
-import axios from "axios";
-import FormData from "form-data";
+import ProfilePicItem from './ProfilePicItem';
 
 
 import { Card, Col, Container } from "react-bootstrap";
 
 function Profile() {
+
   const [file, setFile] = React.useState('');
   const dispatch = useDispatch();
   const user = useSelector((store) => store.userReducer);
   const profileInfo = useSelector((store) => store.profileReducer);
   const history = useHistory();
 
-  const handleFileChange = (event) => {
-    event.preventDefault();
-    setFile(event.target.files[0]);
-  };
-
-  const handleClick = () => {
-    console.log(user.id);
-    const data = new FormData()
-    data.append('file', file)
-    let url = `http://localhost:5000/api/upload/${user.id}`;
-    axios.post(url, data, {
-      headers: {
-        'Content-Type': 'multipart/form-data'
-      }
+  useEffect(() => {
+    dispatch({
+      type: 'FETCH_PROFILE_PIC',
+      payload: user.id
     })
+  }, [])
+  const history = useHistory();
+  const user = useSelector((store) => store.userReducer);
+  const dispatch = useDispatch();
+
+
+  const handleProfilePicChange = () => {
+    history.push(`/profilePicUpload`);
   }
   console.log(profileInfo);
 
@@ -88,6 +84,7 @@ function Profile() {
             </Card>
           </Container>
         </div>
+
       </Col>
     </div>
   );

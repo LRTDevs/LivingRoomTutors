@@ -22,21 +22,10 @@ function Guidelines() {
 
   return (
     <>
-      <div className="headerDiv">
-        <Container className="headerContainer">
-          <div className="brandNameHeader">
-            <img alt="logo" style={{ maxWidth: "65px" }} src={Logo} />
-            <h1 className="headingLRT">LIVING ROOM TUTORS</h1>
-          </div>
-          <div className="LTRRegFormHeader">
-            <h2>Living Room Tutors K-12 Registration Form</h2>
-          </div>
-        </Container>
-      </div>
 
       <Nav />
       <div className="container">
-        <Col lg={{ span: 8, offset: 3 }}>
+        
           <Container>
             <Card className="title">
               <Card.Body>
@@ -48,7 +37,6 @@ function Guidelines() {
               </Card.Body>
             </Card>
           </Container>
-        </Col>
 
         <Container className="guideline">
           {/* <Col lg={{ span: 8, offset: 3 }}> */}
@@ -235,6 +223,7 @@ function Guidelines() {
           {/* </Col> */}
         </Container>
       </div>
+      </Col>
     </>
   );
 }
