@@ -1,3 +1,4 @@
+
 import React, { useEffect } from 'react';
 import { HashRouter as Router, matchPath, Redirect, Route, Switch } from 'react-router-dom';
 
@@ -35,16 +36,22 @@ import MatchPage from '../MatchPage/MatchPage';
 import RoleChoice from '../RoleChoice/RoleChoice';
 import ProgressBar from '../ProgressBar/ProgressBar';
 import RegisterForm from '../RegisterForm/RegisterForm';
+
 import Guidelines from "../Guidelines/Guidelines";
 import UserPage from "../UserPage/UserPage";
-
+import TutorInfoEdit from "../TutorInfoEdit/TutorInfoEdit";
+import AdminNavBar from "../AdminNavBar/AdminNavBar";
+import MatchProfile from "../MatchProfile/MatchProfile";
+import Sessions from "../Sessions/Sessions";
+import StudentSubjectsEdit from "../StudentSubjectsEdit/StudentSubjectsEdit"
+import UpdateModal from "../UpdateModal/UpdateModal"
 function App() {
   const dispatch = useDispatch();
 
   const user = useSelector((store) => store.user);
 
   useEffect(() => {
-    dispatch({ type: 'FETCH_USER' });
+    dispatch({ type: "FETCH_USER" });
   }, [dispatch]);
 
   return (
@@ -52,87 +59,106 @@ function App() {
       <div>
         <Switch>
           {/* Visiting localhost:3000 will redirect to localhost:3000/home */}
-          <Redirect exact from='/' to='/home' />
+          <Redirect exact from="/" to="/home" />
 
           {/* Unprotected Routes */}
 
-          <Route exact path='/Home'>
-            <LoginPage />
+          <Route exact path="/ImageUpload/:id">
+            <ImageUpload />
           </Route>
 
+          <Route exact path="/Home">
+           { user.id ?
+              <Redirect to ="/ProfileDashboard" />
+              :
+              <LoginPage />
+           }
+          </Route>
 
-          <Route exact path='/reducers'>
+          <Route exact path="/reducers">
             <UserPage />
           </Route>
 
-
-
-
-
-
-          <Route exact path='/RolesChoice'>
+          <Route exact path="/RolesChoice">
             <RoleChoice />
           </Route>
 
-          <Route exact path='/ProgressBar'>
+          <Route exact path="/ProgressBar">
             <ProgressBar />
           </Route>
 
-          <Route exact path='/ProfileDashboard'>
+          <Route exact path="/ProfileDashboard">
             <ProfileDashboard />
           </Route>
 
-          <Route exact path='/StudentAdditional'>
+          <Route exact path="/StudentAdditional">
             <StudentAdditional />
           </Route>
 
-          <Route exact path='/StudentInfo'>
+          <Route exact path="/StudentInfo">
             <StudentInfo />
           </Route>
 
-          <Route exact path='/StudentModal'>
+          <Route exact path="/StudentModal">
             <StudentModal />
           </Route>
 
-          <Route exact path='/StudentSubjects'>
+          <Route exact path="/StudentSubjects">
             <StudentSubjects />
           </Route>
 
-          <Route exact path='/StudentTerms'>
+          <Route exact path="/StudentTerms">
             <StudentTerms />
           </Route>
+
 
           <Route exact path='/TuteeProfileDisplay'>
             <TuteeProfileDisplay />
           </Route>
 
           <Route exact path='/TutorAdditional'>
+
             <TutorAdditional />
           </Route>
 
-          <Route exact path='/TutorModal'>
+          <Route exact path="/TutorModal">
             <TutorModal />
           </Route>
 
-          <Route exact path='/TutorInfo'>
+          <Route exact path="/UpdateModal">
+            <UpdateModal />
+          </Route>
+
+
+
+
+
+
+
+          <Route exact path="/TutorInfo">
             <TutorInfo />
           </Route>
 
-          <Route exact path='/TutorSubjects'>
+          <Route exact path="/TutorInfoEdit">
+            <TutorInfoEdit />
+          </Route>
+
+          <Route exact path="/TutorSubjects">
             <TutorSubjects />
           </Route>
 
-          <Route exact path='/TutorTerms'>
+          <Route exact path="/TutorTerms">
             <TutorTerms />
           </Route>
 
-          <Route exact path='/ProfileInfoForm'>
+          <Route exact path="/ProfileInfoForm">
             <ProfileInfoForm />
           </Route>
 
-          <Route exact path='/Nav'>
+          <Route exact path="/Nav">
             <Nav />
           </Route>
+       
 
           {/* For protected routes, the view could show one of several things on the same route.
             Visiting localhost:3000/user will show the UserPage if the user is logged in.
@@ -142,7 +168,7 @@ function App() {
           <ProtectedRoute
             // logged in shows InfoPage else shows LoginPage
             exact
-            path='/admin'
+            path="/admin"
           >
             <TuteesPage />
           </ProtectedRoute>
@@ -150,7 +176,41 @@ function App() {
           <ProtectedRoute
             // logged in shows InfoPage else shows LoginPage
             exact
-            path='/tutors'
+            path="/profile"
+          >
+            <Profile />
+          </ProtectedRoute>
+
+          <ProtectedRoute
+            // logged in shows InfoPage else shows LoginPage
+            exact
+            path="/MatchProfile"
+          >
+            <MatchProfile />
+          </ProtectedRoute>
+          <ProtectedRoute
+            // logged in shows InfoPage else shows LoginPage
+            exact
+            path="/Sessions"
+          >
+            <Sessions />
+          </ProtectedRoute>
+          <ProtectedRoute
+            // logged in shows InfoPage else shows LoginPage
+            exact
+            path="/StudentSubjectsEdit"
+          >
+            <StudentSubjectsEdit />
+          </ProtectedRoute>
+
+
+
+
+
+          <ProtectedRoute
+            // logged in shows InfoPage else shows LoginPage
+            exact
+            path="/tutors"
           >
             <TutorsPage />
           </ProtectedRoute>
@@ -158,7 +218,7 @@ function App() {
           <ProtectedRoute
             // logged in shows InfoPage else shows LoginPage
             exact
-            path='/records'
+            path="/records"
           >
             <RecordsPage />
           </ProtectedRoute>
@@ -166,7 +226,7 @@ function App() {
           <ProtectedRoute
             // logged in shows InfoPage else shows LoginPage
             exact
-            path='/match'
+            path="/match"
           >
             <MatchPage />
           </ProtectedRoute>
@@ -174,44 +234,43 @@ function App() {
           <ProtectedRoute
             // logged in shows InfoPage else shows LoginPage
             exact
-            path='/tools'
+            path="/tools"
           >
             <Tools />
           </ProtectedRoute>
 
-          <Route exact path='/login'>
+          <Route exact path="/login">
             {user.id ? (
               // If the user is already logged in, // redirect to the /user page
-              <Redirect to='/admin' />
+              <Redirect to="/admin" />
             ) : (
               // Otherwise, show the login page
               <LoginPage />
             )}
           </Route>
 
-          <Route exact path='/registration'>
+          <Route exact path="/registration">
             {user.id ? (
               // If the user is already logged in,
               // redirect them to the /user page
-              <Redirect to='/home' />
+              <Redirect to="/home" />
             ) : (
               // Otherwise, show the registration page
               <RegisterPage />
             )}
           </Route>
 
-          <ProtectedRoute
-            exact
-            path='/Guidelines'
-          >
+            
+
+
+
+
+
+
+
+          <ProtectedRoute exact path="/Guidelines">
             <Guidelines />
           </ProtectedRoute>
-
-
-
-
-
-
 
           {/* If none of the other routes matched, we will show a 404. */}
           <Route>

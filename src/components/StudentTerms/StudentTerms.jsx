@@ -5,9 +5,12 @@ import { Container, Form, Button } from "react-bootstrap";
 import Header from "../Header/Header";
 import StudentModal from "../StudentModal/StudentModal";
 import ProgressBar from "../ProgressBar/ProgressBar";
+import { useHistory } from "react-router-dom";
+
 
 function StudentTerms(props) {
   const dispatch = useDispatch();
+  const history = useHistory();
 
 
   useEffect(() => {
@@ -164,7 +167,7 @@ function StudentTerms(props) {
               {agreedToggle ? (
                 <StudentModal newStudentObject={newStudentObject} />
               ) : (
-                  <Button className="saveAndContinueButton" disabled>
+                  <Button  className="saveAndContinueButton" disabled>
                     Submit
                   </Button>
                 )}

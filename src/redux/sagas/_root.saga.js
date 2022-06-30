@@ -1,3 +1,4 @@
+
 import { all } from "redux-saga/effects";
 import loginSaga from "./login.saga";
 import registrationSaga from "./registration.saga";
@@ -14,6 +15,9 @@ import statusTuteesSaga from "./change_tutee_active_status.saga";
 import statusTutorsSaga from "./change_tutor_active_status.saga";
 import matchSearchSaga from "./matchSearch.saga";
 import confirmMatch from "./confirmMatch.saga";
+import fetchProfilePicSaga from "./profile_pic.saga";
+import postProfileInfoSaga from './profile_info.saga';
+
 
 // rootSaga is the primary saga.
 // It bundles up all of the other sagas so our project can use them.
@@ -38,6 +42,11 @@ export default function* rootSaga() {
     statusTuteesSaga(),
     statusTutorsSaga(),
     matchSearchSaga(),
-    confirmMatch()
+    confirmMatch(),
+
+    fetchProfilePicSaga(),
+
+    postProfileInfoSaga(),
+
   ]);
 }

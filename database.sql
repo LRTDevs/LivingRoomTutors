@@ -3,6 +3,13 @@
 --     "username" VARCHAR (80) UNIQUE NOT NULL,
 --     "password" VARCHAR (1000) NOT NULL
 -- );
+CREATE TABLE "user" (
+	"id" serial PRIMARY KEY NOT NULL,
+	"username" varchar NOT NULL,
+	"password" varchar(255) NOT NULL,
+	"isAdmin" boolean DEFAULT FALSE,
+	"isTutor" Boolean DEFAULT FALSE
+);
 
 CREATE TABLE "tutees" (
 	"id" serial NOT NULL,
@@ -692,20 +699,36 @@ INSERT INTO "tutees" ("student_first_name", "student_last_name", "pronouns", "st
 '10/27/2021 13:21:19', true, false );
 
 --DUMMY ADMIN
-INSERT INTO "admin"
-("first_name", "last_name", "email", "phone", "password")
-VALUES
-('rocket', 'nothing', 'nothing', 0, '$2a$10$SLRxXX0Y07/A688xvGRX3.oKm3fmlVn4QoPfnJ4Sr6DjsXJYpZZ8i'); --pwd is 1234
+-- INSERT INTO "admin"
+-- ("first_name", "last_name", "email", "phone", "password")
+-- VALUES
+-- ('rocket', 'nothing', 'nothing', 0, '$2a$10$SLRxXX0Y07/A688xvGRX3.oKm3fmlVn4QoPfnJ4Sr6DjsXJYpZZ8i'); --pwd is 1234
 
-CREATE TABLE "user" (
+
+
+
+
+CREATE TABLE "profile" (
 	"id" serial PRIMARY KEY NOT NULL,
-	"username" varchar NOT NULL,
-	"password" varchar(255) NOT NULL,
-	"isAdmin" boolean DEFAULT FALSE
+	"favorite_subject" varchar(255),
+	"hidden_talents" varchar(500),
+	"five_year_plan" varchar(500),
+	"fictional_universe" varchar(500),
+	"favorite_music" varchar(255),
+	user_id INTEGER REFERENCES "user"
 );
 
 INSERT INTO "user"
-("username","first_name", "last_name", "email", "phone", "password", "isAdmin")
+("username","password", "isAdmin", "isTutor")
 VALUES
-('rocketuser', 'Jack', 'Lund','jacklund@gmail.com', 0, '$2a$10$SLRxXX0Y07/A688xvGRX3.oKm3fmlVn4QoPfnJ4Sr6DjsXJYpZZ8i', true) --pwd is 1234;
+('rocketuser', '$2a$10$SLRxXX0Y07/A688xvGRX3.oKm3fmlVn4QoPfnJ4Sr6DjsXJYpZZ8i', true, false) --pwd is 1234;
 ;
+CREATE TABLE "profile_pictures" (
+"id" serial PRIMARY KEY NOT NULL,
+"image_url" varchar(500),
+user_id INTEGER REFERENCES "user"
+);
+
+
+
+

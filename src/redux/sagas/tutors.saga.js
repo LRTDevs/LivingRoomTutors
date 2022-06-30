@@ -36,10 +36,31 @@ function* postNewTutor(action) {
   }
 }
 
+function* updateTutorSubjects(action) {
+  console.log('action.payload in updateTutor---------->',action.payload)
+    try {
+      const response = yield axios({
+        method: 'PUT',
+        url: `/api/tutors/update/${action.payload.user_id}`,
+        data: action.payload
+      })
+      // yield put({type:"ADD_NEW_TUTOR_SUBJECTS"})
+    } catch {
+      console.log('ERROR in UPDATE TUTOR INFO');
+    }
+  }
+
+
+
+
+
+
 
 function* tutorsSaga() {
   yield takeLatest("FETCH_TUTORS", fetchTutors);
   yield takeLatest("SEND_NEW_TUTOR", postNewTutor);
+  yield takeLatest( "UPDATE_TUTOR_SUBJECTS", updateTutorSubjects);
+ 
 }
 
 export default tutorsSaga;

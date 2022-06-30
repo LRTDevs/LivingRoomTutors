@@ -1,12 +1,12 @@
-const express = require('express');
-const pool = require('../modules/pool');
+const express = require("express");
+const pool = require("../modules/pool");
 const router = express.Router();
 
 /**
  * GET route template
  */
 
-router.get('/', (req, res) => {
+router.get("/", (req, res) => {
   const query = `SELECT * FROM tutees
   ORDER BY submission_timestamp ASC;
   `;
@@ -16,13 +16,13 @@ router.get('/', (req, res) => {
       res.send(result.rows);
     })
     .catch((err) => {
-      console.log('ERROR: Get test', err);
+      console.log("ERROR: Get test", err);
       res.sendStatus(500);
     });
 });
 
-router.get('/active', (req, res) => {
-  console.log('in tutees/active get router');
+router.get("/active", (req, res) => {
+  console.log("in tutees/active get router");
   const query = `SELECT 
   tutee.id,
   student_first_name AS tutee_firstname,
@@ -67,13 +67,13 @@ Subject3.subject AS subject_3
       res.send(result.rows);
     })
     .catch((err) => {
-      console.log('ERROR: Get test', err);
+      console.log("ERROR: Get test", err);
       res.sendStatus(500);
     });
 });
 
-router.get('/deactive', (req, res) => {
-  console.log('in tutees/deactive get router');
+router.get("/deactive", (req, res) => {
+  console.log("in tutees/deactive get router");
   const query = `SELECT 
   tutee.id,
   student_first_name AS tutee_firstname,
@@ -117,19 +117,19 @@ Subject3.subject AS subject_3
       res.send(result.rows);
     })
     .catch((err) => {
-      console.log('ERROR: Get test', err);
+      console.log("ERROR: Get test", err);
       res.sendStatus(500);
     });
 });
 
-router.put('/changeStatus/', (req, res) => {
-  console.log('in /changeStatus', req.body.id);
+router.put("/changeStatus/", (req, res) => {
+  console.log("in /changeStatus", req.body.id);
   const queryString = `UPDATE "tutees" SET active_tutee = NOT active_tutee WHERE id=${req.body.id};`;
   pool
     .query(queryString)
     .then(() => res.sendStatus(200))
     .catch((err) => {
-      console.log('changeStatus failed: ', err);
+      console.log("changeStatus failed: ", err);
       res.sendStatus(500);
     });
 });
@@ -137,9 +137,9 @@ router.put('/changeStatus/', (req, res) => {
 /**
  * POST route template
  */
-router.post('/', (req, res) => {
-  console.log('newTuteeObject:', req.body);
-  console.log('POST tutee route hit');
+router.post("/", (req, res) => {
+  console.log("newTuteeObject:", req.body);
+  console.log("POST tutee route hit");
   const tuteeLanguageQuery = `
   INSERT INTO "language" ( "Spanish", "Somali", "Arabic", "Chinese", "Tagalog", "French", "Vietnamese", "Hmong", "Other" )
   VALUES  ($1, $2, $3, $4, $5, $6, $7, $8, $9)
@@ -158,7 +158,7 @@ router.post('/', (req, res) => {
     ])
     .then((result) => {
       const languageTuteeId = result.rows[0].id;
-      console.log('LanguageTuteeID:', languageTuteeId);
+      console.log("LanguageTuteeID:", languageTuteeId);
       const submissionTimestamp = new Date(Date.now()).toISOString();
       const insertTuteeQuery = `
               INSERT INTO "tutees" ("student_first_name", "student_last_name", "pronouns", "student_or_guardian", "email_guardian", "email_student", "phone", "grade_level", "school", "language_tutee_id", "subject_1", "subject_2", "subject_3", "subject_details", "misc_info", "submission_timestamp", "active_tutee", "matched", "user_id")
@@ -190,13 +190,43 @@ router.post('/', (req, res) => {
         })
         .catch((err) => {
           //CATCH FOR SECOND QUERY
-          console.log('error posting to tutee table:', err);
+          console.log("error posting to tutee table:", err);
           res.sendStatus(500);
         });
     })
     .catch((err) => {
       //CATCH FOR FIRST QUERY
-      console.log('error posting to language table', err);
+      console.log("error posting to language table", err);
+      res.sendStatus(500);
+    });
+});
+
+router.put("/update/:id", (req, res) => {
+  console.log("update TUTEE ----->", req.body);
+  const sqlQuery = `
+    UPDATE "tutees" 
+            SET
+             "subject_1" = $1  ,
+              "subject_2"= $2 ,
+               "subject_3"= $3, 
+               "subject_details"= $4        
+          WHERE tutees.user_id = $5;
+    `;
+  const sqlValues = [
+    req.body.newPrimarySubject,
+    req.body.newSecondarySubject,
+    req.body.newTertiarySubject,
+    req.body.newDetailedNeeds,
+    req.params.id,
+  ];
+
+  pool
+    .query(sqlQuery, sqlValues)
+    .then((dbRes) => {
+      res.sendStatus(200);
+    })
+    .catch((dbErr) => {
+      console.log("UPDATE Tutees database error", dbErr);
       res.sendStatus(500);
     });
 });

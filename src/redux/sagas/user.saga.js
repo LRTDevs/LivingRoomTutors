@@ -25,15 +25,14 @@ function* fetchUser() {
 }
 
 function* updateTutor(action) {
-
+console.log('action!!!!!!!!!',action.payload)
   try {
     const response = yield axios({
       method: 'PUT',
-      url: `/isTutor/${action.payload}`,
+      url: `/api/user/isTutor/${action.payload}`,
     })
-    yield put({
-      type: 'SET_USER'
-    })
+    console.log('response!!!!!!!!!',response)
+    yield put({type: 'SET_USER'})
   } catch {
     console.log('ERROR in UPDATE USER');
   }
