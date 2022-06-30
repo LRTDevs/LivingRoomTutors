@@ -6,16 +6,20 @@ import Nav from "../Nav/Nav";
 import { useHistory } from "react-router-dom";
 import "./Profile.css";
 import ProfilePicItem from './ProfilePicItem';
+import Header from '../Header/Header';
 
 
-import { Card, Col, Container } from "react-bootstrap";
+import { Card, Col, Container, Button } from "react-bootstrap";
 
 function Profile() {
 
   const [file, setFile] = React.useState('');
   const dispatch = useDispatch();
-  const user = useSelector((store) => store.userReducer);
+
+  const user = useSelector((store) => store.user);
+
   const profileInfo = useSelector((store) => store.profileReducer);
+
   const history = useHistory();
 
   useEffect(() => {
@@ -24,9 +28,7 @@ function Profile() {
       payload: user.id
     })
   }, [])
-  const history = useHistory();
-  const user = useSelector((store) => store.userReducer);
-  const dispatch = useDispatch();
+
 
 
   const handleProfilePicChange = () => {
@@ -45,15 +47,18 @@ function Profile() {
       <Col lg={{ span: 8, offset: 3 }}>
         <Nav />
         <Header />
-        <div className="container">
-          <Container>
-            <Card className="title">
-              <Card.Body>
-                <form>
-                  <h3>Profile Pic Upload</h3>
-                  <input type="file" onChange={(e) => setFile(e.target.files[0])}></input>
-                  <button onClick={handleClick}>Upload</button>
-                </form>
+        <Container>
+          <Card className="title">
+            <Card.Body>
+              <form>
+                <h1>Profile Pic Upload</h1>
+                {/* <input type="file" onChange={(e) => setFile(e.target.files[0])}></input> */}
+                {/* <button onClick={handleClick}>Upload</button> */}
+
+                <ProfilePicItem />
+                <Button onClick={handleProfilePicChange}>Change Profile Picture</Button>
+              </form>
+
 
                 {profileInfo.id &&
                   <ul>

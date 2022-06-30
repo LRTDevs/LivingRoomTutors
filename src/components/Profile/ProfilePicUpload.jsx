@@ -12,7 +12,7 @@ function ProfilePicUpload() {
 
   const history = useHistory();
   const [file, setFile] = React.useState('');
-  const user = useSelector((store)=> store.userReducer);
+  const user = useSelector((store)=> store.user);
   const dispatch = useDispatch();
 
 

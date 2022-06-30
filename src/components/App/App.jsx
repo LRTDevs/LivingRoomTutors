@@ -7,6 +7,8 @@ import { useDispatch, useSelector } from 'react-redux';
 import Nav from '../Nav/Nav';
 import Footer from '../Footer/Footer';
 
+import Profile from "../Profile/Profile";
+
 import ProtectedRoute from '../ProtectedRoute/ProtectedRoute';
 import LoginPage from '../LoginPage/LoginPage';
 import RegisterPage from '../RegisterPage/RegisterPage';
@@ -43,6 +45,7 @@ import TutorInfoEdit from "../TutorInfoEdit/TutorInfoEdit";
 import AdminNavBar from "../AdminNavBar/AdminNavBar";
 
 import ProfilePicUpload from "../Profile/ProfilePicUpload";
+import ImageUpload from '../ImageUpload/ImageUpload';
 
 
 import MatchProfile from "../MatchProfile/MatchProfile";
@@ -92,9 +95,9 @@ function App() {
             <ProgressBar />
           </Route>
 
-          <Route exact path="/ProfileDashboard">
+          <ProtectedRoute exact path="/ProfileDashboard">
             <ProfileDashboard />
-          </Route>
+          </ProtectedRoute>
 
           <Route exact path="/StudentAdditional">
             <StudentAdditional />

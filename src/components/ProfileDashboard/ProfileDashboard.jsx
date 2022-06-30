@@ -14,8 +14,6 @@ import { useSelector, useDispatch } from "react-redux";
 import React from 'react';
 
 
-import React from "react";
-import { useSelector } from "react-redux";
 
 function ProfileDashboard() {
 
@@ -26,7 +24,7 @@ function ProfileDashboard() {
     })
 }, [])
 
-  const user = useSelector((store)=> store.userReducer)
+  const user = useSelector((store)=> store.user)
   const dispatch = useDispatch();
 
   
