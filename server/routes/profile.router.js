@@ -2,11 +2,21 @@ const express = require('express');
 const pool = require('../modules/pool');
 const router = express.Router();
 
-/**
- * GET route template
- */
 router.get('/', (req, res) => {
-  // GET route code here
+  const query = `
+    SELECT * FROM "profile"
+      WHERE "user_id"=$1
+  `;
+  // KANGAROO! Important KANGAROO! Had to add WHERE "user_id"=$1, since
+  // we only want the profile info of the logged in user (in this case)
+  const sqlValues = [req.user.id]
+  pool.query(query, sqlValues)
+    .then((results) => {
+      res.send(results.rows);
+    })
+    .catch((error) => {
+      console.log('Error in GET all profile info:', error);
+    });
 });
 
 router.post('/', (req, res) => {
