@@ -19,17 +19,17 @@ function ProfileDashboard() {
 
   return (
     <div>
-      <Header />
-      {user.isAdmin === true ? <AdminNavBar /> : <Nav />}
-
       <Col lg={{ span: 8, offset: 3 }}>
+        <Header />
+        {user.isAdmin === true ? <AdminNavBar /> : <Nav />}
+
         <Container>
           <Card className="title">
             <Card.Body>
               <img alt="logo" style={{ maxWidth: "65px" }} src={Logo} />
 
               <h1>Welcome To The Dashboard, {user.username}!</h1>
-          
+
             </Card.Body>
           </Card>
         </Container>

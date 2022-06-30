@@ -35,24 +35,21 @@ function Profile() {
     })
   }
   return (
-    <div>
-      <Nav />
-      <Header/>
-      <div className="container">
-        <Col lg={{ span: 8, offset: 3 }}>
-          <Container>
-            <Card className="title">
-              <Card.Body>
-                <form>
-                  <h1>Profile Pic Upload</h1>
-                  <input type="file" onChange={(e) => setFile(e.target.files[0])}></input>
-                  <button onClick={handleClick}>Upload</button>
-                </form>
 
+    <div className="container">
+      <Col lg={{ span: 8, offset: 3 }}>
+        <Nav />
+        <Header />
+        <Container>
+          <Card className="title">
+            <Card.Body>
+              <form>
+                <h1>Profile Pic Upload</h1>
+                <input type="file" onChange={(e) => setFile(e.target.files[0])}></input>
+                <button onClick={handleClick}>Upload</button>
+              </form>
 
-
-
-                {user.isTutor === true ? (
+              {user.isTutor === true ? (
                 <Button
                   className="primaryButton matchButton"
                   onClick={() => history.push("/TutorInfoEdit")}
@@ -61,19 +58,17 @@ function Profile() {
                 </Button>
               ) : (
                 <Button
-                className="primaryButton matchButton"
-                onClick={() => history.push("/StudentSubjectsEdit")}
-              >
-               Update Tutoring Subjects
-              </Button>
+                  className="primaryButton matchButton"
+                  onClick={() => history.push("/StudentSubjectsEdit")}
+                >
+                  Update Tutoring Subjects
+                </Button>
               )}
-              </Card.Body>
-            </Card>
-          </Container>
-        </Col>
-      </div>
+            </Card.Body>
+          </Card>
+        </Container>
+      </Col>
     </div>
-
   );
 }
 
