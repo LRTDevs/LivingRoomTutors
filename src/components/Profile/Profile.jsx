@@ -6,7 +6,6 @@ import Nav from "../Nav/Nav";
 import { useHistory } from "react-router-dom";
 import "./Profile.css";
 import ProfilePicItem from './ProfilePicItem';
-import Header from '../Header/Header';
 
 
 import { Card, Col, Container, Button } from "react-bootstrap";
@@ -87,9 +86,7 @@ function Profile() {
                 )}
               </Card.Body>
             </Card>
-          </Container>
-        </div>
-
+          </Container>        
       </Col>
     </div>
   );
