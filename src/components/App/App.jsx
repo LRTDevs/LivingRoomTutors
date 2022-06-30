@@ -72,7 +72,7 @@ function App() {
             <ImageUpload />
           </Route>
 
-          <Route exact path="/Home">
+          <Route exact path="/home">
            { user.id ?
               <Redirect to ="/ProfileDashboard" />
               :

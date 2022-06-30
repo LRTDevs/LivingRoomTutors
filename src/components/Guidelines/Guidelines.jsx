@@ -22,18 +22,6 @@ function Guidelines() {
 
   return (
     <>
-    <Col lg={{ span: 8, offset: 3 }}>
-      <div className="headerDiv">
-        <Container className="headerContainer">
-          <div className="brandNameHeader">
-            <img alt="logo" style={{ maxWidth: "65px" }} src={Logo} />
-            <h1 className="headingLRT">LIVING ROOM TUTORS</h1>
-          </div>
-          <div className="LTRRegFormHeader">
-            <h2>Living Room Tutors K-12 Registration Form</h2>
-          </div>
-        </Container>
-      </div>
 
       <Nav />
       <div className="container">

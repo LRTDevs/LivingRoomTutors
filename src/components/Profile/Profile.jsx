@@ -31,6 +31,7 @@ function Profile() {
     history.push(`/profilePicUpload`);
   }
 
+
   return (
 
     <div className="container">

@@ -731,5 +731,15 @@ user_id INTEGER REFERENCES "user",
 );
 
 
+CREATE TABLE "schedule"(
+	"id" serial PRIMARY KEY NOT NULL,
+	"primary_date" VARCHAR(200),
+	"secondary_date" VARCHAR(200),
+	"tertiary_date" VARCHAR(200),
+	"isBooked" BOOLEAN DEFAULT FALSE,
+	"isRejected" BOOLEAN DEFAULT FALSE,
+	user_id INTEGER REFERENCES "user"
+
+);
 
 
