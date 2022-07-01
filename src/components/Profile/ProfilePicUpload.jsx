@@ -25,8 +25,7 @@ function ProfilePicUpload() {
         'Content-Type': 'multipart/form-data'
       }
     })
-    console.log('click',user.id);
-    history.push(`/profileDashboard`);
+    history.push(`/profile`);
     
   }
   return (
