@@ -158,9 +158,12 @@ function Sessions() {
                       Please confirm the best dates for your session.
                     </span>
 
-                    {selectedSessions &&
-                      selectedSessions.map((session) => {
-                        // console.log("session map*****************", session);
+                    {selectedSessions
+                      .filter((session) => {
+                        return !session.isBooked && !session.isRejected
+                      })
+                      .map((session) => {
+                        console.log("session map*****************", session);
                         return (
                           <ConfirmSession key={session.id} session={session} />
                         );

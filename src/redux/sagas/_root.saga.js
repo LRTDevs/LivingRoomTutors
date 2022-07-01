@@ -17,6 +17,7 @@ import matchSearchSaga from "./matchSearch.saga";
 import confirmMatch from "./confirmMatch.saga";
 import fetchProfilePicSaga from "./profile_pic.saga";
 import profileInfoSaga from './profile_info.saga';
+import sessionsSaga from "./sessions.saga";
 
 
 // rootSaga is the primary saga.
@@ -47,6 +48,7 @@ export default function* rootSaga() {
     fetchProfilePicSaga(),
 
     profileInfoSaga(),
+    sessionsSaga()
 
   ]);
 }
