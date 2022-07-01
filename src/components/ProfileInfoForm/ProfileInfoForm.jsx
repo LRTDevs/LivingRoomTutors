@@ -11,9 +11,13 @@ import { faArrowRight } from '@fortawesome/free-solid-svg-icons';
 function ProfileInfoForm() {
   const dispatch = useDispatch();
   const history = useHistory();
+  const profileBio = useSelector((store) => store.profileReducer);
 
   useEffect(() => {
     scrollToTop();
+    dispatch({
+      type: 'FETCH_PROFILE_INFO',
+    });
     // checkReducer(newtutorInfo);
   }, []);
 
@@ -21,12 +25,12 @@ function ProfileInfoForm() {
     window.scrollTo(0, 0);
   };
 
-  const [favoriteSubject, setFavoriteSubject] = useState('');
-  const [specialTalents, setSpecialTalents] = useState('');
-  const [fiveYearGoal, setFiveYearGoal] = useState('');
-  const [fictionalUniverse, setFictionalUniverse] = useState('');
-  const [favoriteMusic, setFavoriteMusic] = useState('');
-  const [shortDescription, setShortDescription] = useState('');
+  const [favoriteSubject, setFavoriteSubject] = useState(`${profileBio.favorite_subject}`);
+  const [specialTalents, setSpecialTalents] = useState(`${profileBio.hidden_talents}`);
+  const [fiveYearGoal, setFiveYearGoal] = useState(`${profileBio.five_year_plan}`);
+  const [fictionalUniverse, setFictionalUniverse] = useState(`${profileBio.fictional_universe}`);
+  const [favoriteMusic, setFavoriteMusic] = useState(`${profileBio.favorite_music}`);
+  const [shortDescription, setShortDescription] = useState(`${profileBio.short_description}`);
 
   const rightArrow = <FontAwesomeIcon icon={faArrowRight} />;
 
