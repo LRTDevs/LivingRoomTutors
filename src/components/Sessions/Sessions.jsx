@@ -7,15 +7,19 @@ import { useDispatch, useSelector } from "react-redux";
 import { useEffect } from "react";
 import { useHistory } from "react-router-dom";
 import { DateTime } from "luxon";
+import ConfirmSession from "../ConfirmDate/ConfirmDate";
 
 function Sessions() {
   useEffect(() => {
     if (user.isTutor === false) {
       dispatch({
         type: "FETCH_TUTOR_SESSIONS",
-        type: "FETCH_MATCHED_TUTEES",
       });
     }
+
+    dispatch({
+      type: "FETCH_TUTOR_SESSIONS",
+    });
   }, []);
 
   const dispatch = useDispatch();
@@ -97,13 +101,11 @@ function Sessions() {
                             >
                               {match.tutee_firstname} -
                             </option>
-                          );ƒ
+                          );
+                          ƒ;
                         })}
                         /// .filter where user.id === match.tutor.id
-
-
                         <option value="">Select </option>
-                   
                       </Form.Select>
                     </div>
 
@@ -165,23 +167,21 @@ function Sessions() {
                   </div>
                 )}
 
+                <span>
+                  {" "}
+                  Please confirm the best dates for your session.
+                </span>
 
-
-
-                <div>
-                {sessions.map((session) => {
-                  return <ConfirmSession key={session.id} session={session} />;
-                })}
-
-        
-                </div>
-
-
-
-
-
-
-                    
+                {user.isTutor === false && (
+                  <div>
+                    {sessions.map((session) => {
+                      console.log("session map*****************", session);
+                      return (
+                        <ConfirmSession key={session.id} session={session} />
+                      );
+                    })}
+                  </div>
+                )}
               </Card.Body>
             </Card>
           </Container>
