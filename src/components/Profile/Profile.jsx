@@ -66,8 +66,15 @@ function Profile() {
                     <li>Favorite Fictional Universe: {profileInfo.fictional_universe}</li>
                     <li>Where I see myself in 5 years: {profileInfo.five_year_plan}</li>
                     <li>Hidden Talents: {profileInfo.hidden_talents}</li>
+                    <li>Description: {profileInfo.short_description}</li>
                   </ul>
                 }
+                <Button
+                    className="primaryButton matchButton"
+                    onClick={() => history.push("/ProfileInfoForm")}
+                  >
+                    Update Bio
+                  </Button>
 
                 {user.isTutor === true ? (
                   <Button

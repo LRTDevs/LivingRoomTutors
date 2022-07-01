@@ -5,7 +5,9 @@ const router = express.Router();
 router.get('/', (req, res) => {
   const query = `
     SELECT * FROM "profile"
-      WHERE "user_id"=$1
+    WHERE "user_id"=$1
+    ORDER BY "inserted_at" DESC
+    LIMIT 1
   `;
   // KANGAROO! Important KANGAROO! Had to add WHERE "user_id"=$1, since
   // we only want the profile info of the logged in user (in this case)
@@ -21,8 +23,8 @@ router.get('/', (req, res) => {
 
 router.post('/', (req, res) => {
   const profileInfoQuery = `
-INSERT INTO "profile" ("favorite_subject", "hidden_talents", "five_year_plan", "fictional_universe", "favorite_music", "user_id")
-VALUES ($1, $2, $3, $4, $5, $6);
+INSERT INTO "profile" ("favorite_subject", "hidden_talents", "five_year_plan", "fictional_universe", "favorite_music",short_description, "user_id")
+VALUES ($1, $2, $3, $4, $5, $6, $7);
 `;
   const profileInfoValues = [
     req.body.favoriteSubject,
@@ -30,6 +32,7 @@ VALUES ($1, $2, $3, $4, $5, $6);
     req.body.fiveYearGoal,
     req.body.fictionalUniverse,
     req.body.favoriteMusic,
+    req.body.shortDescription,
     req.user.id,
   ];
   pool

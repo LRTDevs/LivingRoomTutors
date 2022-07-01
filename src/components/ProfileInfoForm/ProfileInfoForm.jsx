@@ -26,6 +26,7 @@ function ProfileInfoForm() {
   const [fiveYearGoal, setFiveYearGoal] = useState('');
   const [fictionalUniverse, setFictionalUniverse] = useState('');
   const [favoriteMusic, setFavoriteMusic] = useState('');
+  const [shortDescription, setShortDescription] = useState('');
 
   const rightArrow = <FontAwesomeIcon icon={faArrowRight} />;
 
@@ -36,6 +37,7 @@ function ProfileInfoForm() {
     fiveYearGoal: fiveYearGoal,
     fictionalUniverse: fictionalUniverse,
     favoriteMusic: favoriteMusic,
+    shortDescription: shortDescription
   };
 
   const addNewProfileInfo = () => {
@@ -47,11 +49,10 @@ function ProfileInfoForm() {
     <div className='formBackground'>
       <Header />
       <Container className='formContainer'>
-        <TutorProgressBar />
+        {/* <TutorProgressBar /> */}
         <div className='formContent'>
           <h2>
-            These questions will help your match get to know you better! If you'd like to fill in these bits later, you
-            may skip this step.
+            These questions will help your match get to know you better!
           </h2>
           <div className='formQandA'>
             <p>What is/was your favorite subject in school?</p>
@@ -114,6 +115,19 @@ function ProfileInfoForm() {
                 value={favoriteMusic}
                 onChange={(event) => setFavoriteMusic(event.target.value)}
                 defaultValue={favoriteMusic}
+              />
+            </FloatingLabel>
+          </div>
+
+          <div className='formQandA'>
+            <p>A couple sentences to describe yourself.</p>
+            <FloatingLabel controlID='Short Description' label='Short Description' className='formInput'>
+              <Form.Control
+                type='Pronouns'
+                placeholder='Pronouns'
+                value={shortDescription}
+                onChange={(event) => setShortDescription(event.target.value)}
+                defaultValue={shortDescription}
               />
             </FloatingLabel>
           </div>
