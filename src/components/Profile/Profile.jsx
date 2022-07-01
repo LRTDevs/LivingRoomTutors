@@ -25,7 +25,10 @@ function Profile() {
     dispatch({
       type: 'FETCH_PROFILE_PIC',
       payload: user.id
-    })
+    });
+    dispatch({
+      type: 'FETCH_PROFILE_INFO',
+    });
   }, [])
 
 
@@ -35,11 +38,6 @@ function Profile() {
   }
   console.log(profileInfo);
 
-  useEffect(() => {
-    dispatch({
-      type: 'FETCH_PROFILE_INFO',
-    });
-  }, []);
 
   return (
     <div>
