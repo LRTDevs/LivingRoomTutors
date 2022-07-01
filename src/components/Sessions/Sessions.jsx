@@ -19,6 +19,8 @@ function Sessions() {
 
     dispatch({
       type: "FETCH_SELECTED_MATCH",
+      type: "FETCH_SELECTED_SESSIONS",
+
     });
   }, []);
 
@@ -27,13 +29,13 @@ function Sessions() {
   const user = useSelector((store) => store.user);
   const matches = useSelector((store) => store.matches);
   const sessions = useSelector((store) => store.sessions);
+  const selectedMatch = useSelector((store) => store.selectedMatch);
 
   const [primaryDate, setPrimaryDate] = useState([]);
   const [secondaryDate, setSecondaryDate] = useState([]);
   const [tertiaryDate, setTertiaryDate] = useState([]);
-  const [setTuteeId, TuteeId] = useState([]);
 
-  const AddSessions = (tuteeId) => {
+  const AddSessions = (tutee_id) => {
     const newSessions = {
       primaryDate: primaryDate,
       secondaryDate: secondaryDate,
@@ -45,20 +47,11 @@ function Sessions() {
 
     dispatch({
       type: "ADD_TUTOR_SESSIONS",
-      payload: { ...newSessions, tutee_id: tuteeId },
+      payload: { ...newSessions, tutee_id: tutee_id },
     });
-    //hardcoded for now
-    // BALLOON! added a hardcoded tutee_id value to test this out
-    // remember that it was super important to have dummy data that made
-    // sense in order to test all this out.
-    //dropdown that maps tutees.id's of tutor.
+
     // history.push('/ProfileDashboard')
   };
-
-  // const handleTutee = (tutee_id) => {
-  //   setTuteeId(tutee_id);
-  //   console.log("onclick TuteeID**********************", TuteeId);
-  // };
 
   return (
     <div>
@@ -88,24 +81,22 @@ function Sessions() {
                         id="gradeLevel"
                         className="selectGradeDropdown"
                         aria-label="gradeLevel"
-                        value={TuteeId}
-                        onChange={(event) => setTuteeId(event.target.value)}
                       >
-                        {matches.map((match) => {
-                          console.log("match reducer in map", match);
+                          <option value="">Select </option>
+                        {selectedMatch.map((match) => {
+                          // console.log("match reducer in map", match);
                           return (
                             <option
                               value={match.tutee_id}
                               onClick={() => AddSessions(match.tutee_id)}
                               key={match.id}
                             >
-                              {match.tutee_firstname} -
+                              {match.student_first_name}
                             </option>
                           );
-                          ƒ;
                         })}
-                        /// .filter where user.id === match.tutor.id
-                        <option value="">Select </option>
+
+                      
                       </Form.Select>
                     </div>
 
@@ -167,19 +158,21 @@ function Sessions() {
                   </div>
                 )}
 
-
                 {user.isTutor === false && (
                   <div>
                     <h1>Confirm Tutoring Sessions </h1>
-                <span> Please confirm the best dates for your session.</span>
-
+                    <span>
+                      {" "}
+                      Please confirm the best dates for your session.
+                    </span>
+                   
                     {sessions.map((session) => {
                       console.log("session map*****************", session);
                       return (
                         <ConfirmSession key={session.id} session={session} />
                       );
                     })}
-                  </div>
+                  </div> /////// separate get and reducer for specific sessions
                 )}
               </Card.Body>
             </Card>

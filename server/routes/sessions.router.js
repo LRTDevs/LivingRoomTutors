@@ -65,7 +65,25 @@ router.post('/', async (req, res) => {
       });
   });
 
-
+  router.get("/selected", (req, res) => {
+    // console.log("SELECTED/Sessions");
+    const query = `
+    SELECT * FROM schedule
+    JOIN tutees ON tutees.id = schedule.tutee_id
+    JOIN "user" ON "user".id = tutees.user_id
+    WHERE "user".id = $1;
+    `;
+    pool
+      .query(query, [req.user.id])
+      .then((result) => {
+        console.log('result.rows IN SELECTED SESSIONS-->',result.rows)
+        res.send(result.rows);
+      })
+      .catch((err) => {
+        console.log("ERROR:GET SELECTED SESSIONS", err);
+        res.sendStatus(500);
+      });
+  });
 
 
 

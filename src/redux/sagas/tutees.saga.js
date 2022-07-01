@@ -59,7 +59,17 @@ function* updateStudentSubjects(action) {
       console.log('ERROR in UPDATE TUTEES SUBJECTS');
     }
   }
-
+  function* fetchSelectedSessions() {
+    console.log('in fetch SELECTED/SESSIONS')
+    try {
+      const response = yield axios.get("/api/sessions/selected");
+      console.log('response from SELECTED/SESSIONS',response.data)
+      yield put({ type: "SET_SELECTED_SESSIONS", payload: response.data });
+    } catch (error) {
+      console.log("SELECTED SESSIONS ERROR", error);
+  
+    }
+  }
 
 
 
@@ -67,6 +77,7 @@ function* tuteesSaga() {
   yield takeLatest("FETCH_TUTEES", fetchTutees);
   yield takeLatest("ADD_NEW_STUDENT", postNewStudent);
   yield takeLatest("UPDATE_STUDENT_SUBJECTS", updateStudentSubjects);
+  yield takeLatest("FETCH_SELECTED_SESSIONS", fetchSelectedSessions)
 
 }
 

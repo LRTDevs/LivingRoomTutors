@@ -596,7 +596,7 @@ router.put("/matchStatus/", (req, res) => {
 });
 
 router.get("/selected", (req, res) => {
-  console.log("SELECTED/MATCH--------->");
+  // console.log("SELECTED/MATCH--------->");
   const query = `
   SELECT * FROM matches
   JOIN tutees ON tutees.id = matches.tutee_id
