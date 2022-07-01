@@ -69,7 +69,7 @@ function* updateTutorSubjects(action) {
       console.log("Fetch Tutor Sessions");
       try {
         const response = yield axios.get("/api/sessions");
-        console.log("repsonse fetchSessions****************",response.data)
+        // console.log("repsonse fetchSessions****************",response.data)
         yield put({ type: "SET_TUTOR_SESSIONS", payload: response.data });
       } catch (error) {
         console.log("ERROR in FETCH TUTOR SESSIONS", error);

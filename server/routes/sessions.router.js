@@ -76,7 +76,7 @@ router.post('/', async (req, res) => {
     pool
       .query(query, [req.user.id])
       .then((result) => {
-        console.log('result.rows IN SELECTED SESSIONS-->',result.rows)
+        // console.log('result.rows IN SELECTED SESSIONS-->',result.rows)
         res.send(result.rows);
       })
       .catch((err) => {

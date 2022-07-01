@@ -19,8 +19,9 @@ function Sessions() {
 
     dispatch({
       type: "FETCH_SELECTED_MATCH",
+    });
+    dispatch({
       type: "FETCH_SELECTED_SESSIONS",
-
     });
   }, []);
 
@@ -28,19 +29,21 @@ function Sessions() {
   const history = useHistory();
   const user = useSelector((store) => store.user);
   const matches = useSelector((store) => store.matches);
-  const sessions = useSelector((store) => store.sessions);
+  const selectedSessions = useSelector((store) => store.sessions);
   const selectedMatch = useSelector((store) => store.selectedMatch);
 
   const [primaryDate, setPrimaryDate] = useState([]);
   const [secondaryDate, setSecondaryDate] = useState([]);
   const [tertiaryDate, setTertiaryDate] = useState([]);
 
-  const AddSessions = (tutee_id) => {
+  const AddSessions = (event, tutee_id) => {
     const newSessions = {
       primaryDate: primaryDate,
       secondaryDate: secondaryDate,
       tertiaryDate: tertiaryDate,
     };
+    console.log("event", event.target);
+    console.log("tutee id", tutee_id);
 
     console.log("newSessions------------>", newSessions);
     console.log("Matches------------>", matches);
@@ -82,21 +85,19 @@ function Sessions() {
                         className="selectGradeDropdown"
                         aria-label="gradeLevel"
                       >
-                          <option value="">Select </option>
+                        <option value="">Select </option>
                         {selectedMatch.map((match) => {
                           // console.log("match reducer in map", match);
                           return (
                             <option
                               value={match.tutee_id}
-                              onClick={() => AddSessions(match.tutee_id)}
+                              onClick={() => AddSessions(event, match.tutee_id)}
                               key={match.id}
                             >
                               {match.student_first_name}
                             </option>
                           );
                         })}
-
-                      
                       </Form.Select>
                     </div>
 
@@ -165,9 +166,9 @@ function Sessions() {
                       {" "}
                       Please confirm the best dates for your session.
                     </span>
-                   
-                    {sessions.map((session) => {
-                      console.log("session map*****************", session);
+
+                    {selectedSessions.map((session) => {
+                      // console.log("session map*****************", session);
                       return (
                         <ConfirmSession key={session.id} session={session} />
                       );

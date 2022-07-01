@@ -27,6 +27,7 @@ function UserPage() {
   const deactiveTutees = useSelector((store) => store.deactiveTutees);
   const sessions = useSelector((store) => store.sessions);
   const selectedMatch = useSelector((store) => store.selectedMatch);
+  const selectedSessions = useSelector((store) => store.selectedSessions);
 
   const user = useSelector((store) => store.user);
 
@@ -48,6 +49,7 @@ function UserPage() {
       <p>matches {JSON.stringify(matches)}</p>
       <p>Sessions*********** {JSON.stringify(sessions)}</p>
       <p>Selected Matches*********** {JSON.stringify(selectedMatch)}</p>
+      <p>Selected Sessions*********** {JSON.stringify(selectedSessions)}</p>
 
 
       <LogOutButton className="btn" />
