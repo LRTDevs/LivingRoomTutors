@@ -5,16 +5,15 @@ import { Accordion, Button, Form } from "react-bootstrap";
 import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect } from "react";
-import {useHistory} from "react-router-dom"
-
+import { useHistory } from "react-router-dom";
+import { DateTime } from "luxon";
 
 function Sessions() {
-
   useEffect(() => {
     if (user.isTutor === false) {
       dispatch({
         type: "FETCH_TUTOR_SESSIONS",
-        type:"FETCH_MATCHED_TUTEES"
+        type: "FETCH_MATCHED_TUTEES",
       });
     }
   }, []);
@@ -25,14 +24,12 @@ function Sessions() {
   const matches = useSelector((store) => store.matches);
   const sessions = useSelector((store) => store.sessions);
 
-
   const [primaryDate, setPrimaryDate] = useState([]);
   const [secondaryDate, setSecondaryDate] = useState([]);
   const [tertiaryDate, setTertiaryDate] = useState([]);
   const [setTuteeId, TuteeId] = useState([]);
 
-
-  const AddSessions = (tutee_id) => {
+  const AddSessions = (tuteeId) => {
     const newSessions = {
       primaryDate: primaryDate,
       secondaryDate: secondaryDate,
@@ -44,27 +41,20 @@ function Sessions() {
 
     dispatch({
       type: "ADD_TUTOR_SESSIONS",
-      payload: { ...newSessions, tutee_id: TuteeId },
+      payload: { ...newSessions, tutee_id: tuteeId },
     });
-      //hardcoded for now
-      // BALLOON! added a hardcoded tutee_id value to test this out
-      // remember that it was super important to have dummy data that made
-      // sense in order to test all this out.
-      //dropdown that maps tutees.id's of tutor. 
-      // history.push('/ProfileDashboard')
+    //hardcoded for now
+    // BALLOON! added a hardcoded tutee_id value to test this out
+    // remember that it was super important to have dummy data that made
+    // sense in order to test all this out.
+    //dropdown that maps tutees.id's of tutor.
+    // history.push('/ProfileDashboard')
   };
 
-const handleTutee=(tutee_id)=>{
-
-setTuteeId(tutee_id)
-console.log('onclick TuteeID**********************',TuteeId)
-}
-
-
-
-
-
-
+  // const handleTutee = (tutee_id) => {
+  //   setTuteeId(tutee_id);
+  //   console.log("onclick TuteeID**********************", TuteeId);
+  // };
 
   return (
     <div>
@@ -72,7 +62,6 @@ console.log('onclick TuteeID**********************',TuteeId)
 
       <div className="container">
         <Col lg={{ span: 8, offset: 3 }}>
-
           <Container>
             <Card className="title">
               <Card.Body>
@@ -85,41 +74,38 @@ console.log('onclick TuteeID**********************',TuteeId)
                       Sessions will be send to tutee for confirmation.
                     </span>
 
-
                     <div className="formQandA">
-            <label className="customLabel" htmlFor="gradeLevel">
-              Select Student Name 
-              <span className="requiredField"> *</span>
-            </label>
+                      <label className="customLabel" htmlFor="gradeLevel">
+                        Select Student Name
+                        <span className="requiredField"> *</span>
+                      </label>
 
-            <Form.Select
-              id="gradeLevel"
-              className="selectGradeDropdown"
-              aria-label="gradeLevel"
-              value={TuteeId}
-              onChange={(event) => setTuteeId(event.target.value)}
-            >
-               {matches.map((match) => {
-                console.log('match reducer in map',match)
-                return (
-                  
-                  <option value = {match.tutee_id} onClick={() => handleTutee(match.tutee_id)} key={match.id}>
-                    {match.tutee_firstname} -
-                  </option>
-                );
-              })}
+                      <Form.Select
+                        id="gradeLevel"
+                        className="selectGradeDropdown"
+                        aria-label="gradeLevel"
+                        value={TuteeId}
+                        onChange={(event) => setTuteeId(event.target.value)}
+                      >
+                        {matches.map((match) => {
+                          console.log("match reducer in map", match);
+                          return (
+                            <option
+                              value={match.tutee_id}
+                              onClick={() => AddSessions(match.tutee_id)}
+                              key={match.id}
+                            >
+                              {match.tutee_firstname} -
+                            </option>
+                          );ƒ
+                        })}
+                        /// .filter where user.id === match.tutor.id
 
-/// .filter where user.id === match.tutor.id
 
-
-
-              <option value="">Select </option>
-            
-              {/* <option value="1st">1st Grade</option>
-              <option value="2nd">2nd Grade</option> */}
-  
-            </Form.Select>
-          </div>
+                        <option value="">Select </option>
+                   
+                      </Form.Select>
+                    </div>
 
                     <Form.Group className="mb-3">
                       <Form.Label
@@ -179,22 +165,23 @@ console.log('onclick TuteeID**********************',TuteeId)
                   </div>
                 )}
 
-            {sessions.map((session) => {
-
-
-                return (
-            <ConfirmSession  key={session.id} session={session}/>
-                );
-              })}      
-
-
-              <Card.Text>{DateTime.fromISO(date.date).toLocaleString(DateTime.DATETIME_MED)}</Card.Text>
 
 
 
+                <div>
+                {sessions.map((session) => {
+                  return <ConfirmSession key={session.id} session={session} />;
+                })}
+
+        
+                </div>
 
 
 
+
+
+
+                    
               </Card.Body>
             </Card>
           </Container>
@@ -205,5 +192,3 @@ console.log('onclick TuteeID**********************',TuteeId)
 }
 
 export default Sessions;
-
-

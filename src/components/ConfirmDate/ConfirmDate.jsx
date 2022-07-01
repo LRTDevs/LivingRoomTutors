@@ -1,11 +1,13 @@
-function ConfirmSession(session){
-    return(
+function ConfirmSession(session) {
+  return (
     <>
-    <Button>
-        Confirm Date and Time 
-    </Button>
+      <Card.Text>
+        {DateTime.fromISO(session.date).toLocaleString(DateTime.DATETIME_MED)}
+      </Card.Text>
+
+      <Button>Confirm Date and Time</Button>
     </>
-    )
+  );
 }
 
 export default ConfirmSession;
