@@ -20,6 +20,7 @@ function* fetchSelectedMatches() {
   console.log('in fetchMatches')
   try {
     const response = yield axios.get("/api/matches/selected");
+    console.log('response from SELECTED/MATCH',response.data)
     yield put({ type: "SET_SELECTED_MATCHES", payload: response.data });
   } catch (error) {
     console.log("SELECTED MATCH ERROR", error);
