@@ -596,6 +596,23 @@ router.put("/matchStatus/", (req, res) => {
 });
 
 
+router.get("/selected", (req, res) => {
+  console.log("in tutors.router/get");
+  const query = `SELECT * FROM matches
+  
+  
+  
+  `;
+  pool
+    .query(query)
+    .then((result) => {
+      res.send(result.rows);
+    })
+    .catch((err) => {
+      console.log("ERROR:GET SELECTED MATCH", err);
+      res.sendStatus(500);
+    });
+});
 
 
 

@@ -18,7 +18,7 @@ function Sessions() {
     }
 
     dispatch({
-      type: "FETCH_TUTOR_SESSIONS",
+      type: "FETCH_SELECTED_MATCH",
     });
   }, []);
 
@@ -69,9 +69,9 @@ function Sessions() {
           <Container>
             <Card className="title">
               <Card.Body>
-                <h1>Schedule Sessions </h1>
                 {user.isTutor && (
                   <div>
+                    <h1>Schedule Tutoring Sessions </h1>
                     <span>
                       {" "}
                       Please select three dates and times for possible sessions.
@@ -167,13 +167,12 @@ function Sessions() {
                   </div>
                 )}
 
-                <span>
-                  {" "}
-                  Please confirm the best dates for your session.
-                </span>
 
                 {user.isTutor === false && (
                   <div>
+                    <h1>Confirm Tutoring Sessions </h1>
+                <span> Please confirm the best dates for your session.</span>
+
                     {sessions.map((session) => {
                       console.log("session map*****************", session);
                       return (

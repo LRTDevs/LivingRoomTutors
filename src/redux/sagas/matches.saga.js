@@ -22,10 +22,8 @@ function* fetchSelectedMatches() {
     const response = yield axios.get("/api/matches/selected");
     yield put({ type: "SET_SELECTED_MATCHES", payload: response.data });
   } catch (error) {
-    function* fetchMatches() {
-      alert("no in fetchMatches");
-      console.log("fetch matches error", error);
-    }
+    console.log("SELECTED MATCH ERROR", error);
+
   }
 }
 
@@ -40,7 +38,7 @@ function* fetchSelectedMatches() {
 
 function* matchesSaga() {
   yield takeLatest("FETCH_MATCHES", fetchMatches);
-  yield takeLatest("FETCH_SELECTED_MATCHES", fetchSelectedMatches);
+  yield takeLatest("FETCH_SELECTED_MATCH", fetchSelectedMatches);
 
 }
 

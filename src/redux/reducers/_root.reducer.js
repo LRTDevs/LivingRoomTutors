@@ -23,6 +23,7 @@ import profilePicReducer from "./profilePic.reducer";
 // import userReducer from "./user.reducer";
 import profileReducer from "./profile.reducer";
 import sessions from "./sessions.reducer";
+import selectedMatch from "./selectedMatch.reducer"
 
 // rootReducer is the primary reducer for our entire project
 // It bundles up all of the other reducers so our project can use them.
@@ -55,6 +56,7 @@ const rootReducer = combineReducers({
   // userReducer
 sessions,
   profileReducer,
+  selectedMatch
   
 });
 
