@@ -24,13 +24,37 @@ function ProfileInfoForm() {
   const scrollToTop = () => {
     window.scrollTo(0, 0);
   };
+  //////////////
+  let favSubVal;
+  let talentVal;
+  let fiveYearVal;
+  let universeVal;
+  let musicVal;
+  let descriptionVal;
+  if (profileBio.favorite_subject === undefined ) {
+    favSubVal = '';
+    talentVal = '';
+    fiveYearVal ='';
+    universeVal ='';
+    musicVal ='';
+    descriptionVal ='';
+  } else {
+    favSubVal = profileBio.favorite_subject;
+    talentVal = profileBio.hidden_talents;
+    fiveYearVal =profileBio.five_year_plan;
+    universeVal =profileBio.fictional_universe;
+    musicVal =profileBio.favorite_music;
+    descriptionVal =profileBio.short_description;
+  }
+  console.log(profileBio.favorite_music);
+  ///////
 
-  const [favoriteSubject, setFavoriteSubject] = useState(`${profileBio.favorite_subject}`);
-  const [specialTalents, setSpecialTalents] = useState(`${profileBio.hidden_talents}`);
-  const [fiveYearGoal, setFiveYearGoal] = useState(`${profileBio.five_year_plan}`);
-  const [fictionalUniverse, setFictionalUniverse] = useState(`${profileBio.fictional_universe}`);
-  const [favoriteMusic, setFavoriteMusic] = useState(`${profileBio.favorite_music}`);
-  const [shortDescription, setShortDescription] = useState(`${profileBio.short_description}`);
+  const [favoriteSubject, setFavoriteSubject] = useState(`${favSubVal}`);
+  const [specialTalents, setSpecialTalents] = useState(`${talentVal}`);
+  const [fiveYearGoal, setFiveYearGoal] = useState(`${fiveYearVal}`);
+  const [fictionalUniverse, setFictionalUniverse] = useState(`${universeVal}`);
+  const [favoriteMusic, setFavoriteMusic] = useState(`${musicVal}`);
+  const [shortDescription, setShortDescription] = useState(`${descriptionVal}`);
 
   const rightArrow = <FontAwesomeIcon icon={faArrowRight} />;
 
