@@ -48,12 +48,12 @@ function Profile() {
           <Card className="title">
             <Card.Body>
               <form>
-                <h1>Profile Pic Upload</h1>
+                <h1></h1>
                 {/* <input type="file" onChange={(e) => setFile(e.target.files[0])}></input> */}
                 {/* <button onClick={handleClick}>Upload</button> */}
 
                 <ProfilePicItem />
-                <Button onClick={handleProfilePicChange}>Change Profile Picture</Button>
+                
               </form>
 
 
@@ -67,12 +67,14 @@ function Profile() {
                     <li>A couple sentences to describe yourself. {profileInfo.short_description}</li>
                   </ul>
                 }
+                <Button className="primaryButton matchButton" onClick={handleProfilePicChange}>Change Profile Picture</Button>
                 <Button
                     className="primaryButton matchButton"
                     onClick={() => history.push("/ProfileInfoForm")}
                   >
                     Update Bio
                   </Button>
+                  
 
                 {user.isTutor === true ? (
                   <Button
@@ -88,6 +90,7 @@ function Profile() {
                   >
                     Update Tutoring Subjects
                   </Button>
+                  
                 )}
               </Card.Body>
             </Card>
