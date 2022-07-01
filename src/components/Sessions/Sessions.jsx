@@ -11,17 +11,11 @@ import ConfirmSession from "../ConfirmDate/ConfirmDate";
 
 function Sessions() {
   useEffect(() => {
-    if (user.isTutor === false) {
-      dispatch({
-        type: "FETCH_TUTOR_SESSIONS",
-      });
-    }
-
-    dispatch({
-      type: "FETCH_SELECTED_MATCH",
-    });
     dispatch({
       type: "FETCH_SELECTED_SESSIONS",
+    });
+    dispatch({
+      type: "FETCH_SELECTED_MATCH",
     });
   }, []);
 
@@ -29,31 +23,31 @@ function Sessions() {
   const history = useHistory();
   const user = useSelector((store) => store.user);
   const matches = useSelector((store) => store.matches);
-  const selectedSessions = useSelector((store) => store.sessions);
+  const selectedSessions = useSelector((store) => store.selectedSessions);
   const selectedMatch = useSelector((store) => store.selectedMatch);
 
   const [primaryDate, setPrimaryDate] = useState([]);
   const [secondaryDate, setSecondaryDate] = useState([]);
   const [tertiaryDate, setTertiaryDate] = useState([]);
+  const [tuteeId, setTuteeId] = useState("");
 
-  const AddSessions = (event, tutee_id) => {
+  const AddSessions = () => {
     const newSessions = {
       primaryDate: primaryDate,
       secondaryDate: secondaryDate,
       tertiaryDate: tertiaryDate,
     };
-    console.log("event", event.target);
-    console.log("tutee id", tutee_id);
 
     console.log("newSessions------------>", newSessions);
     console.log("Matches------------>", matches);
 
     dispatch({
       type: "ADD_TUTOR_SESSIONS",
-      payload: { ...newSessions, tutee_id: tutee_id },
+      payload: { ...newSessions, tutee_id: tuteeId },
     });
 
-    // history.push('/ProfileDashboard')
+    ////Add Modal Alert
+    history.push('/ProfileDashboard')
   };
 
   return (
@@ -84,16 +78,13 @@ function Sessions() {
                         id="gradeLevel"
                         className="selectGradeDropdown"
                         aria-label="gradeLevel"
+                        onChange={(event) => setTuteeId(event.target.value)}
                       >
                         <option value="">Select </option>
                         {selectedMatch.map((match) => {
                           // console.log("match reducer in map", match);
                           return (
-                            <option
-                              value={match.tutee_id}
-                              onClick={() => AddSessions(event, match.tutee_id)}
-                              key={match.id}
-                            >
+                            <option value={match.tutee_id} key={match.id}>
                               {match.student_first_name}
                             </option>
                           );
@@ -167,13 +158,16 @@ function Sessions() {
                       Please confirm the best dates for your session.
                     </span>
 
-                    {selectedSessions.map((session) => {
-                      // console.log("session map*****************", session);
-                      return (
-                        <ConfirmSession key={session.id} session={session} />
-                      );
-                    })}
-                  </div> /////// separate get and reducer for specific sessions
+                    {selectedSessions &&
+                      selectedSessions.map((session) => {
+                        // console.log("session map*****************", session);
+                        return (
+                          <ConfirmSession key={session.id} session={session} />
+                        );
+                      })}
+
+                    {/* {selectedSessions[1]} */}
+                  </div>
                 )}
               </Card.Body>
             </Card>
