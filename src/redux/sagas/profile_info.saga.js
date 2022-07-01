@@ -6,7 +6,7 @@ function* fetchProfileInfo() {
     const response = yield axios.get('api/profile');
     yield put({
       type: 'SET_PROFILE',
-      payload: response.data[0], // KANGAROO! 👈 changed this to send just the object (rather than an array with an object in it)
+      payload: response.data[0], 
     });
   } catch (error) {
     console.log('Error in fetchProfileInfo:', error);

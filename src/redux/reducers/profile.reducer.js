@@ -9,4 +9,3 @@ const profileReducer = (state = {}, action) => {
 
 export default profileReducer;
 
-// KANGAROO! changed default state to an empty object 👆

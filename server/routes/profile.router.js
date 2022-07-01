@@ -7,8 +7,7 @@ router.get('/', (req, res) => {
     SELECT * FROM "profile"
       WHERE "user_id"=$1
   `;
-  // KANGAROO! Important KANGAROO! Had to add WHERE "user_id"=$1, since
-  // we only want the profile info of the logged in user (in this case)
+  
   const sqlValues = [req.user.id]
   pool.query(query, sqlValues)
     .then((results) => {

@@ -38,7 +38,6 @@ function TutorModal(props) {
           <Modal.Header
             closeButton
             className="submissionModalHeader"
-            closeButton
           ></Modal.Header>
 
           <Modal.Body>
