@@ -15,8 +15,33 @@ function* fetchMatches() {
   }
 }
 
+
+function* fetchSelectedMatches() {
+  console.log('in fetchMatches')
+  try {
+    const response = yield axios.get("/api/matches/selected");
+    yield put({ type: "SET_SELECTED_MATCHES", payload: response.data });
+  } catch (error) {
+    function* fetchMatches() {
+      alert("no in fetchMatches");
+      console.log("fetch matches error", error);
+    }
+  }
+}
+
+
+
+
+
+
+
+
+
+
 function* matchesSaga() {
   yield takeLatest("FETCH_MATCHES", fetchMatches);
+  yield takeLatest("FETCH_SELECTED_MATCHES", fetchSelectedMatches);
+
 }
 
 export default matchesSaga;

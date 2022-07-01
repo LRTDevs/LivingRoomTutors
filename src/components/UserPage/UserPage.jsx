@@ -25,6 +25,7 @@ function UserPage() {
   const deactiveTutors = useSelector((store) => store.deactiveTutors);
   const activeTutees = useSelector((store) => store.activeTutees);
   const deactiveTutees = useSelector((store) => store.deactiveTutees);
+  const sessions = useSelector((store) => store.sessions);
 
   const user = useSelector((store) => store.user);
 

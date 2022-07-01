@@ -23,11 +23,14 @@ function Sessions() {
   const history = useHistory();
   const user = useSelector((store) => store.user);
   const matches = useSelector((store) => store.matches);
+  const sessions = useSelector((store) => store.sessions);
 
 
   const [primaryDate, setPrimaryDate] = useState([]);
   const [secondaryDate, setSecondaryDate] = useState([]);
   const [tertiaryDate, setTertiaryDate] = useState([]);
+  const [setTuteeId, TuteeId] = useState([]);
+
 
   const AddSessions = (tutee_id) => {
     const newSessions = {
@@ -41,7 +44,7 @@ function Sessions() {
 
     dispatch({
       type: "ADD_TUTOR_SESSIONS",
-      payload: { ...newSessions, tutee_id: tutee_id },
+      payload: { ...newSessions, tutee_id: TuteeId },
     });
       //hardcoded for now
       // BALLOON! added a hardcoded tutee_id value to test this out
@@ -50,6 +53,18 @@ function Sessions() {
       //dropdown that maps tutees.id's of tutor. 
       // history.push('/ProfileDashboard')
   };
+
+const handleTutee=(tutee_id)=>{
+
+setTuteeId(tutee_id)
+console.log('onclick TuteeID**********************',TuteeId)
+}
+
+
+
+
+
+
 
   return (
     <div>
@@ -81,14 +96,14 @@ function Sessions() {
               id="gradeLevel"
               className="selectGradeDropdown"
               aria-label="gradeLevel"
-              // value={matches}
-         
+              value={TuteeId}
+              onChange={(event) => setTuteeId(event.target.value)}
             >
                {matches.map((match) => {
                 console.log('match reducer in map',match)
                 return (
                   
-                  <option value = {match.id} onClick={() => AddSessions(match.tutee_id)} key={match.id}>
+                  <option value = {match.tutee_id} onClick={() => handleTutee(match.tutee_id)} key={match.id}>
                     {match.tutee_firstname} -
                   </option>
                 );
@@ -105,16 +120,6 @@ function Sessions() {
   
             </Form.Select>
           </div>
-
-
-
-
-
-
-
-
-
-
 
                     <Form.Group className="mb-3">
                       <Form.Label
@@ -173,6 +178,23 @@ function Sessions() {
                     </Button>
                   </div>
                 )}
+
+            {sessions.map((session) => {
+
+
+                return (
+            <ConfirmSession  key={session.id} session={session}/>
+                );
+              })}      
+
+
+              <Card.Text>{DateTime.fromISO(date.date).toLocaleString(DateTime.DATETIME_MED)}</Card.Text>
+
+
+
+
+
+
               </Card.Body>
             </Card>
           </Container>

@@ -1,4 +1,4 @@
-const sessionsReducer = (state = [], action) => {
+const sessions = (state = [], action) => {
     switch (action.type) {
       case "SET_TUTOR_SESSIONS":
         return action.payload;
@@ -11,4 +11,4 @@ const sessionsReducer = (state = [], action) => {
   
   // user will be on the redux state at:
   // state.user
-  export default sessionsReducer;
+  export default sessions;
