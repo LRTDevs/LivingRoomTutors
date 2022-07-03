@@ -16,11 +16,13 @@ function StudentSubjectsEdit(props) {
   const dispatch = useDispatch();
   const history = useHistory();
 
-  const presenting = false;
+  // const presenting = false;
 
   useEffect(() => {
     scrollToTop();
     checkReducer(newStudentSubjects);
+    setDefaults();
+    dispatch({type: "FETCH_STUDENT_SUBJECTS"})
   }, []);
   const user = useSelector((store) => store.user);
 
@@ -28,6 +30,8 @@ function StudentSubjectsEdit(props) {
   const newStudentSubjects = useSelector(
     (store) => store.newStudent.newstudentSubjectReducer
   );
+
+  const tuteeSubject = useSelector((store) => store.tutees.tuteesSubject);
 
   const checkReducer = (newStudentSubjects) => {
     console.log("in checkReducer", newStudentSubjects);
@@ -48,12 +52,12 @@ function StudentSubjectsEdit(props) {
   };
 
   const setDefaults = () => {
-    if (presenting) {
-      setNewPrimarySubject("2");
+  
+      setNewPrimarySubject("4");
       setNewSecondarySubject("1");
       setNewTertiarySubject("3");
-      setNewDetailedNeeds("general support with homework");
-    }
+      setNewDetailedNeeds("General support but especially with math homework.");
+    
   };
 
   const [newPrimarySubject, setNewPrimarySubject] = useState(null);

@@ -16,7 +16,11 @@ function UserPage() {
     dispatch({ type: "FETCH_DEACTIVE_TUTORS" });
     dispatch({ type: "FETCH_ACTIVE_TUTEES" });
     dispatch({ type: "FETCH_DEACTIVE_TUTEES" });
+    dispatch({type: "FETCH_STUDENT_SUBJECTS"})
+
   }, []);
+  const newtutor = useSelector((store) => store.newtutor);
+  const newtutorSubj = useSelector((store) => store.newtutor.newtutorSubjectReducer);
 
   const tutors = useSelector((store) => store.tutors);
   const tutees = useSelector((store) => store.tutees);
@@ -28,6 +32,8 @@ function UserPage() {
   const sessions = useSelector((store) => store.sessions);
   const selectedMatch = useSelector((store) => store.selectedMatch);
   const selectedSessions = useSelector((store) => store.selectedSessions);
+  const newStudent = useSelector((store) => store.newStudent);
+  const tuteeSubject = useSelector((store) => store.tutees.tuteesSubject);
 
   const user = useSelector((store) => store.user);
 
@@ -37,6 +43,13 @@ function UserPage() {
       <p>Your ID is: {user.id}</p>
 
       {/* CHANGES MADE BELOW BY CLT TO TEST THE REDUCERS */}
+
+      <p>tuteeSubjects: {JSON.stringify(tuteeSubject)}</p>
+      <p>newTutSUBJ: {JSON.stringify(newtutorSubj)}</p>
+
+
+      <p>New tutors: {JSON.stringify(newtutor)}</p>
+
       <p>tutors: {JSON.stringify(tutors)}</p>
       <p>tutees: {JSON.stringify(tutees)}</p>
 
