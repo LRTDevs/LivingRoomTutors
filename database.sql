@@ -715,7 +715,9 @@ CREATE TABLE "profile" (
 	"five_year_plan" varchar(500),
 	"fictional_universe" varchar(500),
 	"favorite_music" varchar(255),
-	user_id INTEGER REFERENCES "user"
+	"short_description" varchar(1000),
+	user_id INTEGER REFERENCES "user",
+	"inserted_at" TIMESTAMPTZ NOT NULL DEFAULT now()
 );
 
 INSERT INTO "user"
