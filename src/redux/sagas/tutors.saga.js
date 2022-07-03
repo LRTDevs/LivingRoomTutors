@@ -22,14 +22,16 @@ function* postNewTutor(action) {
     yield put({ type: "UNSET_ADD_NEW_TUTOR_SUBJECTS" });
     yield put({ type: "UNSET_ADD_TUTOR_ADITIONAL_INFO" });
     yield put({ type: "ADD_TUTOR_TERMS", payload: false });
-    try {
-      const response2 = yield axios.post("/api/mail", {
-        email: action.payload.email,
-      });
-    } catch (err) {
-      //alert("no in postNewTutor email");
-      console.log("error posting new tutor email:", err);
-    }
+
+    //commented out for presentation
+    // try {
+    //   const response2 = yield axios.post("/api/mail", {
+    //     email: action.payload.email,
+    //   });
+    // } catch (err) {
+    //   //alert("no in postNewTutor email");
+    //   console.log("error posting new tutor email:", err);
+    // }
   } catch (err) {
     alert("no in postNewTutor");
     console.log("error posting new tutor:", err);
