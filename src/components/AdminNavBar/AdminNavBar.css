@@ -65,7 +65,7 @@
   margin-bottom: 0px;
 }
 
-.tuteeIcon {
+.tuteeIconAdmin {
   height: 45px;
   width: 45px;
   margin-right: 20px;
@@ -73,7 +73,7 @@
   background-size: cover;
 }
 
-.tutorIcon {
+.tutorIconAdmin {
   height: 45px;
   width: 45px;
   margin-right: 20px;
@@ -81,7 +81,7 @@
   background-size: cover;
 }
 
-.recordsIcon {
+.recordsIconAdmin {
   height: 45px;
   width: 45px;
   margin-right: 20px;
@@ -89,16 +89,16 @@
   background-size: cover;
 }
 
-.tuteeNavbarLink--active .tuteeIcon {
+.tuteeNavbarLink--active .tuteeIconAdmin {
   background-image: url("../../images/tuteeIconBlue.svg");
   background-size: cover;
 }
 
-.tutorNavbarLink--active .tutorIcon {
+.tutorNavbarLink--active .tutorIconAdmin {
   background-image: url("../../images/tutorIconBlue.svg");
 }
 
-.recordsNavbarLink--active .recordsIcon {
+.recordsNavbarLink--active .recordsIconAdmin {
   background-image: url("../../images/recordsIconBlue.svg");
 }
 
