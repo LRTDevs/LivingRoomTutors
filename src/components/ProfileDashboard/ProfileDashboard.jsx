@@ -30,6 +30,7 @@ function ProfileDashboard() {
   const user = useSelector((store) => store.user);
   const dispatch = useDispatch();
 
+
   return (
     <div>
       <Col lg={{ span: 8, offset: 3 }}>
@@ -52,12 +53,13 @@ function ProfileDashboard() {
                     {DateTime.fromISO(session.date).toLocaleString(
                       DateTime.DATETIME_MED
                     )}
-                   <> -{session.student_first_name}
-                   {session.isBooked == true ? <p>Confirmed ✓</p> : <p>Rejected </p>}
-                   
-                   
-                   
-                   </>
+                    {user.isTutor == true && session.student_first_name}
+                    <>
+                      {session.isBooked == true ? <p>Confirmed ✓</p> : session.isRejected == true ? <p>Rejected</p> : <p>Pending</p>}
+                    
+
+                  
+                    </>
                   </h1>
                 );
               })}
