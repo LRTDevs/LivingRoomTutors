@@ -61,8 +61,11 @@ function StudentModal(props) {
           </Modal.Body>
 
           <Modal.Footer className="submissionModalFooter">
-            <button className="primaryButton okButton" variant="primary">
+            {/* <button className="primaryButton okButton" variant="primary">
               <a href="https://livingroomtutors.org/">OK</a>
+            </button> */}
+            <button onClick={() => history.push("/ProfileDashboard")} className="primaryButton okButton" variant="primary">
+            OK
             </button>
           </Modal.Footer>
         </Modal>
