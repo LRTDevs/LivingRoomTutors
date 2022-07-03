@@ -11,21 +11,50 @@ import { faArrowRight } from '@fortawesome/free-solid-svg-icons';
 function ProfileInfoForm() {
   const dispatch = useDispatch();
   const history = useHistory();
+  const profileBio = useSelector((store) => store.profileReducer);
 
   useEffect(() => {
     scrollToTop();
+    dispatch({
+      type: 'FETCH_PROFILE_INFO',
+    });
     // checkReducer(newtutorInfo);
   }, []);
 
   const scrollToTop = () => {
     window.scrollTo(0, 0);
   };
+  //////////////
+  let favSubVal;
+  let talentVal;
+  let fiveYearVal;
+  let universeVal;
+  let musicVal;
+  let descriptionVal;
+  if (profileBio.favorite_subject === undefined ) {
+    favSubVal = '';
+    talentVal = '';
+    fiveYearVal ='';
+    universeVal ='';
+    musicVal ='';
+    descriptionVal ='';
+  } else {
+    favSubVal = profileBio.favorite_subject;
+    talentVal = profileBio.hidden_talents;
+    fiveYearVal =profileBio.five_year_plan;
+    universeVal =profileBio.fictional_universe;
+    musicVal =profileBio.favorite_music;
+    descriptionVal =profileBio.short_description;
+  }
+  console.log(profileBio.favorite_music);
+  ///////
 
-  const [favoriteSubject, setFavoriteSubject] = useState('');
-  const [specialTalents, setSpecialTalents] = useState('');
-  const [fiveYearGoal, setFiveYearGoal] = useState('');
-  const [fictionalUniverse, setFictionalUniverse] = useState('');
-  const [favoriteMusic, setFavoriteMusic] = useState('');
+  const [favoriteSubject, setFavoriteSubject] = useState(`${favSubVal}`);
+  const [specialTalents, setSpecialTalents] = useState(`${talentVal}`);
+  const [fiveYearGoal, setFiveYearGoal] = useState(`${fiveYearVal}`);
+  const [fictionalUniverse, setFictionalUniverse] = useState(`${universeVal}`);
+  const [favoriteMusic, setFavoriteMusic] = useState(`${musicVal}`);
+  const [shortDescription, setShortDescription] = useState(`${descriptionVal}`);
 
   const rightArrow = <FontAwesomeIcon icon={faArrowRight} />;
 
@@ -36,6 +65,7 @@ function ProfileInfoForm() {
     fiveYearGoal: fiveYearGoal,
     fictionalUniverse: fictionalUniverse,
     favoriteMusic: favoriteMusic,
+    shortDescription: shortDescription
   };
 
   const addNewProfileInfo = () => {
@@ -47,11 +77,10 @@ function ProfileInfoForm() {
     <div className='formBackground'>
       <Header />
       <Container className='formContainer'>
-        <TutorProgressBar />
+        {/* <TutorProgressBar /> */}
         <div className='formContent'>
           <h2>
-            These questions will help your match get to know you better! If you'd like to fill in these bits later, you
-            may skip this step.
+            These questions will help your match get to know you better!
           </h2>
           <div className='formQandA'>
             <p>What is/was your favorite subject in school?</p>
@@ -114,6 +143,19 @@ function ProfileInfoForm() {
                 value={favoriteMusic}
                 onChange={(event) => setFavoriteMusic(event.target.value)}
                 defaultValue={favoriteMusic}
+              />
+            </FloatingLabel>
+          </div>
+
+          <div className='formQandA'>
+            <p>A couple sentences to describe yourself.</p>
+            <FloatingLabel controlID='Short Description' label='Short Description' className='formInput'>
+              <Form.Control
+                type='Pronouns'
+                placeholder='Pronouns'
+                value={shortDescription}
+                onChange={(event) => setShortDescription(event.target.value)}
+                defaultValue={shortDescription}
               />
             </FloatingLabel>
           </div>

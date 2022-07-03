@@ -25,7 +25,10 @@ function Profile() {
     dispatch({
       type: 'FETCH_PROFILE_PIC',
       payload: user.id
-    })
+    });
+    dispatch({
+      type: 'FETCH_PROFILE_INFO',
+    });
   }, [])
 
 
@@ -35,11 +38,6 @@ function Profile() {
   }
   console.log(profileInfo);
 
-  useEffect(() => {
-    dispatch({
-      type: 'FETCH_PROFILE_INFO',
-    });
-  }, []);
 
   return (
     <div>
@@ -50,24 +48,33 @@ function Profile() {
           <Card className="title">
             <Card.Body>
               <form>
-                <h1>Profile Pic Upload</h1>
+                <h1></h1>
                 {/* <input type="file" onChange={(e) => setFile(e.target.files[0])}></input> */}
                 {/* <button onClick={handleClick}>Upload</button> */}
 
                 <ProfilePicItem />
-                <Button onClick={handleProfilePicChange}>Change Profile Picture</Button>
+                
               </form>
 
 
                 {profileInfo.id &&
                   <ul>
-                    <li>Favorite Music: {profileInfo.favorite_music}</li>
-                    <li>Favorite Subject: {profileInfo.favorite_subject}</li>
-                    <li>Favorite Fictional Universe: {profileInfo.fictional_universe}</li>
-                    <li>Where I see myself in 5 years: {profileInfo.five_year_plan}</li>
-                    <li>Hidden Talents: {profileInfo.hidden_talents}</li>
+                    <li>What is/was your favorite subject in school? {profileInfo.favorite_subject}</li>
+                    <li>What are your special talents? {profileInfo.hidden_talents}</li>
+                    <li>What is your 5-year goal? {profileInfo.five_year_plan}</li>
+                    <li>If you could live in a fictional universe, which one would you choose? {profileInfo.fictional_universe}</li>
+                    <li>What is your favorite type of music? {profileInfo.favorite_music}</li>
+                    <li>A couple sentences to describe yourself. {profileInfo.short_description}</li>
                   </ul>
                 }
+                <Button className="primaryButton matchButton" onClick={handleProfilePicChange}>Change Profile Picture</Button>
+                <Button
+                    className="primaryButton matchButton"
+                    onClick={() => history.push("/ProfileInfoForm")}
+                  >
+                    Update Bio
+                  </Button>
+                  
 
                 {user.isTutor === true ? (
                   <Button
@@ -83,6 +90,7 @@ function Profile() {
                   >
                     Update Tutoring Subjects
                   </Button>
+                  
                 )}
               </Card.Body>
             </Card>

@@ -16,7 +16,9 @@ function ProfilePicUpload() {
   const dispatch = useDispatch();
 
 
-  const handleClick = () => {
+  const handleClick = (e) => {
+    //This should be in a saga
+    e.preventDefault()
     const data = new FormData()
     data.append('file', file)
     let url = `http://localhost:5000/api/upload/${user.id}`;
@@ -24,9 +26,10 @@ function ProfilePicUpload() {
       headers: {
         'Content-Type': 'multipart/form-data'
       }
+    }).then(() => {
+      history.push(`/profile`)
     })
-    console.log('click',user.id);
-    history.push(`/profileDashboard`);
+   
     
   }
   return (
