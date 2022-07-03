@@ -52,7 +52,7 @@ const selectedSessions = useSelector((store) => store.selectedSessions);
 
               <h1>Welcome To The Dashboard, {user.username}!</h1>
 
-
+{/* should show only isConfirm === true */}
               {selectedSessions
                       .map((session) => {
                         console.log("sessions in dashboard", session);
