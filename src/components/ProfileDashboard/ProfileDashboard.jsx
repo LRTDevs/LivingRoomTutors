@@ -22,7 +22,14 @@ function ProfileDashboard() {
         type: 'FETCH_PROFILE_PIC',
         payload: user.id
     })
+    dispatch({
+      type: "FETCH_SELECTED_SESSIONS",
+    });
+
 }, [])
+
+const selectedSessions = useSelector((store) => store.selectedSessions);
+
 
   const user = useSelector((store)=> store.user)
   const dispatch = useDispatch();
@@ -44,6 +51,15 @@ function ProfileDashboard() {
               <img alt="logo" style={{ maxWidth: "65px" }} src={Logo} />
 
               <h1>Welcome To The Dashboard, {user.username}!</h1>
+
+
+              {selectedSessions
+                      .map((session) => {
+                        console.log("sessions in dashboard", session);
+                        return (
+                          < h3 key={session.id}> {session.date} {session.student_first_name}</h3>
+                        );
+                      })}
 
             </Card.Body>
           </Card>
