@@ -1,8 +1,8 @@
-const sessions = (state = [], action) => {
+const selectedMatch = (state = [], action) => {
     switch (action.type) {
-      case "SET_TUTOR_SESSIONS":
+      case "SET_SELECTED_MATCHES":
         return action.payload;
-      case "UNSET_TUTORS_SESSIONS":
+      case "UNSET_SELECTED_MATCHES":
         return {};
       default:
         return state;
@@ -11,4 +11,4 @@ const sessions = (state = [], action) => {
   
   // user will be on the redux state at:
   // state.user
-  export default sessions;
+  export default selectedMatch;

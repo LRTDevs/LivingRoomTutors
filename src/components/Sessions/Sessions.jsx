@@ -5,25 +5,31 @@ import { Accordion, Button, Form } from "react-bootstrap";
 import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect } from "react";
-
+import { useHistory } from "react-router-dom";
+import { DateTime } from "luxon";
+import ConfirmSession from "../ConfirmDate/ConfirmDate";
 
 function Sessions() {
-
   useEffect(() => {
-    if (user.isTutor === false) {
-      dispatch({
-        type: "FETCH_TUTOR_SESSIONS",
-      });
-    }
+    dispatch({
+      type: "FETCH_SELECTED_SESSIONS",
+    });
+    dispatch({
+      type: "FETCH_SELECTED_MATCH",
+    });
   }, []);
 
   const dispatch = useDispatch();
-
+  const history = useHistory();
   const user = useSelector((store) => store.user);
+  const matches = useSelector((store) => store.matches);
+  const selectedSessions = useSelector((store) => store.selectedSessions);
+  const selectedMatch = useSelector((store) => store.selectedMatch);
 
   const [primaryDate, setPrimaryDate] = useState([]);
   const [secondaryDate, setSecondaryDate] = useState([]);
   const [tertiaryDate, setTertiaryDate] = useState([]);
+  const [tuteeId, setTuteeId] = useState("");
 
   const AddSessions = () => {
     const newSessions = {
@@ -33,16 +39,15 @@ function Sessions() {
     };
 
     console.log("newSessions------------>", newSessions);
+    console.log("Matches------------>", matches);
 
     dispatch({
       type: "ADD_TUTOR_SESSIONS",
-      payload: { ...newSessions, tutee_id: 1 },
+      payload: { ...newSessions, tutee_id: tuteeId },
     });
-      //hardcoded for now
-      // BALLOON! added a hardcoded tutee_id value to test this out
-      // remember that it was super important to have dummy data that made
-      // sense in order to test all this out.
-      //dropdown that maps tutees.id's of tutor. 
+
+    ////Add Modal Alert
+    history.push('/ProfileDashboard')
   };
 
   return (
@@ -51,18 +56,41 @@ function Sessions() {
 
       <div className="container">
         <Col lg={{ span: 8, offset: 3 }}>
-
           <Container>
             <Card className="title">
               <Card.Body>
-                <h1>Schedule Sessions </h1>
                 {user.isTutor && (
                   <div>
+                    <h1>Schedule Tutoring Sessions </h1>
                     <span>
                       {" "}
                       Please select three dates and times for possible sessions.
                       Sessions will be send to tutee for confirmation.
                     </span>
+
+                    <div className="formQandA">
+                      <label className="customLabel" htmlFor="gradeLevel">
+                        Select Student Name
+                        <span className="requiredField"> *</span>
+                      </label>
+
+                      <Form.Select
+                        id="gradeLevel"
+                        className="selectGradeDropdown"
+                        aria-label="gradeLevel"
+                        onChange={(event) => setTuteeId(event.target.value)}
+                      >
+                        <option value="">Select </option>
+                        {selectedMatch.map((match) => {
+                          // console.log("match reducer in map", match);
+                          return (
+                            <option value={match.tutee_id} key={match.id}>
+                              {match.student_first_name}
+                            </option>
+                          );
+                        })}
+                      </Form.Select>
+                    </div>
 
                     <Form.Group className="mb-3">
                       <Form.Label
@@ -121,6 +149,29 @@ function Sessions() {
                     </Button>
                   </div>
                 )}
+
+                {user.isTutor === false && (
+                  <div>
+                    <h1>Confirm Tutoring Sessions </h1>
+                    <span>
+                      {" "}
+                      Please confirm the best dates for your session.
+                    </span>
+
+                    {selectedSessions
+                      .filter((session) => {
+                        return !session.isBooked && !session.isRejected
+                      })
+                      .map((session) => {
+                        console.log("session map*****************", session);
+                        return (
+                          <ConfirmSession key={session.id} session={session} />
+                        );
+                      })}
+
+                    {/* {selectedSessions[1]} */}
+                  </div>
+                )}
               </Card.Body>
             </Card>
           </Container>
@@ -131,5 +182,3 @@ function Sessions() {
 }
 
 export default Sessions;
-
-

@@ -5,9 +5,11 @@ import { Container, Form, Button } from "react-bootstrap";
 import Header from "../Header/Header";
 import TutorModal from "../TutorModal/TutorModal";
 import TutorProgressBar from "../TutorProgressBar/TutorProgressBar";
+import {useHistory} from "react-router-dom"
 
 function StudentTerms(props) {
   const dispatch = useDispatch();
+  const history =useHistory();
 
 
   useEffect(() => {
@@ -131,9 +133,23 @@ function StudentTerms(props) {
     miscInfo: tutorAdditional.tutorAdditionalInfo,
   };
 
-  // const sendNewTutor = () => {
-  //   dispatch({ type: "SEND_NEW_TUTOR", payload: newTutorObject });
-  // };
+
+
+  //the following two functions are the dispatch for the tutorInfo and
+  //history.push to profileInfo
+  const sendNewTutor = () => {
+    dispatch({ type: "SEND_NEW_TUTOR", payload: newTutorObject });
+  };
+
+
+  const goToProfileInfoForm = () => {
+    if (agreedToggle === false) {
+      alert('Please agree to the required terms before continuing.');
+    } else if (agreedToggle) {
+      sendNewTutor();
+      history.push('/ProfileInfoForm');
+    }
+  };
 
   return (
     <div className="formBackground">
@@ -188,13 +204,19 @@ function StudentTerms(props) {
 
             <div>
               {agreedToggle ? (
-                <TutorModal newTutorObject={newTutorObject} />
-              ) : (
-                  <Button className="saveAndContinueButton" disabled>
+                <>
+                  {/* <TutorModal newTutorObject={newTutorObject} /> */}
+                  <Button className='saveAndContinueButton' onClick={goToProfileInfoForm}>
                     Submit
                   </Button>
-                )}
+                </>
+              ) : (
+                <Button className='saveAndContinueButton' disabled>
+                  Submit
+                </Button>
+              )}
             </div>
+     
           </div>
         </div>
       </Container>

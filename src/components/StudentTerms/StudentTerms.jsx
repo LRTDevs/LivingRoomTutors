@@ -108,6 +108,17 @@ function StudentTerms(props) {
   //     termserrors = true;
   //   }
 
+
+  const goToProfileInfoForm = () => {
+    if (agreedToggle === false) {
+      alert('Please agree to the required terms before continuing.');
+    } else if (agreedToggle) {
+      dispatch({ type: "ADD_NEW_STUDENT", payload: newStudentObject })
+        history.push('/ProfileInfoForm');
+    }
+  
+  };
+  
   return (
     <div className="formBackground">
       <Header />
@@ -162,15 +173,19 @@ function StudentTerms(props) {
                 I understand <span className="requiredField"> *</span>
               </Form.Check.Label>
             </Form.Check>
-
             <div>
               {agreedToggle ? (
-                <StudentModal newStudentObject={newStudentObject} />
-              ) : (
-                  <Button  className="saveAndContinueButton" disabled>
+                <>
+                  {/* <TutorModal newTutorObject={newTutorObject} /> */}
+                  <Button className='saveAndContinueButton' onClick={goToProfileInfoForm}>
                     Submit
                   </Button>
-                )}
+                </>
+              ) : (
+                <Button className='saveAndContinueButton' disabled>
+                  Submit
+                </Button>
+              )}
             </div>
           </div>
         </div>

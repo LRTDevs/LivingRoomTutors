@@ -595,4 +595,27 @@ router.put("/matchStatus/", (req, res) => {
     });
 });
 
+router.get("/selected", (req, res) => {
+  // console.log("SELECTED/MATCH--------->");
+  const query = `
+  SELECT * FROM matches
+  JOIN tutees ON tutees.id = matches.tutee_id
+  JOIN tutors ON tutors.id = matches.tutor_id
+  JOIN "user" ON "user".id = tutors.user_id
+  WHERE "user".id = $1
+  
+  ;
+;`;
+  pool
+    .query(query, [req.user.id])
+    .then((result) => {
+      // console.log('result.rows IN SELECTED MATCH-->',result.rows)
+      res.send(result.rows);
+    })
+    .catch((err) => {
+      console.log("ERROR:GET SELECTED MATCH", err);
+      res.sendStatus(500);
+    });
+});
+
 module.exports = router;
