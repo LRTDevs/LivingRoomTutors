@@ -44,7 +44,7 @@ VALUES ($1, $2, $3, $4, $5, $6, $7);
     });
 });
 
-router.get('/match:id', (req, res) => {
+router.get('/match/:id', (req, res) => {
   const query = `
   SELECT * FROM matches
   JOIN tutees ON tutees.id = matches.tutee_id

@@ -13,23 +13,22 @@ function MatchProfile() {
       type: "FETCH_SELECTED_MATCH",
     });
  
-    dispatch({
-      type: "FETCH_SELECTED_PROFILE",
-      payload: tuteeId
-    });
+
   }, []);
 
   const dispatch = useDispatch();
   const selectedMatch = useSelector((store) => store.selectedMatch);
   const [tuteeId, setTuteeId] = useState("");
 
-  const matchProfile =()=>{
+  const matchProfile = useSelector((store) => store.matchProfile);
+  console.log('matchProfile reducer----------------->',matchProfile )
 
-    dispatch({
-      type: "FETCH_SELECTED_PROFILE",
-      payload: tuteeId
-    });
-  }
+const handleProfile=()=>{
+  dispatch({
+    type: "FETCH_SELECTED_PROFILE",
+    payload: tuteeId
+  });
+}
 
   return (
     <div>
@@ -52,7 +51,9 @@ function MatchProfile() {
                   onChange={(event) => setTuteeId(event.target.value)}
                 >
                   <option value="">Select </option>
-                  {selectedMatch.map((match) => {
+                  {selectedMatch &&
+                  
+                  selectedMatch.map((match) => {
                     // console.log("match reducer in map", match);
                     return (
                       <option value={match.tutee_id} key={match.id}>
@@ -67,8 +68,32 @@ function MatchProfile() {
 
 
 
-                  
                 </Form.Select>
+
+<Button
+                      className="primaryButton saveAndContinueButton"
+                      onClick={handleProfile}
+                    >
+                     
+                    </Button>
+
+                    {matchProfile &&
+                  <ul>
+                    <li>{matchProfile.id}</li>
+                    <li>What is/was your favorite subject in school? { matchProfile.favorite_subject}</li>
+                    <li>What are your special talents? { matchProfile.hidden_talents}</li>
+                    <li>What is your 5-year goal? { matchProfile.five_year_plan}</li>
+                    <li>If you could live in a fictional universe, which one would you choose? { matchProfile.fictional_universe}</li>
+                    <li>What is your favorite type of music? {matchProfile.favorite_music}</li>
+                    <li>A couple sentences to describe yourself. { matchProfile.short_description}</li>
+                  </ul>
+                }
+
+
+
+
+
+
               </Card.Body>
             </Card>
           </Container>
