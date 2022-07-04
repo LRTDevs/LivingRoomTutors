@@ -1,4 +1,44 @@
+.tools-container {
+  display: flex;
+  flex-wrap: wrap;
+}
+
 .toolsTitle {
-    align-items: center;
-    justify-content: center;
+  align-items: center;
+  justify-content: center;
+}
+
+.tool-card {
+  height: 320px;
+  width: 300px;
+  object-fit: cover;
+}
+
+.tool-card-title {
+  text-align: center;
+  padding: 10px;
+  height: 125px;
+  width: auto;
+}
+
+.sketchpad-sizing-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.sketchpad-sizing {
+  height: 150px;
+  width: auto;
+}
+
+.web-whiteboard-sizing-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.web-whiteboard-sizing {
+  height: 150px;
+  width: auto;
 }

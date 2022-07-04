@@ -1,21 +1,20 @@
-import { Card, Col, Container } from "react-bootstrap";
-import Nav from "../Nav/Nav";
-import Header from "../Header/Header";
-import { Accordion, Button, Form } from "react-bootstrap";
-import { useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { useEffect } from "react";
-import { useHistory } from "react-router-dom";
-import { DateTime } from "luxon";
-import ConfirmSession from "../ConfirmDate/ConfirmDate";
+import { Card, Col, Container } from 'react-bootstrap';
+import Nav from '../Nav/Nav';
+import { Accordion, Button, Form } from 'react-bootstrap';
+import { useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { useEffect } from 'react';
+import { useHistory } from 'react-router-dom';
+import { DateTime } from 'luxon';
+import ConfirmSession from '../ConfirmDate/ConfirmDate';
 
 function Sessions() {
   useEffect(() => {
     dispatch({
-      type: "FETCH_SELECTED_SESSIONS",
+      type: 'FETCH_SELECTED_SESSIONS',
     });
     dispatch({
-      type: "FETCH_SELECTED_MATCH",
+      type: 'FETCH_SELECTED_MATCH',
     });
   }, []);
 
@@ -29,7 +28,7 @@ function Sessions() {
   const [primaryDate, setPrimaryDate] = useState([]);
   const [secondaryDate, setSecondaryDate] = useState([]);
   const [tertiaryDate, setTertiaryDate] = useState([]);
-  const [tuteeId, setTuteeId] = useState("");
+  const [tuteeId, setTuteeId] = useState('');
 
   const AddSessions = () => {
     const newSessions = {
@@ -38,49 +37,57 @@ function Sessions() {
       tertiaryDate: tertiaryDate,
     };
 
-    console.log("newSessions------------>", newSessions);
-    console.log("Matches------------>", matches);
+    console.log('newSessions------------>', newSessions);
+    console.log('Matches------------>', matches);
 
     dispatch({
-      type: "ADD_TUTOR_SESSIONS",
+      type: 'ADD_TUTOR_SESSIONS',
       payload: { ...newSessions, tutee_id: tuteeId },
     });
 
     ////Add Modal Alert
-    history.push('/ProfileDashboard')
+    history.push('/ProfileDashboard');
   };
 
   return (
-    <div>
-      <Nav />
-
-      <div className="container">
-        <Col lg={{ span: 8, offset: 3 }}>
+    <div className='adminPageContainer'>
+      <Col lg={{ span: 8, offset: 2 }}>
+        <Col md={{ span: 6, offset: 3 }}>
+          <Nav />
           <Container>
-            <Card className="title">
+            <Card className='toolsTitle card-heading'>
+              <Card.Body>
+                <h1>Sessions</h1>
+                {/* <h2>here are some external links you can use in your tutor sessions!</h2> */}
+              </Card.Body>
+            </Card>
+          </Container>
+        </Col>
+        <div>
+          <Container>
+            <Card className='title'>
               <Card.Body>
                 {user.isTutor && (
                   <div>
                     <h1>Schedule Tutoring Sessions </h1>
                     <span>
-                      {" "}
-                      Please select three dates and times for possible sessions.
-                      Sessions will be send to tutee for confirmation.
+                      Please select three dates and times for possible sessions. Sessions will be send to tutee for
+                      confirmation.
                     </span>
 
-                    <div className="formQandA">
-                      <label className="customLabel" htmlFor="gradeLevel">
+                    <div className='formQandA'>
+                      <label className='customLabel' htmlFor='gradeLevel'>
                         Select Student Name
-                        <span className="requiredField"> *</span>
+                        <span className='requiredField'> *</span>
                       </label>
 
                       <Form.Select
-                        id="gradeLevel"
-                        className="selectGradeDropdown"
-                        aria-label="gradeLevel"
+                        id='gradeLevel'
+                        className='selectGradeDropdown'
+                        aria-label='gradeLevel'
                         onChange={(event) => setTuteeId(event.target.value)}
                       >
-                        <option value="">Select </option>
+                        <option value=''>Select </option>
                         {selectedMatch.map((match) => {
                           // console.log("match reducer in map", match);
                           return (
@@ -92,59 +99,46 @@ function Sessions() {
                       </Form.Select>
                     </div>
 
-                    <Form.Group className="mb-3">
-                      <Form.Label
-                        style={{ fontSize: "1.25rem", marginBottom: "20px" }}
-                      >
-                        {" "}
+                    <Form.Group className='mb-3'>
+                      <Form.Label style={{ fontSize: '1.25rem', marginBottom: '20px' }}>
+                        {' '}
                         Select 1st Choice Date And Time
                       </Form.Label>
                       <Form.Control
-                        type="datetime-local"
+                        type='datetime-local'
                         required
                         value={primaryDate}
                         onChange={(event) => setPrimaryDate(event.target.value)}
                       />
                     </Form.Group>
 
-                    <Form.Group className="mb-3">
-                      <Form.Label
-                        style={{ fontSize: "1.25rem", marginBottom: "20px" }}
-                      >
-                        {" "}
-                        Select 2nd Choice Date And Time{" "}
+                    <Form.Group className='mb-3'>
+                      <Form.Label style={{ fontSize: '1.25rem', marginBottom: '20px' }}>
+                        {' '}
+                        Select 2nd Choice Date And Time{' '}
                       </Form.Label>
                       <Form.Control
-                        type="datetime-local"
+                        type='datetime-local'
                         required
                         value={secondaryDate}
-                        onChange={(event) =>
-                          setSecondaryDate(event.target.value)
-                        }
+                        onChange={(event) => setSecondaryDate(event.target.value)}
                       />
                     </Form.Group>
 
-                    <Form.Group className="mb-3">
-                      <Form.Label
-                        style={{ fontSize: "1.25rem", marginBottom: "18px" }}
-                      >
-                        {" "}
+                    <Form.Group className='mb-3'>
+                      <Form.Label style={{ fontSize: '1.25rem', marginBottom: '18px' }}>
+                        {' '}
                         Select Third Choice Date And Time
                       </Form.Label>
                       <Form.Control
-                        type="datetime-local"
+                        type='datetime-local'
                         required
                         value={tertiaryDate}
-                        onChange={(event) =>
-                          setTertiaryDate(event.target.value)
-                        }
+                        onChange={(event) => setTertiaryDate(event.target.value)}
                       />
                     </Form.Group>
 
-                    <Button
-                      className="primaryButton saveAndContinueButton"
-                      onClick={AddSessions}
-                    >
+                    <Button className='primaryButton saveAndContinueButton' onClick={AddSessions}>
                       Save
                     </Button>
                   </div>
@@ -153,20 +147,15 @@ function Sessions() {
                 {user.isTutor === false && (
                   <div>
                     <h1>Confirm Tutoring Sessions </h1>
-                    <span>
-                      {" "}
-                      Please confirm the best dates for your session.
-                    </span>
+                    <span> Please confirm the best dates for your session.</span>
 
                     {selectedSessions
                       .filter((session) => {
-                        return !session.isBooked && !session.isRejected
+                        return !session.isBooked && !session.isRejected;
                       })
                       .map((session) => {
-                        console.log("session map*****************", session);
-                        return (
-                          <ConfirmSession key={session.id} session={session} />
-                        );
+                        console.log('session map*****************', session);
+                        return <ConfirmSession key={session.id} session={session} />;
                       })}
 
                     {/* {selectedSessions[1]} */}
@@ -175,8 +164,8 @@ function Sessions() {
               </Card.Body>
             </Card>
           </Container>
-        </Col>
-      </div>
+        </div>
+      </Col>
     </div>
   );
 }

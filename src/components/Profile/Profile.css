@@ -1,4 +1,19 @@
-.title{
-    align-items: center;
-    justify-content: center;
+.profile-card {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+}
+
+.profile-card-heading {
+  display: flex;
+  flex-wrap: nowrap;
+  align-items: center;
+  justify-content: center;
+  padding: 15px;
+}
+
+.profile-bio {
+  text-align: center;
+  list-style: none;
 }

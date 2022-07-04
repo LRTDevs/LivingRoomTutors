@@ -1,4 +1,9 @@
-.title{
-    align-items: center;
-    justify-content: center;
+.title {
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+}
+
+.guideline-card {
+  margin-bottom: 40px;
 }
