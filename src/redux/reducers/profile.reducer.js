@@ -1,3 +1,4 @@
+
 const profileReducer = (state = {}, action) => {
   switch (action.type) {
     case 'SET_PROFILE':
@@ -8,6 +9,10 @@ const profileReducer = (state = {}, action) => {
       return state;
   }
 };
+
+
+
+
 
 export default profileReducer;
 

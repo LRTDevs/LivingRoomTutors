@@ -231,4 +231,27 @@ router.put("/update/:id", (req, res) => {
     });
 });
 
+router.get('/subjects', (req, res) => {
+  const query = `
+  SELECT * FROM "subjects_tutees"
+  JOIN tutees ON subjects_tutees.id = tutees.subject_1 OR subjects_tutees.id = tutees.subject_2 OR subjects_tutees.id = tutees.subject_3
+  JOIN "user" ON tutees.user_id ="user".id
+  WHERE "user".id=$1
+  `;
+  
+  const sqlValues = [req.user.id]
+  pool.query(query, sqlValues)
+    .then((results) => {
+      res.send(results.rows);
+    })
+    .catch((error) => {
+      console.log('Error in GET all profile info:', error);
+    });
+});
+
+
+
+
+
+
 module.exports = router;

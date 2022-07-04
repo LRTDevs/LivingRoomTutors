@@ -71,13 +71,26 @@ function* updateStudentSubjects(action) {
     }
   }
 
+  function* fetchStudentSubjects() {
+    console.log('in fetch Student Subjects')
+    try {
+      const response = yield axios.get("/api/tutees/subjects");
+      console.log('response from Student subjects',response.data)
+      yield put({ type: "SET_STUDENT_SUBJECTS", payload: response.data });
+    } catch (error) {
+      console.log("STUDENT SUBJECTS ERROR", error);
+  
+    }
+  }
+
 
 
 function* tuteesSaga() {
   yield takeLatest("FETCH_TUTEES", fetchTutees);
   yield takeLatest("ADD_NEW_STUDENT", postNewStudent);
   yield takeLatest("UPDATE_STUDENT_SUBJECTS", updateStudentSubjects);
-  yield takeLatest("FETCH_SELECTED_SESSIONS", fetchSelectedSessions)
+  yield takeLatest("FETCH_SELECTED_SESSIONS", fetchSelectedSessions);
+  yield takeLatest("FETCH_STUDENT_SUBJECTS", fetchStudentSubjects)
 
 }
 
