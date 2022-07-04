@@ -4,6 +4,7 @@ import LogOutButton from '../LogOutButton/LogOutButton';
 import { useSelector } from 'react-redux';
 import '../AdminNavBar/AdminNavBar.css';
 import LRTHeader from '../../images/LRTHeader.png';
+import { MdDashboard } from 'react-icons/md';
 
 function AdminNavBar() {
   const user = useSelector((store) => store.user);
@@ -28,6 +29,22 @@ function AdminNavBar() {
       {user.id && (
         <div className='adminNavContents'>
           <div className='AdminNavLinks'>
+            <NavLink
+              activeClassName='tutorNavbarLink--active navbarlink--active'
+              className='AdminNavLink tutorNavLink'
+              to='/ProfileDashboard'
+            >
+              <div className='topNavDiv'> </div>
+              <div className='middleDivBackground'>
+                <div className='middleNavDiv'>
+                  <div className='tutorIcon'>
+                    <MdDashboard />
+                  </div>
+                  <span className='navTitleSpan'>Dashboard</span>
+                </div>
+              </div>
+              <div className='bottomNavDiv'></div>
+            </NavLink>
             <NavLink
               activeClassName='tuteeNavbarLink--active navbarlink--active'
               className='AdminNavLink tuteeNavLink'

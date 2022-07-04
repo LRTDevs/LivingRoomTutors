@@ -1,80 +1,71 @@
 @font-face {
-  font-family: "PublicaSans-Bold";
-  src: local("PublicaSans-Bold"),
-    url("../../fonts/PublicaSans-Bold.otf") format("truetype");
+  font-family: 'PublicaSans-Bold';
+  src: local('PublicaSans-Bold'), url('../../fonts/PublicaSans-Bold.otf') format('truetype');
 }
 
 @font-face {
-  font-family: "PublicaSans-Light";
-  src: local("PublicaSans-Light"),
-    url("../../fonts/PublicaSans-Light.otf") format("truetype");
+  font-family: 'PublicaSans-Light';
+  src: local('PublicaSans-Light'), url('../../fonts/PublicaSans-Light.otf') format('truetype');
 }
 
 @font-face {
-  font-family: "PublicaSans-Medium";
-  src: local("PublicaSans-Medium"),
-    url("../../fonts/PublicaSans-Medium.otf") format("truetype");
+  font-family: 'PublicaSans-Medium';
+  src: local('PublicaSans-Medium'), url('../../fonts/PublicaSans-Medium.otf') format('truetype');
 }
 
 @font-face {
-  font-family: "ZPublicaSans";
-  src: local("ZPublicaSans"),
-    url("../../fonts/ZPublicaSans.otf") format("truetype");
+  font-family: 'ZPublicaSans';
+  src: local('ZPublicaSans'), url('../../fonts/ZPublicaSans.otf') format('truetype');
 }
 
 @font-face {
-  font-family: "Lato-Thin";
-  src: local("Lato-Thin"), url("../../fonts/Lato-Thin.ttf") format("truetype");
+  font-family: 'Lato-Thin';
+  src: local('Lato-Thin'), url('../../fonts/Lato-Thin.ttf') format('truetype');
 }
 
 @font-face {
-  font-family: "Lato-ThinItalic";
-  src: local("Lato-ThinItalic"),
-    url("../../fonts/Lato-ThinItalic.ttf") format("truetype");
+  font-family: 'Lato-ThinItalic';
+  src: local('Lato-ThinItalic'), url('../../fonts/Lato-ThinItalic.ttf') format('truetype');
 }
 
 @font-face {
-  font-family: "Lato-Light";
-  src: local("Lato-Light"), url("../../fonts/Lato-Light.ttf") format("truetype");
+  font-family: 'Lato-Light';
+  src: local('Lato-Light'), url('../../fonts/Lato-Light.ttf') format('truetype');
 }
 
 @font-face {
-  font-family: "Lato-LightItalic";
-  src: local("Lato-LightItalic"),
-    url("../../fonts/Lato-LightItalic.ttf") format("truetype");
+  font-family: 'Lato-LightItalic';
+  src: local('Lato-LightItalic'), url('../../fonts/Lato-LightItalic.ttf') format('truetype');
 }
 
 @font-face {
-  font-family: "Lato-Regular";
-  src: local("Lato-Regular"),
-    url("../../fonts/Lato-Regular.ttf") format("truetype");
+  font-family: 'Lato-Regular';
+  src: local('Lato-Regular'), url('../../fonts/Lato-Regular.ttf') format('truetype');
 }
 
 @font-face {
-  font-family: "Lato-Italic";
-  src: local("Lato-Italic"),
-    url("../../fonts/Lato-Italic.ttf") format("truetype");
+  font-family: 'Lato-Italic';
+  src: local('Lato-Italic'), url('../../fonts/Lato-Italic.ttf') format('truetype');
 }
 
 @font-face {
-  font-family: "Lato-BoldItalic";
-  src: local("Lato-BoldItalic"),
-    url("../../fonts/Lato-BoldItalic.ttf") format("truetype");
+  font-family: 'Lato-BoldItalic';
+  src: local('Lato-BoldItalic'), url('../../fonts/Lato-BoldItalic.ttf') format('truetype');
 }
 
 @font-face {
-  font-family: "Lato-Bold";
-  src: local("Lato-Bold"), url("../../fonts/Lato-Bold.ttf") format("truetype");
+  font-family: 'Lato-Bold';
+  src: local('Lato-Bold'), url('../../fonts/Lato-Bold.ttf') format('truetype');
 }
 
 @font-face {
-  font-family: "Lato-Black";
-  src: local("Lato-Black"), url("../../fonts/Lato-Black.ttf") format("truetype");
+  font-family: 'Lato-Black';
+  src: local('Lato-Black'), url('../../fonts/Lato-Black.ttf') format('truetype');
 }
 
 @font-face {
-  font-family: "tuteeIcon";
-  src: local("tuteeIcon"), url("../../images/tuteeIcon.tif") format("tuteeIcon");
+  font-family: 'tuteeIcon';
+  src: local('tuteeIcon'), url('../../images/tuteeIcon.tif') format('tuteeIcon');
 }
 
 html,
@@ -84,13 +75,18 @@ body,
 }
 
 body {
-  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
   margin: 0px;
 }
 
 img {
   display: inline-block;
   max-width: 100%;
+}
+
+.card {
+  background-color: rgb(234, 234, 234);
+  box-shadow: 2px 5px 10px #5e5e5e ;
 }
 
 /* --------------------------------------------------------------------------------
@@ -836,16 +832,31 @@ label {
   border-color: #45c6a2;
 }
 
-li{
+li {
   /* text-align: center; */
   font-size: 25px;
   list-style: circle;
   padding-bottom: 1ch;
   padding-right: 8px;
+  text-align: left;
 }
 
-.guideline{
+.guideline {
   width: 1000px;
-  
+}
 
+.dashboard-title {
+  text-align: center;
+}
+
+.card-heading {
+  background-color: #1aa4c2;
+}
+
+.dashboard-card {
+  margin-bottom: 40px;
+}
+
+.dashboard-item {
+  margin-bottom: 50px;
 }

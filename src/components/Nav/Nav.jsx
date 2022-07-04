@@ -67,21 +67,6 @@ function Nav() {
             </NavLink>
 
             <NavLink
-              activeClassName='tuteeNavbarLink--active navbarlink--active'
-              className='AdminNavLink tuteeNavLink'
-              to='/MatchProfile'
-            >
-              <div className='topNavDiv'></div>
-              <div className='middleDivBackground'>
-                <div className='middleNavDiv'>
-                  <div className='recordsIcon'></div>
-                  <span className='navTitleSpan'>Matches</span>
-                </div>
-              </div>
-              <div className='bottomNavDiv'></div>
-            </NavLink>
-
-            <NavLink
               activeClassName='tutorNavbarLink--active navbarlink--active'
               className='AdminNavLink tutorNavLink'
               to='/sessions'
