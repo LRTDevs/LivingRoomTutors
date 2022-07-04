@@ -44,4 +44,32 @@ VALUES ($1, $2, $3, $4, $5, $6, $7);
     });
 });
 
+router.get('/match:id', (req, res) => {
+  const query = `
+  SELECT * FROM matches
+  JOIN tutees ON tutees.id = matches.tutee_id
+  JOIN "user" ON "user".id = tutees.user_id
+  JOIN profile on "user".id = profile.user_id
+
+  WHERE matches.tutee_id = $1;
+
+  `;
+  
+  const sqlValues = [req.params.id]
+  pool.query(query, sqlValues)
+    .then((results) => {
+      res.send(results.rows);
+    })
+    .catch((error) => {
+      console.log('Error in GET all profile info:', error);
+    });
+});
+
+
+
+
+
+
+
+
 module.exports = router;

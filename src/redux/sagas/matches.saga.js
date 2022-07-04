@@ -29,6 +29,17 @@ function* fetchSelectedMatches() {
 }
 
 
+function* fetchMatchProfile(action) {
+  console.log('in fetch match profile', action.payload)
+  try {
+    const response = yield axios.get(`/api/profile/match/${action.payload}`);
+    console.log('response from match profile',response.data)
+    yield put({ type: "SET_MATCH_PROFILE", payload: response.data });
+  } catch (error) {
+    console.log("Match Profile ERROR", error);
+
+  }
+}
 
 
 
@@ -40,7 +51,7 @@ function* fetchSelectedMatches() {
 function* matchesSaga() {
   yield takeLatest("FETCH_MATCHES", fetchMatches);
   yield takeLatest("FETCH_SELECTED_MATCH", fetchSelectedMatches);
-
+  yield takeLatest("FETCH_SELECTED_PROFILE",fetchMatchProfile)
 }
 
 export default matchesSaga;
