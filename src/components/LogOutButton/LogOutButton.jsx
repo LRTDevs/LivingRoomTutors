@@ -12,7 +12,7 @@ function LogOutButton(props) {
 
   const user = useSelector((store) => store.user);
   const handleLogOut=()=>{
-    history.push(`/`);
+
     dispatch({ type: "UNSET_PROFILE" });
     dispatch({ type: "LOGOUT" });
    

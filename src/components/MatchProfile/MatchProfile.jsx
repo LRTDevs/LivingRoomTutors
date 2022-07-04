@@ -6,14 +6,11 @@ import { useEffect } from "react";
 import { Accordion, Button, Form } from "react-bootstrap";
 import { useState } from "react";
 
-
 function MatchProfile() {
   useEffect(() => {
     dispatch({
       type: "FETCH_SELECTED_MATCH",
     });
- 
-
   }, []);
 
   const dispatch = useDispatch();
@@ -21,14 +18,14 @@ function MatchProfile() {
   const [tuteeId, setTuteeId] = useState("");
 
   const matchProfile = useSelector((store) => store.matchProfile);
-  console.log('matchProfile reducer----------------->',matchProfile )
+  console.log("matchProfile reducer----------------->", matchProfile);
 
-const handleProfile=()=>{
-  dispatch({
-    type: "FETCH_SELECTED_PROFILE",
-    payload: tuteeId
-  });
-}
+  const handleProfile = () => {
+    dispatch({
+      type: "FETCH_SELECTED_PROFILE",
+      payload: tuteeId,
+    });
+  };
 
   return (
     <div>
@@ -52,48 +49,59 @@ const handleProfile=()=>{
                 >
                   <option value="">Select </option>
                   {selectedMatch &&
-                  
-                  selectedMatch.map((match) => {
-                    // console.log("match reducer in map", match);
-                    return (
-                      <option value={match.tutee_id} key={match.id}>
-                        {match.student_first_name}
-                      </option>
-                    );
-                  })}
-
-
-
-
-
-
-
+                    selectedMatch.map((match) => {
+                      // console.log("match reducer in map", match);
+                      return (
+                        <option value={match.tutee_id} key={match.id}>
+                          {match.student_first_name}
+                        </option>
+                      );
+                    })}
                 </Form.Select>
 
-<Button
-                      className="primaryButton saveAndContinueButton"
-                      onClick={handleProfile}
-                    >
-                     
-                    </Button>
+                <Button className="secondaryButton" onClick={handleProfile}>
+                  Select
+                </Button>
 
-                    {matchProfile &&
+                {/* {matchProfile && 
+
+                    matchProfile.map((match)=>{
+                      return (
+                       <p> {match.student_first_name}</p>
+                      )
+                    })} */}
+
+
+
+
+
                   <ul>
-                    <li>{matchProfile.id}</li>
-                    <li>What is/was your favorite subject in school? { matchProfile.favorite_subject}</li>
-                    <li>What are your special talents? { matchProfile.hidden_talents}</li>
-                    <li>What is your 5-year goal? { matchProfile.five_year_plan}</li>
-                    <li>If you could live in a fictional universe, which one would you choose? { matchProfile.fictional_universe}</li>
-                    <li>What is your favorite type of music? {matchProfile.favorite_music}</li>
-                    <li>A couple sentences to describe yourself. { matchProfile.short_description}</li>
+                    <li>{matchProfile.student_first_name}</li>
+                    <li>
+                      What is/was your favorite subject in school?{" "}
+                      {matchProfile.favorite_subject}
+                    </li>
+                    <li>
+                      What are your special talents?{" "}
+                      {matchProfile.hidden_talents}
+                    </li>
+                    <li>
+                      What is your 5-year goal? {matchProfile.five_year_plan}
+                    </li>
+                    <li>
+                      If you could live in a fictional universe, which one would
+                      you choose? {matchProfile.fictional_universe}
+                    </li>
+                    <li>
+                      What is your favorite type of music?{" "}
+                      {matchProfile.favorite_music}
+                    </li>
+                    <li>
+                      A couple sentences to describe yourself.{" "}
+                      {matchProfile.short_description}
+                    </li>
                   </ul>
-                }
-
-
-
-
-
-
+                )}
               </Card.Body>
             </Card>
           </Container>

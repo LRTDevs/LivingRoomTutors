@@ -1,4 +1,4 @@
-const matchProfile = (state = [], action) => {
+const matchProfile = (state = {}, action) => {
     switch (action.type) {
       case "SET_MATCH_PROFILE":
         return action.payload;
