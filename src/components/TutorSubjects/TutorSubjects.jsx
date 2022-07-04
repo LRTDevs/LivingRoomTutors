@@ -13,6 +13,7 @@ import { useHistory } from "react-router-dom";
 function TutorSubjects(props) {
   const dispatch = useDispatch();
   const store = useSelector((store) => store);
+  const newSubj = useSelector((store) => store.newtutor.newtutorSubjectReducer);
 
   const presenting = false;
 

@@ -16,14 +16,20 @@ import { Card, Col, Container } from "react-bootstrap";
 // import Form from 'react-bootstrap/Form';
 
 function TutorInfoEdit() {
+  useEffect(() => {
+    ///uncomment for presentation
+  setDefaults();
+
+  }, []);
   const dispatch = useDispatch();
   const store = useSelector((store) => store);
   const user = useSelector((store) => store.user);
+  const newSubj = useSelector((store) => store.newtutor.newtutorSubjectReducer);
 
   const presenting = false;
 
   const setDefaults = () => {
-    if (presenting) {
+   
       setPreK(true);
       setFirstGrade(true);
       setSecondGrade(true);
@@ -31,10 +37,6 @@ function TutorInfoEdit() {
       setFourthGrade(true);
       setFifthGrade(true);
       setSixthGrade(true);
-      setSeventhGrade(true);
-      setEighthGrade(true);
-      setNinthGrade(true);
-      setTenthGrade(true);
       setK5Math(true);
       setK5Reading(true);
       setK5EnglishWriting(true);
@@ -44,8 +46,7 @@ function TutorInfoEdit() {
       setSixToEightScience(true);
       setSixToEightSocialStudies(true);
       setAPHonorsUSHistory(true);
-      setArabic(true);
-    }
+  
   };
 
   const history = useHistory();
@@ -718,7 +719,7 @@ function TutorInfoEdit() {
                {/* <h1>Tutor Edit Form</h1> */}
                {/* <div className="formBackground"> */}
       <Header />        
-        <h3>Please update your registration form below. </h3>
+        <h3 onClick={setDefaults}>Please update your registration form below. </h3>
 
       <Container className="formContainer">
         <div className="formContent">
@@ -734,6 +735,7 @@ function TutorInfoEdit() {
                 type="checkbox"
                 id="Pre-K/Kindergarten"
                 name="Pre-K/Kindergarten"
+                value={newSubj.PreK}
                 onChange={(event) => changePreK()}
                 checked={PreK}
               />
@@ -750,6 +752,7 @@ function TutorInfoEdit() {
                 type="checkbox"
                 id="1st Grade"
                 name="1st Grade"
+                value={newtutorSubj.FirstGrade }
                 onChange={(event) => changeFirstGrade()}
                 checked={FirstGrade}
               />

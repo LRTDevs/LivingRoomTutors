@@ -1,3 +1,4 @@
+
 import Logo from '../../images/logoCrop.png';
 import { Button } from 'react-bootstrap';
 import { useHistory } from 'react-router-dom';
@@ -26,6 +27,7 @@ function ProfileDashboard() {
   const dispatch = useDispatch();
 
   return (
+
     <div className='adminPageContainer'>
       <Col lg={{ span: 8, offset: 2 }}>
         <Col md={{ span: 6, offset: 3 }}>
@@ -44,6 +46,7 @@ function ProfileDashboard() {
               <img alt='logo' style={{ maxWidth: '65px' }} src={Logo} />
             </Card.Title>
             <Card.Body>
+
               <h1 className='dashboard-title'>Welcome, {user.username}!</h1>
             </Card.Body>
           </Card>
@@ -73,9 +76,21 @@ function ProfileDashboard() {
                 <Card>
                   {/* The following should show only isConfirm === true */}
                   <Card.Body>
-                    <h3 key={session.id} className='dashboard-title'>
-                      {session.date} {session.student_first_name}
-                    </h3>
+                    <h1 key={session.id} className='dashboard-title'>
+                    {DateTime.fromISO(session.date).toLocaleString(
+                      DateTime.DATETIME_MED
+                    )}
+                    {user.isTutor == true && session.student_first_name}
+                    <>
+                      {session.isBooked == true ? (
+                        <p>Confirmed ✓</p>
+                      ) : session.isRejected == true ? (
+                        <p>Rejected</p>
+                      ) : (
+                        <p>Pending</p>
+                      )}
+                    </>
+                  </h1>
                   </Card.Body>
                 </Card>
               );
