@@ -106,4 +106,28 @@ Thank you so much to Living Room Tutors and Jinglin Li for giving us the opportu
 - https://github.com/MiriamMcNamara
 - https://www.linkedin.com/in/miriam-mcnamara/
 
+<b>Fatuma Abdi</b>
+
+- abdi.fatuma776@gmail.com
+- https://github.com/Fatuma2117
+- https://linkedin.com/in/fatumamabdi
+
+<b>Jack Lund</b>
+
+- jacklund920@gmail.com
+- https://github.com/Jlundy22
+- https://linkedin.com/in/jack-lund22
+
+<b>Chad Rhiger</b>
+
+- csrhig@gmail.com
+- https://github.com/chadrhiger
+- https://linkedin.com/in/chad-rhiger
+
+<b>Jake McInerney</b>
+
+- jakemcinerney1@gmail.com
+- https://github.com/mcinerneyjake
+- https://linkedin.com/in/mcinerney-jake
+
 <!-- <a href="https://www.linkedin.com/in/"><img src="https://img.shields.io/badge/LinkedIn-0077B5?style=for-the-badge&logo=linkedin&logoColor=white" /></a>  <a href="mailto:"><img src=https://raw.githubusercontent.com/johnturner4004/readme-generator/master/src/components/assets/images/email_me_button_icon_151852.svg /></a> -->
