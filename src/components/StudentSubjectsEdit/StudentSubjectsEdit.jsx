@@ -21,7 +21,6 @@ function StudentSubjectsEdit(props) {
   useEffect(() => {
     scrollToTop();
     checkReducer(newStudentSubjects);
-    setDefaults();
     dispatch({type: "FETCH_STUDENT_SUBJECTS"})
   }, []);
   const user = useSelector((store) => store.user);
