@@ -120,7 +120,7 @@ Thank you so much to Living Room Tutors and Jinglin Li for giving us the opportu
 
 <b>Chad Rhiger</b>
 
-- csrhig@gmail.com
+- chadrhiger@gmail.com
 - https://github.com/chadrhiger
 - https://linkedin.com/in/chad-rhiger
 
