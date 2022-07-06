@@ -29,6 +29,16 @@ With auto-generated template emails and recommended matches based on subject, gr
 <img src='/src/images/forms.gif'/>
 <img src='/src/images/tutorstutees.gif'>
 <img src='src/images/matchesAndRecords.gif'>
+<img width="1436" alt="Screen Shot 2022-07-06 at 10 56 21 AM" src="https://user-images.githubusercontent.com/93444274/177596717-86c5584d-a056-4679-b7bb-f3c46d2a0bde.png">
+<img width="1433" alt="Screen Shot 2022-07-06 at 11 00 11 AM" src="https://user-images.githubusercontent.com/93444274/177597076-1ea10593-51eb-44c9-b329-89fd499b94c6.png">
+
+<img width="1432" alt="Screen Shot 2022-07-06 at 11 01 45 AM" src="https://user-images.githubusercontent.com/93444274/177597089-cacb2ea6-3a7d-4f69-b447-c0a202a30087.png">
+<img width="1433" alt="Screen Shot 2022-07-06 at 11 00 40 AM" src="https://user-images.githubusercontent.com/93444274/177597259-0b872152-8e51-4881-891e-b053ff909455.png">
+<img width="1434" alt="Screen Shot 2022-07-06 at 11 02 57 AM" src="https://user-images.githubusercontent.com/93444274/177597316-8b87ebb4-c548-4cda-95f6-e3f6f3d25eb7.png">
+<img width="1438" alt="Screen Shot 2022-07-06 at 11 00 58 AM" src="https://user-images.githubusercontent.com/93444274/177597397-273a1d09-48f4-451d-b7dc-22cf56148fc0.png">
+
+
+
 
 ## Built With
 
@@ -58,6 +68,13 @@ There is a database.sql file to use to set up a database. After that, once you f
 - Users who want to apply to be a tutor or recieve tutoring through LRT will click the corresponding button from the /home and enter all required fields on the subsequent pages.
 - Users can go back and edit their information as needed until they click SUBMIT on the final page.
 - The user will recieve an automatic confirmation email letting them know that their application has been recieved.
+- The user is able to register as a tutee or tutor then will be redirected to the dashboard. 
+- Functionalities on the profile page include user profiles with photo upload, user biography questions so that tutees and tutors can get to know more information such as What is your favorite type of music? and update registration subjects form button will direct them to update their tutoring subjects.
+- The Tutor's are able to send three possible session dates and time to the tutee for confirmation. The dashboard displays the suggested time and dates as well as the status (pending,confirmed or rejected).
+On the tutee sessions tab, they will be able to see the three possible dates and click confirm or reject suggested time. 
+- Tools tab has external resources for the tutee and tutor to utalize during sessions.
+- Guidelines page has detailed information that the tutor and tutees are required to follow. 
+
 
 ## Admin
 
