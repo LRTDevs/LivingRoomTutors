@@ -17,8 +17,7 @@ import { Card, Col, Container } from "react-bootstrap";
 
 function TutorInfoEdit() {
   useEffect(() => {
-    ///uncomment for presentation
-  setDefaults();
+   
 
   }, []);
   const dispatch = useDispatch();

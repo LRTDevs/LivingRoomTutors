@@ -81,7 +81,7 @@ function Tools() {
               <Card.Body>
                 <Card.Title className='card-heading tool-card-title'>
                   <h3>The Math Learning Center</h3>
-                  <p>Math Tutoring</p>
+                  {/* <p>Math Tutoring</p> */}
                 </Card.Title>
                 <a href='https://www.mathlearningcenter.org/'>
                   <Card.Img src={theMathLearningCenter}></Card.Img>

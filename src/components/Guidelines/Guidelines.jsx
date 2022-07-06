@@ -22,8 +22,8 @@ function Guidelines() {
 
   return (
     <div className='adminPageContainer'>
-      <Col lg={{ span: 8, offset: 1 }}>
-        <Col md={{ span: 6, offset: 5 }}>
+      <Col lg={{ span: 8, offset: 2 }}>
+        <Col md={{ span: 6, offset: 3 }}>
           <Nav />
           <Container>
             <Card className='title card-heading'>
